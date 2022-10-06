@@ -15,21 +15,24 @@ def handle_events(map_array):
 
 
         if event.type == SDL_KEYDOWN:
-            if event.key == SDLK_LEFT:                           # 왼쪽 버튼 눌리면
-                direct = 1                                       # array가 1 또는 5면 ch값 -16)
-            elif event.key == SDLK_RIGHT:
-                direct = 2# 오른쪽 버튼 눌리면
+            if direct == 0:
+                if event.key == SDLK_LEFT:                           # 왼쪽 버튼 눌리면
+                    direct = 1                                       # array가 1 또는 5면 ch값 -16)
+                elif event.key == SDLK_RIGHT:
+                    direct = 2# 오른쪽 버튼 눌리면
 
-            elif event.key == SDLK_UP:                          # 윗 버튼 눌리면
-                direct = 3
+                elif event.key == SDLK_UP:                          # 윗 버튼 눌리면
+                    direct = 3
 
-            print(direct,hero.chx,hero.mapx)
-            mode = hero.move_check(map_array, direct)  # move_checking.py내 함수 호출
-            print(mode,hero.chx,hero.mapx)
-            if mode == 1:
-                Hero_working(direct)
-                mode = 0
-            direct = 0
+                print(direct,hero.chx,hero.mapx)
+                mode = hero.move_check(map_array, direct)  # move_checking.py내 함수 호출
+                print(map_array[hero.mapy // 16 + 1][(hero.mapx) // 16 + 1])
+                print((hero.mapx) // 16 + 1, (hero.mapy) // 16 + 1)
+                print(mode,hero.chx,hero.mapx)
+                if mode == 1:
+                    Hero_working(direct)
+                    mode = 0
+                direct = 0
 
 
 
@@ -83,10 +86,10 @@ main_map_array = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
              [0, 0, 0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
              [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
-             [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
+             [4, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
              [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
              [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
-             [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 1, 3, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -98,11 +101,14 @@ map = load_image('First_gym.png')
 main_town_map = load_image('Main_town1.png')
 character_image = load_image('Character.png')
 
+print(main_map_array[hero.mapy // 16 + 1][(hero.mapx) // 16 + 1])
+print((hero.mapx) // 16 + 1, (hero.mapy) // 16 + 1)
 while True:
     draw_Scene()
     handle_events(main_map_array)
     delay(0.001)
-    get_events()
+
+
 
 
 

@@ -23,17 +23,19 @@ class Hero(character):
                 self.chx -= 16
                 pass
             elif (map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 0 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 2 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 3):
+                print(map_array[self.mapy // 16 + 1][(self.mapx) // 16 + 1])
+                print((self.mapx) // 16 + 1, (self.mapy) // 16 + 1)
                 self.mapx += 16
         elif chdirect == 2:
             self.mapx +=16
-            if (map_array[self.mapy // 16][self.mapx // 16 + 1] == 1 or map_array[self.mapy // 16][self.mapx // 16 + 1] == 5):  # 보드칸 크기가 16 x 16
+            if (map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 1 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 5):  # 보드칸 크기가 16 x 16
                 print(self.mapx, self.mapy)
                 self.chx += 16
                 return 1
-            elif (map_array[self.mapy // 16][self.mapx // 16 + 1] == 4):
+            elif (map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 4):
                 self.chx += 16
                 pass
-            elif (map_array[self.mapy // 16][self.mapx // 16 + 1] == 0 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 2 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 3):
+            elif (map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 0 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 2 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 3):
                 self.mapx -= 16
         elif chdirect == 3:
             self.mapy += 16
@@ -46,6 +48,4 @@ class Hero(character):
                 pass
             elif (map_array[self.mapy // 16+ 1][self.mapx // 16 + 1] == 0 or map_array[self.mapy // 16+ 1][self.mapx // 16 + 1] == 2 or map_array[self.mapy // 16 + 1][self.mapx // 16 + 1] == 3):
                 self.mapy -= 16
-        print(map_array[self.mapy // 16 + 1][(self.mapx) // 16 + 1])
-        print((self.mapx)//16 + 1,(self.mapy)//16 + 1)
         return 0
