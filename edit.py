@@ -3,7 +3,7 @@ import Character
 
 direct = 0
 round = 0
-hero = Character.Hero(9,1675,16,16,152,152,152,152)
+hero = Character.Hero(9,1675,16,16,152,152,152,152,0,0)
 mode = 0
 
 def handle_events(map_array):
@@ -18,14 +18,21 @@ def handle_events(map_array):
             if direct == 0:
                 if event.key == SDLK_LEFT:                           # 왼쪽 버튼 눌리면
                     direct = 1                                       # array가 1 또는 5면 ch값 -16)
+                    hero.movex -= 1
                 elif event.key == SDLK_RIGHT:
                     direct = 2# 오른쪽 버튼 눌리면
+                    hero.movex += 1
 
                 elif event.key == SDLK_UP:                          # 윗 버튼 눌리면
                     direct = 3
+                    hero.movey += 1
+
+                elif event.key == SDLK_DOWN:  # 윗 버튼 눌리면
+                    direct = 4
+                    hero.movey -= 1
 
                 print(direct,hero.chx,hero.mapx)
-                mode = hero.move_check(map_array, direct)  # move_checking.py내 함수 호출
+                mode = hero.move_check(map_array)  # move_checking.py내 함수 호출
                 print(map_array[hero.mapy // 16 + 1][(hero.mapx) // 16 + 1])
                 print((hero.mapx) // 16 + 1, (hero.mapy) // 16 + 1)
                 print(mode,hero.chx,hero.mapx)
@@ -33,17 +40,27 @@ def handle_events(map_array):
                     Hero_working(direct)
                     mode = 0
                 direct = 0
+                hero.movex,hero.movey = 0,0
 
 
 
 def Hero_working(direct):
     global hero
     if direct == 1:
-        for i in range(0,2,1):
-            hero.pngx = 105 + 16 * (i%2)
-            hero.chx -= 8
+        for i in range(0,4):
+            hero.pngx = 111 + 17 * (i % 2)
+            hero.chx -= 4
             draw_Scene()
-            delay(0.1)
+    elif direct == 2:
+        for i in range(0, 4):
+            hero.pngx = 145 + 17 * (i % 2)
+            hero.chx += 4
+            draw_Scene()
+    elif direct == 3:
+        for i in range(0,4):
+            hero.pngx = 60 + 17 * (i % 2)
+            hero.chy += 4
+            draw_Scene()
 
 
 
@@ -72,6 +89,7 @@ def draw_Scene():       # 전체적인 캔버스에 그리는 함수.
     character_image.clip_draw(hero.pngx,hero.pngy,hero.weight,hero.height,hero.chx,hero.chy)
 
     update_canvas()
+    delay(0.1)
 
 open_canvas(320,288)
 
@@ -90,7 +108,7 @@ main_map_array = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
              [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
              [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0],
              [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 1, 3, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
