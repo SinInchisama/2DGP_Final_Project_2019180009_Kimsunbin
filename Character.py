@@ -30,6 +30,16 @@ class Hero(character):
 
     def Map_move(self,round):
         if round == 0:
-            if self.mapx // 32 + 1 == 0 and (self.mapy // 32 + 1 == 9 or self.mapy // 32 + 1 == 10):
-                self.mapx, self.mapy, self.chx, self.chy = 1904, 304, 624, 304
-                return 1
+            if self.mapx // 32 + 1 == 0 :
+                if self.mapy // 32 + 1 == 10:
+                    self.mapx, self.mapy, self.chx, self.chy = 1904, 304, 624, 304
+                elif self.mapy // 32 + 1 == 9:
+                    self.mapx, self.mapy, self.chx, self.chy = 1904, 272, 624, 272
+                return 1,1
+        if round == 1:
+            if self.mapx // 32 + 1 == 61:
+                if self.mapy // 32 + 1 == 10:
+                    self.mapx, self.mapy, self.chx, self.chy = 0, 304, 16, 304
+                elif self.mapy // 32 + 1 == 9:
+                    self.mapx, self.mapy, self.chx, self.chy = 0, 272, 16, 272
+                return 0,True
