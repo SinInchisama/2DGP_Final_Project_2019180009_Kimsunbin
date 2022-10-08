@@ -43,3 +43,9 @@ class Hero(character):
                 elif self.mapy // 32 + 1 == 9:
                     self.mapx, self.mapy, self.chx, self.chy = 0, 272, 16, 272
                 return 0,True
+            if self.mapx // 32 + 1 == 0:
+                if self.mapy // 32 + 1 == 11:
+                    self.mapx, self.mapy, self.chx, self.chy = 816,336,16,336
+                elif self.mapy // 32 + 1 == 12:
+                    self.mapx, self.mapy, self.chx, self.chy = 816, 372, 16, 372
+                    return 2, True

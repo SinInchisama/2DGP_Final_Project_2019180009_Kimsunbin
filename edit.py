@@ -93,6 +93,7 @@ Maping = [Map.Map(0,0,0,0)for i in range (0,20)] #1 주인공마을 #2 29번도�
 
 Maping[0].Nowx,Maping[0].Nowy,Maping[0].Sizex,Maping[0].Sizey = 0,0,640,576
 Maping[1].Nowx,Maping[1].Nowy,Maping[1].Sizex,Maping[1].Sizey = 1280,0,1920,576
+Maping[2].Nowx,Maping[2].Nowy,Maping[2].Sizex,Maping[2].Sizey = 192,0,832,576
 for i in range(15,19):
     Maping[i].Nowx,Maping[i].Nowy,Maping[i].Sizex,Maping[i].Sizey = 0,0,640,576
 
@@ -140,12 +141,14 @@ Maping[1].array = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
+                   # 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61
+Maping[2].array = [[ 0]]
 # load_image
 
 character_image = load_image('Character.png')
 Maping[0].map = load_image('Main_town1.png')
 Maping[1].map = load_image('Route_29_1.png')
+Maping[2].map = load_image('Second_town.png')
 Maping[15].map = load_image('2.png')
 Maping[16].map = load_image('3.png')
 Maping[17].map = load_image('4.png')
