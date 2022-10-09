@@ -28,24 +28,51 @@ class Hero(character):
             self.mapy -= (self.movey * 32)
             return 0
 
-    def Map_move(self,round):
+    def Map_move(self,round,mapx,mapy):
         if round == 0:
             if self.mapx // 32 + 1 == 0 :
                 if self.mapy // 32 + 1 == 10:
                     self.mapx, self.mapy, self.chx, self.chy = 1904, 304, 624, 304
                 elif self.mapy // 32 + 1 == 9:
                     self.mapx, self.mapy, self.chx, self.chy = 1904, 272, 624, 272
-                return 1,1
-        if round == 1:
+                return mapx,mapy,1,1
+        elif round == 1:
             if self.mapx // 32 + 1 == 61:
                 if self.mapy // 32 + 1 == 10:
                     self.mapx, self.mapy, self.chx, self.chy = 0, 304, 16, 304
                 elif self.mapy // 32 + 1 == 9:
                     self.mapx, self.mapy, self.chx, self.chy = 0, 272, 16, 272
-                return 0,True
-            if self.mapx // 32 + 1 == 0:
+                return mapx,mapy,True,0
+            elif self.mapx // 32 + 1 == 0:
                 if self.mapy // 32 + 1 == 11:
                     self.mapx, self.mapy, self.chx, self.chy = 816, 336, 624, 336
                 elif self.mapy // 32 + 1 == 12:
                     self.mapx, self.mapy, self.chx, self.chy = 816, 372, 624, 372
-                return 2, True
+                return mapx,mapy, True,2
+        elif round == 2:
+            if self.mapy // 32 + 1 == 19:
+                if self.mapx // 32 + 1 == 3:
+                    self.mapx, self.mapy, self.chx, self.chy = 768, 0, 336, 16
+                elif self.mapx // 32 + 1 == 4:
+                    self.mapx, self.mapy, self.chx, self.chy = 800, 0, 368, 16
+                return 64,0, True,3
+            elif self.mapx // 32 + 1 == 27:
+                if self.mapy // 32 + 1 == 11:
+                    self.mapx, self.mapy, self.chx, self.chy = 0, 336, 16, 336
+                elif self.mapy // 32 + 1 == 12:
+                    self.mapx, self.mapy, self.chx, self.chy = 0, 372, 16, 372
+                return mapx,mapy, True,1
+        elif round == 3:
+            if self.mapy // 32 + 1 == 0:
+                if self.mapx // 32 + 1 == 25:
+                    self.mapx, self.mapy, self.chx, self.chy = 64, 576, 16, 560
+                if self.mapx // 32 + 1 == 26:
+                    self.mapx, self.mapy, self.chx, self.chy = 64, 576, 48, 560
+                return 448,0, True,2
+            elif self.mapx // 32 + 1 == 4:    # 7,8
+                if self.mapy // 32 + 1 == 11:
+                    self.mapx, self.mapy, self.chx, self.chy = 640, 352, 624, 336
+                elif self.mapy // 32 + 1 == 12:
+                    self.mapx, self.mapy, self.chx, self.chy = 608, 384, 624, 368
+                return mapx, mapy, True, 4
+            # 448, 0, 1280, 576
