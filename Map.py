@@ -12,12 +12,12 @@ class Map:
 Maping = [Map(0,0,0,0)for i in range (0,20)]
 
 # 캔버스 왼쪽좌표,하단좌표,pngx크기,pngy크기
-Maping[0].Nowx,Maping[0].Nowy,Maping[0].Sizex,Maping[0].Sizey = 0,0,640,576
-Maping[1].Nowx,Maping[1].Nowy,Maping[1].Sizex,Maping[1].Sizey = 1280,0,1920,576
-Maping[2].Nowx,Maping[2].Nowy,Maping[2].Sizex,Maping[2].Sizey = 192,0,832,576
-Maping[3].Nowx,Maping[3].Nowy,Maping[3].Sizex,Maping[3].Sizey =448,0,1280,576
-Maping[4].Nowx,Maping[4].Nowy,Maping[4].Sizex,Maping[4].Sizey =640,0,1280,1152
-for i in range(15,19):
+Maping[0].Nowx,Maping[0].Nowy,Maping[0].Sizex,Maping[0].Sizey = 0,0,640,576     # 주인공 마을
+Maping[1].Nowx,Maping[1].Nowy,Maping[1].Sizex,Maping[1].Sizey = 1280,0,1920,576 # 첫번째 필드 ROUTE_29
+Maping[2].Nowx,Maping[2].Nowy,Maping[2].Sizex,Maping[2].Sizey = 192,0,832,576   # 두번째 마을
+Maping[3].Nowx,Maping[3].Nowy,Maping[3].Sizex,Maping[3].Sizey =448,0,1280,576   # 두번째 필드 ROUTE_31
+Maping[4].Nowx,Maping[4].Nowy,Maping[4].Sizex,Maping[4].Sizey =640,0,1280,1152  # 체육관 마을
+for i in range(15,19):                                                          # 깜박이는 효과
     Maping[i].Nowx,Maping[i].Nowy,Maping[i].Sizex,Maping[i].Sizey = 0,0,640,576
 
 # 첫번째 마을 행렬.
