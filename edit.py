@@ -60,7 +60,7 @@ def Hero_working(direct):
             draw_Scene()
             delay(0.001)
 
-    print(hero.mapx, hero.mapy, hero.chx, hero.chy)
+    print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy)
 
 
 def draw_Scene():       # 전체적인 캔버스에 그리는 함수.
@@ -88,14 +88,15 @@ open_canvas(640,576)
 # init 변수
 
 direct = 0      # 방향
-round = 5       # 맵 변경에 사용하는 변수
+round = 2       # 맵 변경에 사용하는 변수
 mode = 0        # 각종 모드에 사용하는 변수
 running = True
 Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
 
 # Class 변수 생성
-hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0) #,pngx,pngy,height,weight,chx,chy,mapx,mapy,movex,movey):
-# hero = Character.Hero(18,3350,32,32,624, 368,1248, 352,0,0)
+#hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0) #,pngx,pngy,height,weight,chx,chy,mapx,mapy,movex,movey):
+hero = Character.Hero(18,3350,32,32,624, 336,816, 336,0,0)
+
 
 # load_image
 
@@ -109,7 +110,8 @@ Maping[5].map = load_image('hero_house_2F1.png')
 Maping[6].map = load_image('hero_house_1F.png')
 Maping[7].map = load_image('Professor_Lap.png')
 Maping[8].map = load_image('Main_town_NPC_HOUSE_1.png')
-Maping[9].map = load_image('Main_town_NPC_HOUSE_2.png')
+for i in range(9,13):
+    Maping[i].map = load_image('Main_town_NPC_HOUSE_2.png')
 Maping[15].map = load_image('2.png')
 Maping[16].map = load_image('3.png')
 Maping[17].map = load_image('4.png')
