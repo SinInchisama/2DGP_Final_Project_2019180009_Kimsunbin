@@ -7,12 +7,14 @@ def handle_events(map_array):
     global hero
     global mode
     global round
-    global Map_change
+    global Map_change,running
     events = get_events()
     for event in events:
 
 
         if event.type == SDL_KEYDOWN:
+            if event.type == SDL_QUIT:
+                running = False
             if direct == 0:
                 if event.key == SDLK_LEFT:                           # 왼쪽 버튼 눌리면
                     direct = 2                                       # array가 1 또는 5면 ch값 -16)
@@ -55,10 +57,11 @@ def Hero_working(direct):
             Maping[round].Nowy += hero.movey * 8
         elif(hero.movey !=0):
             hero.chy += hero.movey * 8
+            draw_Scene()
+            delay(0.001)
 
+    print(hero.mapx, hero.mapy, hero.chx, hero.chy)
 
-        draw_Scene()
-        delay(0.001)
 
 def draw_Scene():       # 전체적인 캔버스에 그리는 함수.
     global round
@@ -85,8 +88,9 @@ open_canvas(640,576)
 # init 변수
 
 direct = 0      # 방향
-round = 0       # 맵 변경에 사용하는 변수
+round = 5       # 맵 변경에 사용하는 변수
 mode = 0        # 각종 모드에 사용하는 변수
+running = True
 Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
 
 # Class 변수 생성
@@ -101,6 +105,11 @@ Maping[1].map = load_image('Route_29_1.png')
 Maping[2].map = load_image('Second_town.png')
 Maping[3].map = load_image('Route_31_1.png')
 Maping[4].map = load_image('First_gym_1.png')
+Maping[5].map = load_image('hero_house_2F1.png')
+Maping[6].map = load_image('hero_house_1F.png')
+Maping[7].map = load_image('Professor_Lap.png')
+Maping[8].map = load_image('Main_town_NPC_HOUSE_1.png')
+Maping[9].map = load_image('Main_town_NPC_HOUSE_2.png')
 Maping[15].map = load_image('2.png')
 Maping[16].map = load_image('3.png')
 Maping[17].map = load_image('4.png')
@@ -108,7 +117,7 @@ Maping[18].map = load_image('5.png')
 Maping[19].map = load_image('1.png')
 
 
-while True:
+while running:
     draw_Scene()
     handle_events(Maping[round].array)
     delay(0.001)
