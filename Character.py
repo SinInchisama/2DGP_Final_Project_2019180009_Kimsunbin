@@ -95,6 +95,14 @@ class Hero(character):
                 self.mapx, self.mapy, self.chx, self.chy = 288, 192, 272, 176
                 return 64, 0, True, 12
 
+            elif self.mapy // 32 + 1 == 15:
+                if self.mapx // 32 + 1 == 16:
+                    self.mapx, self.mapy, self.chx, self.chy = 288, 192, 272, 176
+                    return 192, 0, True, 13
+                elif self.mapx // 32 + 1 == 10:
+                    self.mapx, self.mapy, self.chx, self.chy = 256, 192, 240, 176
+                    return 64, 0, True, 14
+
         elif round == 3:                       # 31번 도로
             if self.mapy // 32 + 1 == 0:
                 if self.mapx // 32 + 1 == 25:
@@ -158,3 +166,11 @@ class Hero(character):
             self.mapx, self.mapy, self.chx, self.chy = 112, 304, 48, 304
             return mapx, mapy, True, 2
             # 448, 0, 1280, 576
+
+        elif round == 13:
+            self.mapx, self.mapy, self.chx, self.chy = 496,432,304,432
+            return mapx, mapy, True, 2
+
+        elif round == 14:
+            self.mapx, self.mapy, self.chx, self.chy = 304, 432, 240, 432
+            return mapx, mapy, True, 2

@@ -55,10 +55,10 @@ def Hero_working(direct):
             hero.chx += hero.movex * 8
         elif ((hero.chy == 16 and hero.movey < 0 and Maping[round].Nowy != 0) or (hero.chy == 560 and hero.movey > 0 and Maping[round].Nowy != Maping[round].Sizey - 576)):
             Maping[round].Nowy += hero.movey * 8
-        elif(hero.movey !=0):
+        elif(hero.movey !=0 ):
             hero.chy += hero.movey * 8
-            draw_Scene()
-            delay(0.001)
+        draw_Scene()
+        delay(0.001)
 
     print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy)
 
@@ -112,6 +112,8 @@ Maping[7].map = load_image('Professor_Lap.png')
 Maping[8].map = load_image('Main_town_NPC_HOUSE_1.png')
 for i in range(9,13):
     Maping[i].map = load_image('Main_town_NPC_HOUSE_2.png')
+Maping[13].map = load_image('Poketmon_center.png')
+Maping[14].map = load_image('Poketmon_market.png')
 Maping[15].map = load_image('2.png')
 Maping[16].map = load_image('3.png')
 Maping[17].map = load_image('4.png')
