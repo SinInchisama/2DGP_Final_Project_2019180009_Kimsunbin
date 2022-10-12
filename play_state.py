@@ -3,7 +3,6 @@ import Character
 from Map import Maping
 from Map import init_map
 import game_framework
-import test
 
 direct,round,mode,running,Map_change =0,0,0,False,False
 hero = None
@@ -17,7 +16,8 @@ def enter():
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
     init_map()
     hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
-    hero.character_image = pico2d.load_image('Character.png')
+    # hero = Character.Hero(18,3350,32,32,624, 336, 1248, 320,0,0)
+    hero.character_image = pico2d.load_image('./resource/image/Character.png')
 
 def handle_events():
     global direct
@@ -29,9 +29,8 @@ def handle_events():
     for event in events:
 
         if event.type == SDL_KEYDOWN:
-            if event.key == SDLK_ESCAPE:
-                game_framework.push_state(test)
-            elif direct == 0:
+
+            if direct == 0:
                 if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면
                     direct = 2  # array가 1 또는 5면 ch값 -16)
                     hero.movex -= 1

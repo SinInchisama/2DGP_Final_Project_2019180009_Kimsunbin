@@ -127,7 +127,24 @@ class Hero(character):
                 elif self.mapy // 32 + 1 == 12:
                     self.mapx, self.mapy, self.chx, self.chy = 128, 352, 16, 368
                 return 640,0, True, 3
-
+            elif self.mapy // 32 + 1 == 11:
+                self.mapx, self.mapy, self.chx, self.chy = 288, 192, 272, 176
+                return 640,0,True,20
+            elif self.mapx // 32 + 1 == 10:
+                self.mapx, self.mapy, self.chx, self.chy = 256, 192, 240, 176
+                return 128, 160, True, 21
+            elif self.mapx // 32 + 1 == 19:
+                self.mapx, self.mapy, self.chx, self.chy = 320, 64, 304, 48
+                return 160, 160, True, 22
+            elif self.mapx // 32 + 1 == 31:
+                self.mapx, self.mapy, self.chx, self.chy = 320, 64, 304, 48
+                return 640, 160, True, 23
+            elif self.mapy // 32 + 1 == 7:
+                self.mapx, self.mapy, self.chx, self.chy = 320, 192, 304, 176
+                return 640, 128, True, 24
+            elif self.mapy // 32 + 1 == 21:
+                self.mapx, self.mapy, self.chx, self.chy = 320, 192, 304, 176
+                return 64, 192, True, 25
         elif round == 5:                    # 주인공집 2층
             if self.mapy // 32 + 1 == 12:
                 self.mapx, self.mapy, self.chx, self.chy = 448, 384, 464, 368
@@ -176,3 +193,22 @@ class Hero(character):
         elif round == 14:
             self.mapx, self.mapy, self.chx, self.chy = 304, 432, 240, 432
             return mapx, mapy, True, 2
+
+        elif round == 20:
+            self.mapx, self.mapy, self.chx, self.chy = 992, 288, 368, 304
+            return mapx, mapy, True, 4
+        elif round == 21:
+            self.mapx, self.mapy, self.chx, self.chy = 288, 544, 176, 400
+            return mapx, mapy, True, 4
+        elif round == 22:
+            self.mapx, self.mapy, self.chx, self.chy = 576, 544, 432, 400
+            return mapx, mapy, True, 4
+        elif round == 23:
+            self.mapx, self.mapy, self.chx, self.chy = 960, 544, 336, 400
+            return mapx, mapy, True, 4
+        elif round == 24:
+            self.mapx, self.mapy, self.chx, self.chy = 672, 160, 48, 48
+            return mapx, mapy, True, 4
+        elif round == 25:
+            self.mapx, self.mapy, self.chx, self.chy = 96,608,48,432
+            return mapx, mapy, True, 4
