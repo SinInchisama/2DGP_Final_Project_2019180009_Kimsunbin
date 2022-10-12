@@ -58,7 +58,7 @@ def Hero_working(direct):
         elif(hero.movey !=0 ):
             hero.chy += hero.movey * 8
         draw_Scene()
-        delay(0.001)
+        delay(0.05)
 
     print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy)
 
@@ -88,18 +88,17 @@ open_canvas(640,576)
 # init 변수
 
 direct = 0      # 방향
-round = 2       # 맵 변경에 사용하는 변수
+round = 5       # 맵 변경에 사용하는 변수
 mode = 0        # 각종 모드에 사용하는 변수
 running = True
 Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
 
 # Class 변수 생성
-#hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0) #,pngx,pngy,height,weight,chx,chy,mapx,mapy,movex,movey):
-hero = Character.Hero(18,3350,32,32,624, 336,816, 336,0,0)
+hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0) #,pngx,pngy,height,weight,chx,chy,mapx,mapy,movex,movey):
+#hero = Character.Hero(18,3350,32,32,624, 336,816, 336,0,0)
 
 
 # load_image
-
 character_image = load_image('Character.png')
 Maping[0].map = load_image('Main_town1.png')
 Maping[1].map = load_image('Route_29_1.png')

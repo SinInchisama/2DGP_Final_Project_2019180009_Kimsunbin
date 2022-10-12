@@ -1,5 +1,3 @@
-import pico2d
-
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
         self.pngx = pngx
