@@ -1,6 +1,6 @@
 from pico2d import *
 import Character
-from Map import Maping
+from Npc import Maping
 from Map import init_map
 import game_framework
 
@@ -76,24 +76,28 @@ def Hero_working(direct):
                 hero.chy += hero.movey * 8
             draw()
             delay(0.05)
+        # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
-    # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy)
 
 def draw():       # 전체적인 캔버스에 그리는 함수.
     global round
-    global Map_change
+    global Map_change,direct
     clear_canvas()
 
-    print(Map_change)
     if(Map_change):             # 맵 변경시 깜빡이는 이미지 출력
         for i in range(15,19):
             Maping[i].map.clip_draw(Maping[i].Nowx, Maping[i].Nowy, 640, 576, 320, 288)
             update_canvas()
-            delay(1)
+            delay(0.01)
             clear_canvas()
         Map_change = False
+        direct,hero.movex,hero.movey  = -1, 0, 0
 
     Maping[round].map.clip_draw(Maping[round].Nowx, Maping[round].Nowy,640, 576, 320, 288)
+
+    if Maping[round].Npccount != 0:
+        for Npc in Maping[round].Npc:
+            hero.character_image.clip_draw(Npc.pngx,Npc.pngy,Npc.weight,Npc.height,Npc.mapx,Npc.mapy)
 
     hero.character_image.clip_draw(hero.pngx,hero.pngy,hero.weight,hero.height,hero.chx,hero.chy)
 
@@ -103,13 +107,14 @@ def draw():       # 전체적인 캔버스에 그리는 함수.
 def update():
     global mode
     global Maping,Map_change,round
-
-    mode = hero.move_check(Maping[round].array)  # move_checking.py내 함수 호출, 맵 행렬이 갈 수 있는지 체크하는 클래스함수
-    if mode == 1:
-        Hero_working(direct)  # 걷는 애니매이션 출력
-        mode = 0
-    elif mode == 2:
-        Maping[round].Nowx, Maping[round].Nowy, Map_change, round = hero.Map_move(round, Maping[round].Nowx, Maping[round].Nowy)  # 행렬이 4일때 맵변경을 위한 함수
+    if direct != -1:
+        mode = hero.move_check(Maping[round].array)  # move_checking.py내 함수 호출, 맵 행렬이 갈 수 있는지 체크하는 클래스함수
+        if mode == 1:
+            Hero_working(direct)  # 걷는 애니매이션 출력
+            mode = 0
+        elif mode == 2:
+            Hero_working(direct)
+            Maping[round].Nowx, Maping[round].Nowy, Map_change, round = hero.Map_move(round, Maping[round].Nowx, Maping[round].Nowy)  # 행렬이 4일때 맵변경을 위한 함수
 def pause():
     pass
 
