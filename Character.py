@@ -37,7 +37,7 @@ class Hero(character):
                     self.mapx, self.mapy, self.chx, self.chy = 1904, 304, 624, 304
                 elif self.mapy // 32 + 1 == 9:
                     self.mapx, self.mapy, self.chx, self.chy = 1904, 272, 624, 272
-                return mapx,mapy,True,1
+                return 0,0,True,1
 
             elif self.mapy // 32 + 1 == 13:
                 self.mapx, self.mapy, self.chx, self.chy = 352, 192, 368, 176
@@ -61,14 +61,14 @@ class Hero(character):
                     self.mapx, self.mapy, self.chx, self.chy = 0, 304, 16, 304
                 elif self.mapy // 32 + 1 == 9:
                     self.mapx, self.mapy, self.chx, self.chy = 0, 272, 16, 272
-                return mapx,mapy,True,0
+                return 1280,0,True,0
 
             elif self.mapx // 32 + 1 == 0:
                 if self.mapy // 32 + 1 == 11:
                     self.mapx, self.mapy, self.chx, self.chy = 816, 336, 624, 336
                 elif self.mapy // 32 + 1 == 12:
                     self.mapx, self.mapy, self.chx, self.chy = 816, 372, 624, 372
-                return mapx,mapy, True,2
+                return 0,0, True,2
 
         elif round == 2:                        # 두번째 마을
             if self.mapy // 32 + 1 == 19:
@@ -108,9 +108,9 @@ class Hero(character):
         elif round == 3:                       # 31번 도로
             if self.mapy // 32 + 1 == 0:
                 if self.mapx // 32 + 1 == 25:
-                    self.mapx, self.mapy, self.chx, self.chy = 64, 576, 16, 560
+                    self.mapx, self.mapy, self.chx, self.chy = 64, 560, 16, 560
                 if self.mapx // 32 + 1 == 26:
-                    self.mapx, self.mapy, self.chx, self.chy = 64, 576, 48, 560
+                    self.mapx, self.mapy, self.chx, self.chy = 96, 560, 48, 560
                 return 448,0, True,2
 
             elif self.mapx // 32 + 1 == 4:    # 7,8
@@ -118,7 +118,7 @@ class Hero(character):
                     self.mapx, self.mapy, self.chx, self.chy = 1248, 320, 624, 336
                 elif self.mapy // 32 + 1 == 12:
                     self.mapx, self.mapy, self.chx, self.chy = 1248, 352, 624, 368
-                return mapx, mapy, True, 4
+                return 128, 0, True, 4
 
         elif round == 4:                    # 체육관
             if self.mapx // 32 + 1 == 41:
