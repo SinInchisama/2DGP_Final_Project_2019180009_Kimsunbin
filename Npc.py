@@ -18,10 +18,13 @@ Maping[9].Npccount = 1
 Maping[9].Npc = [Character.character(289, 3146, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지
 Maping[9].Npc.append(Character.character(222, 2566, 32, 32, 368, 304))
 
+Maping[10].Npccount = 1
 Maping[10].Npc = [Character.character(224, 3146, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지
 
+Maping[11].Npccount = 1
 Maping[11].Npc = [Character.character(154, 3077, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지
 
+Maping[12].Npccount = 1
 Maping[12].Npc = [Character.character(224, 3146, 32, 32, 336, 336) for i in range(0, 1)]  #할아버지
 
 

@@ -97,7 +97,7 @@ def draw():       # 전체적인 캔버스에 그리는 함수.
 
     if Maping[round].Npccount != 0:
         for Npc in Maping[round].Npc:
-            hero.character_image.clip_draw(Npc.pngx,Npc.pngy,Npc.weight,Npc.height,Npc.mapx,Npc.mapy)
+            hero.character_image.clip_draw(Npc.pngx,Npc.pngy,Npc.weight,Npc.height,Npc.mapx - Maping[round].Nowx,Npc.mapy - - Maping[round].Nowy)
 
     hero.character_image.clip_draw(hero.pngx,hero.pngy,hero.weight,hero.height,hero.chx,hero.chy)
 
