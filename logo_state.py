@@ -15,20 +15,28 @@ class Map:
 
 
 Background_image = [Map(320,288,17,304,1360,0,17,3058) for i in range(0,2)]
+image1 = None
 order = None
 
 def enter():
-    global Background_image,order
+    global Background_image,order,image1
+    image1 = load_image('./resource/image/3.png')
     Background_image[0].image = load_image('./resource/image/logo.imgae_01.png')
     Background_image[1].image = load_image('./resource/image/logo.imgae_02.png')
     Background_image[1].nowy = 4274
     Background_image[1].endy = 600
-    order = 1
+    order = 0
+    image1.clip_draw(0, 0, 640, 576, 320, 288)
     Background_image[order].image.clip_draw(Background_image[order].nowx, Background_image[order].nowy, 320, 288, 320,288)
     update_canvas()
     pass
 
 def handle_events():
+    events = get_events()
+    for event in events:
+        if event.type == SDL_KEYDOWN:
+            if event.key == SDLK_a:
+                game_framework.change_state(play_state)
     pass
 
 #(Npc.pngx,Npc.pngy,Npc.weight,Npc.height,Npc.mapx - Maping[round].Nowx,Npc.mapy - - Maping[round].Nowy)
@@ -48,6 +56,7 @@ def update():
 
 def draw():
     clear_canvas()
+    image1.clip_draw(0, 0, 640, 576, 320, 288)
     Background_image[order].image.clip_draw(Background_image[order].nowx,Background_image[order].nowy,320,288,320,288)
     update_canvas()
     delay(0.001)
