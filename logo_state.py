@@ -1,6 +1,6 @@
 from pico2d import *
 import game_framework
-import play_state
+import title_state
 
 class Map:
     def __init__(self,Sizex,Sizey,startx,starty,endx,endy,nowx,nowy):
@@ -36,7 +36,7 @@ def handle_events():
     for event in events:
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_a:
-                game_framework.change_state(play_state)
+                game_framework.change_state(title_state)
     pass
 
 #(Npc.pngx,Npc.pngy,Npc.weight,Npc.height,Npc.mapx - Maping[round].Nowx,Npc.mapy - - Maping[round].Nowy)
@@ -50,8 +50,7 @@ def update():
             if(order == 0):
                 order += 1
             else:
-                game_framework.change_state(play_state)
-    delay(0.1)
+                game_framework.change_state(title_state)
     pass
 
 def draw():
@@ -59,7 +58,7 @@ def draw():
     image1.clip_draw(0, 0, 640, 576, 320, 288)
     Background_image[order].image.clip_draw(Background_image[order].nowx,Background_image[order].nowy,320,288,320,288)
     update_canvas()
-    delay(0.001)
+    delay(0.02)
     pass
 
 def exit():
