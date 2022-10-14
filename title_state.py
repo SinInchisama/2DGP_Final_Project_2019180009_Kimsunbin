@@ -1,7 +1,6 @@
 from pico2d import *
 import game_framework
-import play_state
-
+import Professor_state
 class Map:
     def __init__(self,Sizex,Sizey,startx,starty,endx,endy,nowx,nowy):
         self.Sizex = Sizex
@@ -33,7 +32,7 @@ def handle_events():
     for event in events:
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_a:
-                game_framework.change_state(play_state)
+                game_framework.change_state(Professor_state)
 
 def update():
     global frame

@@ -41,7 +41,7 @@ def handle_events():
                 hero.movey += 1
                 hero.movex = 0
 
-            elif event.key == SDLK_DOWN:  # 윗 버튼 눌리면
+            elif event.key == SDLK_DOWN:  # 아래 버튼 눌리면
                 direct = 0
                 hero.movey -= 1
                 hero.movex = 0

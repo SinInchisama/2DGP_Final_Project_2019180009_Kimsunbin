@@ -30,6 +30,16 @@ class Hero(character):
             self.mapy -= (self.movey * 32)
             return 0
 
+    def A_check(self,map_array,direct):
+        if direct == 0:     # 아래버튼
+            pass
+        elif direct == 1:   # 위버튼
+            pass
+        elif direct == 2:   # 왼버튼
+            pass
+        elif direct == 3:   # 오른버튼
+            pass
+
     def Map_move(self,round,mapx,mapy):
         if round == 0:                          # 주인공마을
             if self.mapx // 32 + 1 == 0 :

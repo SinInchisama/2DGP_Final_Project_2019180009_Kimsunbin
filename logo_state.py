@@ -58,7 +58,7 @@ def draw():
     image1.clip_draw(0, 0, 640, 576, 320, 288)
     Background_image[order].image.clip_draw(Background_image[order].nowx,Background_image[order].nowy,320,288,320,288)
     update_canvas()
-    delay(0.02)
+    delay(0.05)
     pass
 
 def exit():
