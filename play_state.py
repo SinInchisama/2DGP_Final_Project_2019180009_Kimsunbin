@@ -3,6 +3,7 @@ import Character
 from Npc import Maping
 from Map import init_map
 import game_framework
+import Menu_state
 
 direct,round,mode,running,Map_change,speed =0,0,0,None,None,None
 hero = None
@@ -54,6 +55,9 @@ def handle_events():
                     hero.pngy = 3350
                     speed = 0.07
 
+            elif event.key == SDLK_c:
+                game_framework.push_state(Menu_state)
+
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면
                 hero.movex = 0
@@ -102,16 +106,19 @@ def draw():       # 전체적인 캔버스에 그리는 함수.
         Map_change = False
         direct,hero.movex,hero.movey  = -1, 0, 0
 
-    Maping[round].map.clip_draw(Maping[round].Nowx, Maping[round].Nowy,640, 576, 320, 288)
+    draw_world()
+    update_canvas()
+    delay(0.001)
+
+def draw_world():
+    Maping[round].map.clip_draw(Maping[round].Nowx, Maping[round].Nowy, 640, 576, 320, 288)
 
     if Maping[round].Npccount != 0:
         for Npc in Maping[round].Npc:
-            hero.character_image.clip_draw(Npc.pngx,Npc.pngy,Npc.weight,Npc.height,Npc.mapx - Maping[round].Nowx,Npc.mapy - - Maping[round].Nowy)
+            hero.character_image.clip_draw(Npc.pngx, Npc.pngy, Npc.weight, Npc.height, Npc.mapx - Maping[round].Nowx,
+                                           Npc.mapy - - Maping[round].Nowy)
 
-    hero.character_image.clip_draw(hero.pngx,hero.pngy,hero.weight,hero.height,hero.chx,hero.chy)
-
-    update_canvas()
-    delay(0.001)
+    hero.character_image.clip_draw(hero.pngx, hero.pngy, hero.weight, hero.height, hero.chx, hero.chy)
 
 def update():
     global mode

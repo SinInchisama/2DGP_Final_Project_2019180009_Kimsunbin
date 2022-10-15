@@ -43,7 +43,7 @@ class Hero(character):
         elif direct == 3:   # 오른버튼
             if (map_array[self.mapy // 32 + 2][self.mapx // 32] == 3):
                 pass
-            
+
 
     def Map_move(self,round,mapx,mapy):
         if round == 0:                          # 주인공마을
