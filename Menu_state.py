@@ -1,6 +1,7 @@
 from pico2d import *
 import game_framework
 import play_state
+import Choose_Poketmon
 
 Menu_image = None
 Cursor_image = None
@@ -32,6 +33,7 @@ def handle_events():
                 if CusorY == 0:
                     pass
                 elif CusorY == 1:
+                    game_framework.push_state(Choose_Poketmon)
                     pass
                 elif CusorY == 2:
                     pass
@@ -42,7 +44,7 @@ def update():
     clear_canvas()
     play_state.draw_world()
     Menu_image.clip_draw(0,0,640,576,320,288)
-    Cursor_image.clip_draw(0,0,32,32,360,496 - (64 * CusorY ))
+    Cursor_image.clip_draw(0,0,32,32,360,496 - (64 * CusorY))
     update_canvas()
     pass
 
