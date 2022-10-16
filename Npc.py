@@ -1,6 +1,5 @@
 import Character
 from Map import Maping
-from Map import init_map
 
 Maping[1].Npccount = 1
 Maping[1].Npc = [Character.character(154, 2261, 32, 32, 336, 208) for i in range(0, 1)]  # 어무니

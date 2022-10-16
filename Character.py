@@ -1,4 +1,5 @@
 import pico2d
+import Poketmon
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -16,6 +17,17 @@ class Hero(character):
         self.chy = chy
         self.movex = movex
         self.movey = movey
+
+    def init_pList(self):
+        self.Pcount = 1
+        self.pList = [Poketmon.Tr_Poketmon(0,0,0,0,0,0,0) for i in range(0,7)]
+        self.pList[0].Num = 3
+        self.pList[0].Hp = 6
+        self.pList[0].Pattack = 6
+        self.pList[0].Pdefense = 6
+        self.pList[0].Sattack = 6
+        self.pList[0].Sdefense = 6
+        self.pList[0].Speed = 6
 
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
         self.mapx += (self.movex * 32)

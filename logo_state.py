@@ -18,14 +18,12 @@ class Map:
 Background_image = [Map(320,288,17,304,1360,0,17,3058) for i in range(0,2)]
 image1 = None
 order = None
-image3 = None
 
 def enter():
     global Background_image,order,image1,image3
     image1 = load_image('./resource/image/3.png')
     Background_image[0].image = load_image('./resource/image/logo.imgae_01.png')
     Background_image[1].image = load_image('./resource/image/logo.imgae_02.png')
-    image3 = load_image('All_Pokemon.png')
     Background_image[1].nowy = 4274
     Background_image[1].endy = 600
     order = 0
@@ -60,7 +58,7 @@ def draw():
     clear_canvas()
     image1.clip_draw(0, 0, 640, 576, 320, 288)
     Background_image[order].image.clip_draw(Background_image[order].nowx,Background_image[order].nowy,320,288,320,288)
-    image3.clip_draw(Poketmon.Poket_Data[2].Pngx, Poketmon.Poket_Data[2].Pngy, 56, 56, 320, 288, 224, 224)
+    # image3.clip_draw(Poketmon.Poket_Data[2].Pngx, Poketmon.Poket_Data[2].Pngy, 56, 56, 320, 288, 224, 224)
     update_canvas()
     delay(0.05)
     pass

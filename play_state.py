@@ -4,6 +4,7 @@ from Npc import Maping
 from Map import init_map
 import game_framework
 import Menu_state
+import Poketmon
 
 direct,round,mode,running,Map_change,speed =0,0,0,None,None,None
 hero = None
@@ -20,6 +21,8 @@ def enter():
     hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
     #hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
     hero.character_image = pico2d.load_image('./resource/image/Character.png')
+    hero.init_pList()
+    Poketmon.init_Poketmon()
 
 def handle_events():
     global direct
