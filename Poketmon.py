@@ -1,6 +1,8 @@
+Poket_Data = None
+
 class Poketmon:
-    def __init__(self, Pngx, Pngy,name,Hp,MaxPattack,MaxPdefense,MaxSattack,MaxSdefense,Speed):
-        self.Pngx = Pngx
+    def __init__(self, Pngx, Pngy,name,Hp,MaxPattack,MaxPdefense,MaxSattack,MaxSdefense,Speed):         # 이 클래스에 skill를 넣을 건데
+        self.Pngx = Pngx                                                                                # 이때 딕셔너리 구조로 {1 : skill인덱스}로 찾을려고함
         self.Pngy = Pngy
         self.name = name
         self.Hp = Hp
@@ -20,8 +22,10 @@ class Tr_Poketmon:      # 트레이너 포켓몬 클래스
         self.Sdefense = Sdefense
         self.Speed = Speed
 
-Poket_Data = [Poketmon(172, 2715,'Chikorita', 45, 49, 65, 49, 65, 45)]
-Poket_Data.append(Poketmon(343, 2715,'Bayleef', 60, 62, 80, 63, 80, 60))
-Poket_Data.append(Poketmon(514, 2715,'Meganium', 80, 82, 100, 83, 100, 80))
+def init_Poketmon:
+    global  Poket_Data
+    Poket_Data = [Poketmon(172, 2715,'Chikorita', 45, 49, 65, 49, 65, 45)]
+    Poket_Data.append(Poketmon(343, 2715,'Bayleef', 60, 62, 80, 63, 80, 60))
+    Poket_Data.append(Poketmon(514, 2715,'Meganium', 80, 82, 100, 83, 100, 80))
 
 
