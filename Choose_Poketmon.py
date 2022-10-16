@@ -24,6 +24,9 @@ def handle_events():
                 game_framework.pop_state()
             elif event.key == SDLK_DOWN:
                 CusorY = (CusorY + 1) % 7
+            elif event.key == SDLK_UP:
+                if(CusorY >0):
+                    CusorY-= 1
             elif event.key == SDLK_a:
                 if (CusorY == 0):
                     frame = 645
