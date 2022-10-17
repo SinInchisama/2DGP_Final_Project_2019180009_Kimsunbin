@@ -8,9 +8,12 @@ Status_iamge = None
 image3 = None
 select = None
 NowPc,Nowlv = None,None            # 현재 포켓몬카운트
+RHp= None
+ability = None
 
 def enter():
     global Status_iamge,image3,select,NowPc,Nowlv
+    global RHp,ability
     Status_iamge = [load_image('./resource/image/Status_state.png')]
     Status_iamge.append(load_image('./resource/image/Skill_state.png'))
     Status_iamge.append(load_image('./resource/image/ability_state.png'))
@@ -18,6 +21,7 @@ def enter():
     select = 0
     NowPc = Choose_Poketmon.CusorY
     Nowlv = play_state.hero.pList[NowPc].level
+    ability = play_state.hero.pList[NowPc].Set_ability()
     pass
 
 def handle_events():
@@ -68,6 +72,8 @@ def draw():
 
     if select == 0:
         Select_0()
+    elif select == 2:
+        Select_2()
     update_canvas()
     pass
 
@@ -110,4 +116,17 @@ def Select_0():
         for Alpha in Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].type[i]:  # 포켓몬 타입 출력
             play_state.Font_image.clip_draw(167 + ((ord(Alpha) - 97) % 16) * 9, 437 - ((ord(Alpha) - 97) // 16) * 9, 8, 8,40 + (Acount * 32), 70 - (32 * i), 32, 32)
             Acount += 1
+    pass
+
+def Select_2():
+    #RHp,RPattack,  RPdefense, RSattack, RSdefense, RSpeed
+    ycount = 0
+    for i in ability:
+        Acount, div = 0, 1
+        while i // div != 0:  # 현재 경험치 출력
+            result = (i // div) % 10
+            play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 630 - (Acount * 32), 276 - (ycount * 65), 32, 32)
+            Acount += 1
+            div *= 10
+        ycount += 1
     pass

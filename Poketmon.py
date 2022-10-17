@@ -1,15 +1,15 @@
 Poket_Data = None
 
 class Poketmon:
-    def __init__(self, Pngx, Pngy,name,Hp,MaxPattack,MaxPdefense,MaxSattack,MaxSdefense,Speed,Evolution,type):         # 이 클래스에 skill를 넣을 건데
+    def __init__(self, Pngx, Pngy,name,Hp,Pattack,Pdefense,Sattack,Sdefense,Speed,Evolution,type):         # 이 클래스에 skill를 넣을 건데
         self.Pngx = Pngx                                                                                # 이때 딕셔너리 구조로 {1 : skill인덱스}로 찾을려고함
         self.Pngy = Pngy
         self.name = name
         self.Hp = Hp
-        self.MaxPattack = MaxPattack
-        self.MaxPdefense = MaxPdefense
-        self.MaxSattack = MaxSattack
-        self.MaxSdefense = MaxSdefense
+        self.Pattack = Pattack
+        self.Pdefense = Pdefense
+        self.Sattack = Sattack
+        self.Sdefense = Sdefense
         self.Speed = Speed
         self.Evolution = Evolution
         self.type = type
@@ -26,6 +26,15 @@ class Tr_Poketmon:      # 트레이너 포켓몬 클래스
         self.Sdefense = Sdefense
         self.Speed = Speed
         self.Nowexp = Nowexp
+
+    def Set_ability(self):
+        # RHp =   (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
+        RPattack =   (Poket_Data[self.Num].Pattack * 2 + 31 + 100) * self.level // 100 + 5   # 능력치 = [ { (종족값a x 2) + 개체값b} x 레벨Lv/100 + 5]
+        RPdefense = (Poket_Data[self.Num].Pdefense * 2 + 31 + 100) * self.level // 100 + 5
+        RSattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
+        RSdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
+        RSpeed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
+        return RPattack,RPdefense,RSattack,RSdefense,RSpeed
 
 
 def init_Poketmon():
