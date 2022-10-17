@@ -81,6 +81,8 @@ def exit():
     pass
 
 def Select_0():
+    play_state.HPbar_image.clip_draw(0,0,2,15,64,273,383 * (play_state.hero.pList[NowPc].Hp / play_state.hero.pList[NowPc].MaxHp),15)
+
     Acount, div = 0, 1
     while play_state.hero.pList[NowPc].Hp // div != 0:                  # Hp 출력
         result = (play_state.hero.pList[NowPc].Hp // div) % 10
