@@ -33,6 +33,10 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 play_state.hero.pList[0].Num -= 1
 
+            elif event.key == SDLK_a:
+                for i in Poketmon.Poket_Data[play_state.hero.pList[0].Num].name:
+                    print(i)
+
 
 def update():
     pass
