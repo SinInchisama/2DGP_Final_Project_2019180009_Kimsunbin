@@ -59,21 +59,21 @@ def draw():
         play_state.Font_image.clip_draw(266, 455, 8, 8, 280, 520 - (64 * i), 16, 16)        # L
 
         Acount,div = 0,1
-        while play_state.hero.pList[i].level // div != 0:
+        while play_state.hero.pList[i].level // div != 0:              # 레벨 출력
             result = (play_state.hero.pList[i].level // div) % 10
             play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 340 - (Acount * 16), 520 - (64 * i), 16, 16)
             Acount += 1
             div *= 10
 
         Acount, div = 0, 1
-        while play_state.hero.pList[i].MaxHp // div != 0:
+        while play_state.hero.pList[i].MaxHp // div != 0:               # max 체력출력
             result = (play_state.hero.pList[i].MaxHp // div) % 10
             play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 480 - (Acount * 16), 540 - (64 * i), 16, 16)
             Acount += 1
             div *= 10
 
         Acount, div = 0, 1
-        while play_state.hero.pList[i].Hp // div != 0:
+        while play_state.hero.pList[i].Hp // div != 0:          # 체력 출력
             result = (play_state.hero.pList[i].Hp // div) % 10
             play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 550 - (Acount * 16), 540 - (64 * i), 16, 16)
             Acount += 1
