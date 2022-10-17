@@ -7,10 +7,11 @@ import Menu_state
 import Poketmon
 
 direct,round,mode,running,Map_change,speed =0,0,0,None,None,None
+Font_image = None
 hero = None
 
 def enter():
-    global direct,round,mode,running,Map_change,hero,speed
+    global direct,round,mode,running,Map_change,hero,speed,Font_image
     direct = -1  # 방향
     round = 5  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
@@ -21,6 +22,7 @@ def enter():
     hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
     #hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
     hero.character_image = pico2d.load_image('./resource/image/Character.png')
+    Font_image = pico2d.load_image('./resource/image/Font.png')
     hero.init_pList()
     Poketmon.init_Poketmon()
 
