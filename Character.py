@@ -19,10 +19,12 @@ class Hero(character):
         self.movey = movey
 
     def init_pList(self):
-        self.Pcount = 1
-        self.pList = [Poketmon.Tr_Poketmon(0,0,0,0,0,0,0) for i in range(0,7)]
+        self.Pcount = 2
+        self.pList = [Poketmon.Tr_Poketmon(0,0,0,0,0,0,0,0,0) for i in range(0,7)]
         self.pList[0].Num = 3
-        self.pList[0].Hp = 6
+        self.pList[0].MaxHp = 100
+        self.pList[0].level = 232
+        self.pList[0].Hp = 100
         self.pList[0].Pattack = 6
         self.pList[0].Pdefense = 6
         self.pList[0].Sattack = 6

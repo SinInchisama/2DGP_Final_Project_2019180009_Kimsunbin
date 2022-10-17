@@ -15,8 +15,10 @@ class Poketmon:
         self.type = type
 
 class Tr_Poketmon:      # 트레이너 포켓몬 클래스
-    def __init__(self,Num,Hp,Pattack,Pdefense,Sattack,Sdefense,Speed):
+    def __init__(self,Num,level,MaxHp,Hp,Pattack,Pdefense,Sattack,Sdefense,Speed):
         self.Num = Num
+        self.level = level
+        self.MaxHp = MaxHp
         self.Hp = Hp
         self.Pattack = Pattack
         self.Pdefense = Pdefense
