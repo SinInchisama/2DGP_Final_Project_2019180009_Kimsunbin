@@ -66,18 +66,22 @@ def draw():
             div *= 10
 
         Acount, div = 0, 1
-        while play_state.hero.pList[i].MaxHp // div != 0:               # max 체력출력
-            result = (play_state.hero.pList[i].MaxHp // div) % 10
+        while play_state.hero.pList[i].Hp // div != 0:               # max 체력출력
+            result = (play_state.hero.pList[i].Hp // div) % 10
             play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 480 - (Acount * 16), 540 - (64 * i), 16, 16)
             Acount += 1
             div *= 10
 
         Acount, div = 0, 1
-        while play_state.hero.pList[i].Hp // div != 0:          # 체력 출력
-            result = (play_state.hero.pList[i].Hp // div) % 10
+        while play_state.hero.pList[i].MaxHp // div != 0:          # 체력 출력
+            result = (play_state.hero.pList[i].MaxHp // div) % 10
             play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 550 - (Acount * 16), 540 - (64 * i), 16, 16)
             Acount += 1
             div *= 10
+
+        play_state.Hp_image.clip_draw(0,0,68,6,490,520 - (64 * i),272,20)
+
+        play_state.HPbar_image.clip_draw(0, 0, 2, 15, 419, 520 - (64 * i), 383 * (play_state.hero.pList[i].Hp / play_state.hero.pList[i].MaxHp),15)
 
         play_state.Font_image.clip_draw(194, 392, 8, 8, 500, 540 - (64 * i), 16, 16)
 

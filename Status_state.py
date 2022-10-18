@@ -25,7 +25,7 @@ def enter():
     pass
 
 def handle_events():
-    global select
+    global select,ability,Nowlv
     events = get_events()
     for event in events:
         if event.type == SDL_KEYDOWN:
@@ -41,12 +41,20 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 play_state.hero.pList[0].Num -= 1
 
+
             elif event.key == SDLK_a:
-                for i in Poketmon.Poket_Data[play_state.hero.pList[0].Num].name:
-                    print(i)
+                play_state.hero.pList[NowPc].level += 1
+
+            elif event.key == SDLK_s:
+                play_state.hero.pList[NowPc].level -= 1
 
             elif event.key == SDLK_b:
                 game_framework.pop_state()
+                break
+
+            ability = play_state.hero.pList[NowPc].Set_ability()
+
+
 
 
 def update():
