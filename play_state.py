@@ -132,7 +132,7 @@ def update():
     global Maping,Map_change,round
     if direct != -1:
         mode = hero.move_check(Maping[round].array)  # move_checking.py내 함수 호출, 맵 행렬이 갈 수 있는지 체크하는 클래스함수
-        print(Maping[round].Nowx,Maping[round].Nowy)
+        # print(Maping[round].Nowx,Maping[round].Nowy)
         if mode == 1:
             Hero_working(direct)  # 걷는 애니매이션 출력
             mode = 0

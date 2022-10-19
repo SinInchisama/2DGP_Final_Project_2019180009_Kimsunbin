@@ -35,7 +35,7 @@ class Hero(character):
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
         self.mapx += (self.movex * 32)
         self.mapy += (self.movey * 32)
-        print(self.movex,self.movey,self.mapx,self.mapy,self.chx,self.chy)
+        # print(self.movex,self.movey,self.mapx,self.mapy,self.chx,self.chy)
         if (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 1 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 5):
             return 1
         elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 4):
