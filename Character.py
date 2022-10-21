@@ -36,14 +36,22 @@ class Hero(character):
         self.mapx += (self.movex * 32)
         self.mapy += (self.movey * 32)
         # print(self.movex,self.movey,self.mapx,self.mapy,self.chx,self.chy)
-        if (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 1 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 5):
-            return 1
-        elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 4):
+        # if (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 1 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 5):
+        #     return 1
+        # elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 15):
+        #     return 2
+        # elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 0 or map_array[self.mapy // 32 + 1][ self.mapx // 32 + 1] == 2 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 3):
+        #     self.mapx -= (self.movex * 32)
+        #     self.mapy -= (self.movey * 32)
+        #     return 0
+        if(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 89):
             return 2
-        elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 0 or map_array[self.mapy // 32 + 1][ self.mapx // 32 + 1] == 2 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 3):
+        elif(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]<=142):
             self.mapx -= (self.movex * 32)
             self.mapy -= (self.movey * 32)
             return 0
+        else:
+            return 1
 
     def A_check(self,map_array,direct):
         if direct == 0:     # 아래버튼
