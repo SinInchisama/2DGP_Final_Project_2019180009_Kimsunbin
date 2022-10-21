@@ -2,6 +2,7 @@ from pico2d import *
 import Character
 from Npc import Maping
 from Map import init_map
+from Map import Draw_Map
 import game_framework
 import Menu_state
 import Poketmon
@@ -13,7 +14,7 @@ hero = None
 def enter():
     global direct,round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image
     direct = -1  # 방향
-    round = 5  # 맵 변경에 사용하는 변수
+    round = 0  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
@@ -118,7 +119,7 @@ def draw():       # 전체적인 캔버스에 그리는 함수.
     delay(0.001)
 
 def draw_world():
-    Maping[round].map.clip_draw(Maping[round].Nowx, Maping[round].Nowy, 640, 576, 320, 288)
+    Draw_Map(round)
 
     if Maping[round].Npccount != 0:
         for Npc in Maping[round].Npc:
