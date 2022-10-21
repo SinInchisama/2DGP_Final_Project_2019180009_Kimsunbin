@@ -151,7 +151,7 @@ class Hero(character):
                     self.mapx, self.mapy, self.chx, self.chy = 96, 560, 48, 560
                 return 448,0, True,2
 
-            elif self.mapx // 32 + 1 == 4:    # 7,8
+            elif self.mapx // 32 + 1 == 0:    # 7,8
                 if self.mapy // 32 + 1 == 11:
                     self.mapx, self.mapy, self.chx, self.chy = 1248, 320, 624, 336
                 elif self.mapy // 32 + 1 == 12:
