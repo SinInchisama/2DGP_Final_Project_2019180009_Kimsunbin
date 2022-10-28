@@ -44,9 +44,11 @@ class Hero(character):
         #     self.mapx -= (self.movex * 32)
         #     self.mapy -= (self.movey * 32)
         #     return 0
-        if(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 89 or 45):
+        print(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1],self.mapy // 32 + 1,self.mapx // 32 + 1)
+        check_num = map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]
+        if(check_num  == 89 or check_num  == 45 or check_num  == 32):
             return 2
-        elif(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]<=142):
+        elif(check_num <=142):
             self.mapx -= (self.movex * 32)
             self.mapy -= (self.movey * 32)
             return 0
@@ -78,7 +80,7 @@ class Hero(character):
                 return 0,0,True,1
 
             elif self.mapy // 32 + 1 == 13:
-                self.mapx, self.mapy, self.chx, self.chy = 352, 192, 368, 176
+                self.mapx, self.mapy, self.chx, self.chy = 352, 16, 368, 16
                 return mapx, mapy, True, 6
 
             elif self.mapy // 32 + 1 == 15:
@@ -183,17 +185,18 @@ class Hero(character):
             elif self.mapy // 32 + 1 == 21:
                 self.mapx, self.mapy, self.chx, self.chy = 320, 192, 304, 176
                 return 64, 192, True, 25
+
         elif round == 5:                    # 주인공집 2층
-            if self.mapy // 32 + 1 == 12:
-                self.mapx, self.mapy, self.chx, self.chy = 448, 384, 464, 368
+            if self.mapy // 32 + 1 == 14:
+                self.mapx, self.mapy, self.chx, self.chy = 592, 400, 592, 400
             return mapx, mapy, True, 6
 
         elif round == 6:                    # 주인공집 1층
             if self.mapy // 32 + 1 == 14:
-                self.mapx, self.mapy, self.chx, self.chy = 432, 336, 432, 336
+                self.mapx, self.mapy, self.chx, self.chy = 592, 400, 592, 400
                 return mapx, mapy, True, 5
 
-            elif self.mapy // 32 + 1 == 6:
+            elif self.mapy // 32 + 1 == 0:
                 self.mapx, self.mapy, self.chx, self.chy = 432, 368, 432, 368
                 return mapx, mapy, True, 0
 
