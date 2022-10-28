@@ -44,7 +44,7 @@ class Hero(character):
         #     self.mapx -= (self.movex * 32)
         #     self.mapy -= (self.movey * 32)
         #     return 0
-        if(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 89):
+        if(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 89 or 45):
             return 2
         elif(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]<=142):
             self.mapx -= (self.movex * 32)
