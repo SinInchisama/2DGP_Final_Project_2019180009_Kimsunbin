@@ -201,14 +201,12 @@ class Hero(character):
                 return mapx, mapy, True, 0
 
         elif round == 7:                    # LAP
-            if self.mapy // 32 + 1 == 4:
-                self.mapx, self.mapy, self.chx, self.chy = 208, 432, 208, 432
-                return  mapx, mapy, True, 0
+            self.mapx, self.mapy, self.chx, self.chy = 208, 432, 208, 432
+            return  mapx, mapy, True, 0
 
         elif round == 8:
-            if self.mapy // 32 + 1 == 6:
-                self.mapx, self.mapy, self.chx, self.chy = 112, 176, 112, 176
-                return mapx, mapy, True, 0
+            self.mapx, self.mapy, self.chx, self.chy = 112, 176, 112, 176
+            return mapx, mapy, True, 0
 
         elif round == 9:
             self.mapx, self.mapy, self.chx, self.chy = 368, 112, 368, 112
