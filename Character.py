@@ -80,19 +80,19 @@ class Hero(character):
                 return 0,0,True,1
 
             elif self.mapy // 32 + 1 == 13:
-                self.mapx, self.mapy, self.chx, self.chy = 352, 16, 368, 16
+                self.mapx, self.mapy, self.chx, self.chy = 368, 16, 368, 16
                 return mapx, mapy, True, 6
 
             elif self.mapy // 32 + 1 == 15:
-                self.mapx, self.mapy, self.chx, self.chy = 320, 128, 336, 112
+                self.mapx, self.mapy, self.chx, self.chy = 336, 112, 336, 112
                 return mapx, mapy, True, 7
 
             elif self.mapy // 32 + 1 == 7:
-                self.mapx, self.mapy, self.chx, self.chy = 288, 192, 272, 176
+                self.mapx, self.mapy, self.chx, self.chy = 272, 176, 272, 176
                 return mapx, mapy, True, 8
 
             elif self.mapy // 32 + 1 == 5:
-                self.mapx, self.mapy, self.chx, self.chy = 288, 192, 272, 176
+                self.mapx, self.mapy, self.chx, self.chy = 272, 176, 272, 176
                 return mapx, mapy, True, 9
 
         elif round == 1:                        # 29번도로
