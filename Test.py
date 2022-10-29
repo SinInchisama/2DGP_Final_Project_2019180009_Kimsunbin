@@ -7,7 +7,7 @@ Map.init_map()
 
 while True:
     clear_canvas()
-    Map.Draw_Map(14)
+    Map.Draw_Map(24)
     update_canvas()
     delay(0.01)
     get_events()
