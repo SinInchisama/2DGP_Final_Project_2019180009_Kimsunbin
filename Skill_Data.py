@@ -143,7 +143,7 @@ class Bite:                 # 물기
     def __init__(self):
         self.Damage = 60
         self.Maxpp = 25
-        self.type = 'Water'
+        self.type = 'Dark'
 
     def Use(self):
         pass
@@ -192,45 +192,232 @@ class Slam:                 # 힘껏치기
     def Use(self):
         pass
 
+class Amnesia:              # 망각술
+    def __init__(self):
+        self.SDefensebuf = 2
+        self.Maxpp = 20
+        self.type = 'Esper'
+
+    def Use(self):
+        pass
+
+class String_Shot:          # 실뿜기
+    def __init__(self):
+        self.Speedbuf = -2
+        self.Maxpp = 20
+        self.type = 'Bug'
+    def Use(self):
+        pass
+
+class Harden:               # 단단해지기
+    def __init__(self):
+        self.PDefensebuf = 1
+        self.Maxpp = 40
+        self.type = 'Normal'
+    def Use(self):
+        pass
+
+class Confusion:            # 염동력
+    def __init__(self):
+        self.Damage = 50
+        self.Maxpp = 25
+        self.type = 'Esper'
+    def Use(self):
+        pass
+
+class Stun_Spore:               # 저리가루
+    def __init__(self):
+        self.Maxpp = 15
+        self.Daacur = 75
+        self.type = 'Grass'
+
+    def Use(self):
+        pass
+
+
+class Sleep_Powder:  # 수면가루
+    def __init__(self):
+        self.Maxpp = 15
+        self.Daacur = 75
+        self.type = 'Grass'
+
+    def Use(self):
+        pass
+
+class Gust:     # 바람일으키기
+    def __init__(self):
+        self.Damage = 40
+        self.Maxpp = 35
+        self.type = 'Flight'
+    def Use(self):
+        pass
+
+class Psybeam:  # 환상빔
+    def __init__(self):
+        self.Damage = 65
+        self.Maxpp = 20
+        self.type = 'Esper'
+    def Use(self):
+        pass
+
+class Poison_Sting:    # 독침
+    def __init__(self):
+        self.Damage = 15
+        self.Maxpp = 35
+        self.type = 'Poison'
+    def Use(self):
+        pass
+
+class Agility:        # 고속이동
+    def __init__(self):
+        self.Speedbuf = 2
+        self.Maxpp = 30
+        self.type = 'Esper'
+    def Use(self):
+        pass
+
+class Pursuit:        # 따라가때리기
+    def __init__(self):
+        self.Damage = 40
+        self.Maxpp = 20
+        self.type = 'Dark'
+    def Use(self):
+        pass
+
+class Pin_Missile:      # 바늘 미사일
+    def __init__(self):
+        self.Damage = 25
+        self.Maxpp = 20
+        self.Daacur = 95
+        self.type = 'Bug'
+    def Use(self):
+        pass
+
+class Wing_Attack:     # 날개치기
+    def __init__(self):
+        self.Damage = 60
+        self.Maxpp = 35
+        self.type = 'Flight'
+
+    def Use(self):
+        pass
+
+class Thundershock:    # 전기쇼크
+    def __init__(self):
+        self.Damage = 40
+        self.Maxpp = 30
+        self.type = 'Electric'
+
+    def Use(self):
+        pass
+
+class Tail_Whip:      # 꼬리 흔들기
+    def __init__(self):
+        self.PDefensebuf = -1
+        self.Maxpp = 30
+        self.type = 'Normal'
+    def Use(self):
+        pass
+
+class Thunder_Wave:     # 전기 충격파
+    def __init__(self):
+        self.Daccur = 90
+        self.Maxpp = 20
+        self.type = 'Electric'
+    def Use(self):
+        pass
+
+class Thunderbolt:      # 10만볼트
+    def __init__(self):
+        self.Damage = 90
+        self.Maxpp = 15
+        self.type = 'Electric'
+    def Use(self):
+        pass
+
+class Thunder:          # 번개
+    def __init__(self):
+        self.Damage = 110
+        self.Maxpp = 10
+        self.Daccur = 70
+        self.type = 'Electric'
+    def Use(self):
+        pass
+
+class Peck:             # 쪼기
+    def __init__(self):
+        self.Damage = 35
+        self.Maxpp = 35
+        self.type = 'Flight'
+    def Use(self):
+        pass
+
+class Hypnosis:         # 최면술
+    def __init__(self):
+        self.Daacur = 60
+        self.Maxpp = 20
+        self.type = 'Esper'
+    def Use(self):
+        pass
+
+class Take_Down:        # 돌진
+    def __init__(self):
+        self.Damage = 90
+        self.Daccur = 85
+        self.Maxpp = 20
+        self.type = 'Normal'
+    def Use(self):
+        pass
+
+class Low_Kick:         # 안다리걸기
+    def __init__(self):
+        self.Damage = 50
+        self.Maxpp = 30
+        self.type = 'Fight'
+
+    def Use(self):
+        pass
+
+class Karate_Chop:      # 태권당수
+    def __init__(self):
+        self.Damage = 70
+        self.Maxpp = 25
+        self.type = 'Fight'
+
+    def Use(self):
+        pass
+
+class Cross_Chop:       # 크로스춉
+    def __init__(self):
+        self.Damage = 100
+        self.Maxpp = 5
+        self.Daccur = 80
+        self.type = 'Fight'
+
+    def Use(self):
+        pass
+
+class Submission:       # 지옥의 바퀴
+    def __init__(self):
+        self.Damage = 80
+        self.Daccur = 80
+        self.Maxpp = 25
+        self.type = 'Fight'
+
+    def Use(self):
+        pass
+
 def init_skill():
     global Skill_Data
-    Skill_Data = [Skill(0,0,None) for i in range(0,67)]
-    Skill_Data[0].Damage,Skill_Data[0].Daccur,Skill_Data[0].Maxpp,Skill_Data[0].type = 35,95,35,'Normal'            # 몸통박치기
-    Skill_Data[1].PPowerbuf, Skill_Data[1].Maxpp,Skill_Data[1].type  = -1, 35,'Normal'    # 울음소리
-    Skill_Data[2].Damage,Skill_Data[2].Daccur,Skill_Data[2].Maxpp,Skill_Data[2].type = 55,95,25,'Grass'             # 잎날가르기
-    Skill_Data[3].Poison, Skill_Data[3].Daccur, Skill_Data[3].Maxpp, Skill_Data[3].type,Skill_Data[3].DBufaccur = True, 75, 25, 'Grass',100  # 독가루
-    Skill_Data[4].Hill,Skill_Data[4].Maxpp, Skill_Data[4].type, Skill_Data[4].Me = 100,5,'Grass',True       # 광합성
-    Skill_Data[5].Damage,Skill_Data[5].Maxpp,Skill_Data[5].type = 85,15,'Normal'                            # 누르기
-    Skill_Data[6].Damage,Skill_Data[6].Maxpp,Skill_Data[6].type,Skill_Data[8].Burn  = 40,25,'Fire',True             # 불꽃세례
-    Skill_Data[7].Damage,Skill_Data[7].Maxpp,Skill_Data[7].type = 40,30,'Normal'                            # 전광석화
-    Skill_Data[8].Damage,Skill_Data[8].Maxpp,Skill_Data[8].type,Skill_Data[8].Burn = 60,25,'Fire',True              # 화염자동차
-    Skill_Data[9].PDefensebuf, Skill_Data[9].Maxpp, Skill_Data[9].type = -1, 35, 'Normal'  # 째려보기
-    Skill_Data[10].Damage,Skill_Data[10].Maxpp,Skill_Data[10].type = 40,35,'Normal'         # 할퀴기
-    Skill_Data[11].Damage, Skill_Data[11].Maxpp, Skill_Data[11].type = 20,20,'Normal'       # 분노
-    Skill_Data[12].Damage, Skill_Data[12].Maxpp, Skill_Data[12].type = 40,25,'Water'        # 물대포
-    Skill_Data[13].Damage, Skill_Data[13].Maxpp, Skill_Data[13].type = 60,25,'Evil'         # 물기
-    Skill_Data[14].Speedbuf,Skill_Data[14].Maxpp,Skill_Data[14].Daccur,Skill_Data[14].type = -2,10,90,'Normal'      # 겁나는 얼굴
-    Skill_Data[15].Damage, Skill_Data[15].Maxpp, Skill_Data[15].type = 70,20,'Normal'                               # 베어가르기
-    Skill_Data[16].PDefensebuf,Skill_Data[16].Maxpp,Skill_Data[16].Daccur,Skill_Data[16].type = -2,40,85,'Normal'   # 싫은소리
-    Skill_Data[17].Damage, Skill_Data[17].Maxpp,Skill_Data[17].Daccur, Skill_Data[17].type = 120, 5, 80, 'Water'    # 하이드로펌프
-
-    Skill_Data[18].Damage, Skill_Data[18].Maxpp, Skill_Data[18].Daccur, Skill_Data[18].type = 80, 20, 75, 'Noraml'  # 힘껏치기
-    Skill_Data[19].SDefensebuf,Skill_Data[19].Me,Skill_Data[19].Maxpp,Skill_Data[19].type = 2,True,20,'Esper'       # 망각술
-    Skill_Data[20].Speedbuf,Skill_Data[20].Maxpp,Skill_Data[20].type = -1,20,'Bug'                                  # 실뿜기
-    Skill_Data[21].PDefensebuf,Skill_Data[21].Me,Skill_Data[21].Maxpp,Skill_Data[21].type = 1,True,40,'Normal'      # 단단해지기
-    Skill_Data[22].Damage, Skill_Data[22].Maxpp, Skill_Data[22].type = 50,25,'Esper'                                # 염동력
-    Skill_Data[23].Paralysis,Skill_Data[23].Maxpp,Skill_Data[23].Daccur,Skill_Data[23].DBufaccur,Skill_Data[23].type = True,15,75,True,'Grass'
-    Skill_Data[24].Sleep, Skill_Data[24].Maxpp, Skill_Data[24].Daccur, Skill_Data[24].DBufaccur, Skill_Data[24].type = True, 15, 75, True, 'Grass'
-    Skill_Data[25].Damage, Skill_Data[25].Maxpp, Skill_Data[25].type = 40, 35, 'Flight'
-    Skill_Data[26].Damage, Skill_Data[26].Maxpp, Skill_Data[26].type = 65, 20, 'Esper'
-    Skill_Data[27].Damage, Skill_Data[27].Maxpp,Skill_Data[27].Poison, Skill_Data[27].type = 15,35,True,'Poison'
 
 
 
-init_skill()
 
+
+Attack = [body_blow,crying_sound]
 def Use_Skill(play):
-   play.Use()
+    print(play,Attack[play])
+    print(Attack[play].Damage)
+    # Attack[play].Use()
 
-init_skill()
-Use_Skill(Attack)
+Use_Skill(0)
