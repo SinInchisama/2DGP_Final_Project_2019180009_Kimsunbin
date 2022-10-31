@@ -21,7 +21,6 @@ def enter():
     select = 0
     NowPc = Choose_Poketmon.CusorY
     Nowlv = play_state.hero.pList[NowPc].level
-    ability = play_state.hero.pList[NowPc].Set_ability()
     pass
 
 def handle_events():
@@ -52,7 +51,7 @@ def handle_events():
                 game_framework.pop_state()
                 break
 
-            ability = play_state.hero.pList[NowPc].Set_ability()
+
 
 
 
@@ -131,12 +130,12 @@ def Select_0():
 def Select_2():
     #RHp,RPattack,  RPdefense, RSattack, RSdefense, RSpeed
     ycount = 0
-    for i in ability:
-        Acount, div = 0, 1
-        while i // div != 0:  # 현재 경험치 출력
-            result = (i // div) % 10
-            play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 630 - (Acount * 32), 276 - (ycount * 65), 32, 32)
-            Acount += 1
-            div *= 10
-        ycount += 1
+    # for i in ability:
+    #     Acount, div = 0, 1
+    #     while i // div != 0:  # 현재 경험치 출력
+    #         result = (i // div) % 10
+    #         play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 630 - (Acount * 32), 276 - (ycount * 65), 32, 32)
+    #         Acount += 1
+    #         div *= 10
+    #     ycount += 1
     pass
