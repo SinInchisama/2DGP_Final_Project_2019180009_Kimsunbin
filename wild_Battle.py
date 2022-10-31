@@ -13,10 +13,12 @@ def enter():
     if(play_state.round == 1):
         select_Poketmon = [9,11,14,17,22,24]
         wild_Poketmon = Poketmon.Tr_Poketmon(select_Poketmon[rand(0,len(select_Poketmon)-1)],rand(3,10),0)
-        wild_Poketmon.Set_ability()
         pass
     else:
+        select_Poketmon = [10, 13, 16, 18,20, 23, 25]
+        wild_Poketmon = Poketmon.Tr_Poketmon(select_Poketmon[rand(0, len(select_Poketmon) - 1)], rand(10, 20), 0)
         pass
+    wild_Poketmon.Set_ability()
     pass
 
 
