@@ -425,10 +425,13 @@ Attack = [body_blow(),crying_sound(),Razor_Leaf(),Poison_Powder(),Synthesis(),Bo
 
 def Use_Skill(play):
     print(play,Attack[play])
-    print(ad.PDefensebuf)
     Attack[play].Use()                  # Attack의 0번쨰 인덱스인 body_blow.Use()를 불러옴
                                         # self인자 없다는 오류가 발생함
                                         # 32번째 줄과 41번째 줄 참고
+
+def Damage_check(Damage,type):
+    import wild_Battle
+
 
 
 Use_Skill(0)                            # Use_skill 함수에 0을 보내고
