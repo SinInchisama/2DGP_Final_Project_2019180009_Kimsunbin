@@ -6,6 +6,8 @@ from Map import Draw_Map
 import game_framework
 import Menu_state
 import Poketmon
+import random
+import wild_Battle
 
 direct,round,mode,running,Map_change,speed =0,0,0,None,None,None
 Font_image,HPbar_image,Hp_image = None,None,None
@@ -14,14 +16,14 @@ hero = None
 def enter():
     global direct,round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image
     direct = -1  # 방향
-    round = 4  # 맵 변경에 사용하는 변수
+    round = 0  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
     speed = 0.07
     init_map()
-    # hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
-    hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
+    hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
+    #hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
     hero.character_image = pico2d.load_image('./resource/image/Character.png')
     Font_image = pico2d.load_image('./resource/image/Font.png')
     HPbar_image = pico2d.load_image('./resource/image/Hp_bar.png')
@@ -79,8 +81,9 @@ def handle_events():
             elif event.key == SDLK_DOWN:  # 윗 버튼 눌리면
                 hero.movey = 0
                 direct = -1
-def Hero_working(direct):
+def Hero_working(mode):
     global hero
+    global direct
 
     if(direct != -1):
         for i in range(0,4):
@@ -97,6 +100,12 @@ def Hero_working(direct):
                 hero.chy += hero.movey * 8
             draw()
             delay(speed)
+    if(mode == 3):
+        if(random.randint(0,100)<20):
+            game_framework.push_state(wild_Battle)
+            hero.movey = 0
+            hero.movex = 0
+            direct = -1
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 
@@ -109,7 +118,7 @@ def draw():       # 전체적인 캔버스에 그리는 함수.
         for i in range(15,19):
             Maping[i].map.clip_draw(Maping[i].Nowx, Maping[i].Nowy, 640, 576, 320, 288)
             update_canvas()
-            delay(0.01)
+            delay(0.03)
             clear_canvas()
         Map_change = False
         direct,hero.movex,hero.movey  = -1, 0, 0
@@ -134,11 +143,11 @@ def update():
     if direct != -1:
         mode = hero.move_check(Maping[round].array)  # move_checking.py내 함수 호출, 맵 행렬이 갈 수 있는지 체크하는 클래스함수
         # print(Maping[round].Nowx,Maping[round].Nowy)
-        if mode == 1:
-            Hero_working(direct)  # 걷는 애니매이션 출력
+        if mode == 1 or mode == 3:
+            Hero_working(mode)  # 걷는 애니매이션 출력
             mode = 0
         elif mode == 2:
-            Hero_working(direct)
+            Hero_working(mode)
             Maping[round].Nowx, Maping[round].Nowy, Map_change, round = hero.Map_move(round, Maping[round].Nowx, Maping[round].Nowy)  # 행렬이 4일때 맵변경을 위한 함수
 def pause():
     pass

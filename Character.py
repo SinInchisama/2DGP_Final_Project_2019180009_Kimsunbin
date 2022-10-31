@@ -19,8 +19,8 @@ class Hero(character):
         self.movey = movey
 
     def init_pList(self):
-        self.Pcount = 2
-        self.pList = [Poketmon.Tr_Poketmon(0,100,30,3,0,0,0,0,0,0) for i in range(0,7)]
+        self.Pcount = 1
+        self.pList = [Poketmon.Tr_Poketmon(0,100,30) for i in range(0,7)]
         self.pList[0].Num = 3
         self.pList[0].level = 5
         self.pList[0].MaxHp = 100
@@ -48,7 +48,9 @@ class Hero(character):
         check_num = map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]
         if(check_num  == 89 or check_num  == 45 or check_num  == 32):
             return 2
-        elif(check_num <=142):
+        elif (check_num==149):
+            return 3
+        elif(check_num <=144):
             self.mapx -= (self.movex * 32)
             self.mapy -= (self.movey * 32)
             return 0
