@@ -29,7 +29,7 @@ class body_blow:                 # 몸통박치기
         self.Daccur = 95
         self.Maxpp = 35
         self.type = 'Normal'
-    def Use(self):
+    def Use(self):                              # 이 Use 함수와
         print(self.Damage)
 
 class crying_sound:             # 울음소리
@@ -38,7 +38,7 @@ class crying_sound:             # 울음소리
         self.Maxpp = 35,
         self.type = 'Normal'
 
-    def Use(self):
+    def Use(self):                              # 이 Use 함수를
         pass
 
 class Razor_Leaf:               # 잎날가르기
@@ -414,10 +414,14 @@ def init_skill():
 
 
 
-Attack = [body_blow,crying_sound]
+Attack = [body_blow,crying_sound]       # Attack라는 리스트에 body_blow,crying_sound라는 string을 넣은 후
+
 def Use_Skill(play):
     print(play,Attack[play])
     print(Attack[play].Damage)
-    # Attack[play].Use()
+    Attack[play].Use()                  # Attack의 0번쨰 인덱스인 body_blow.Use()를 불러옴
+                                        # self인자 없다는 오류가 발생함
+                                        # 32번째 줄과 41번째 줄 참고
 
-Use_Skill(0)
+
+Use_Skill(0)                            # Use_skill 함수에 0을 보내고
