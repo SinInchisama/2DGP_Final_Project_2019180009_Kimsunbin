@@ -48,4 +48,8 @@ def update():
 
 
 def draw():
+    clear_canvas()
+    play_state. Maping[19].map.clip_draw(0, 0, 640, 576, 320, 288)
+    Poketmon.Poket_Data[wild_Poketmon.Num]
+    update_canvas()
     pass

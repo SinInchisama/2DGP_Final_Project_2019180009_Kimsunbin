@@ -1,6 +1,6 @@
 from pico2d import *
 import Character
-from Npc import Maping
+from Map import Maping
 from Map import init_map
 from Map import Draw_Map
 import game_framework
