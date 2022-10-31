@@ -14,30 +14,12 @@ Maping = [Map(640, 576, 0, 0, 0) for i in range(0, 27)]
 def init_map():
     global Maping
 
-    Maping[0].map = load_image('./resource/image/Main_town1.png')
-    Maping[1].map = load_image('./resource/image/Route_29_1.png')
-    Maping[2].map = load_image('./resource/image/Second_town.png')
-    Maping[3].map = load_image('./resource/image/Route_31_1.png')
-    Maping[4].map = load_image('./resource/image/First_gym_1.png')
-    Maping[5].map = load_image('./resource/image/hero_house_2F1.png')
-    Maping[6].map = load_image('./resource/image/hero_house_1F.png')
-    Maping[7].map = load_image('./resource/image/Professor_Lap.png')
-    Maping[8].map = load_image('./resource/image/Main_town_NPC_HOUSE_1.png')
-    for i in range(9, 13):
-        Maping[i].map = load_image('./resource/image/Main_town_NPC_HOUSE_2.png')
-    Maping[13].map = load_image('./resource/image/Poketmon_center.png')
-    Maping[14].map = load_image('./resource/image/Poketmon_market.png')
     Maping[15].map = load_image('./resource/image/2.png')
     Maping[16].map = load_image('./resource/image/3.png')
     Maping[17].map = load_image('./resource/image/4.png')
     Maping[18].map = load_image('./resource/image/5.png')
     Maping[19].map = load_image('./resource/image/1.png')
-    Maping[20].map = load_image('./resource/image/Poketmon_center.png')
-    Maping[21].map = load_image('./resource/image/Poketmon_market.png')
-    Maping[22].map = load_image('./resource/image/First_gym.png')
-    Maping[23].map = load_image('./resource/image/School.png')
-    Maping[24].map = load_image('./resource/image/First_gym_NPC_House_1.png')
-    Maping[25].map = load_image('./resource/image/First_gym_NPC_House_1.png')
+
     Maping[26].map = load_image('./resource/image/Tile.png')
     # 캔버스 왼쪽좌표,하단좌표,pngx크기,pngy크기
     # 0 주인공 마을  1 : 29번도로 2 : 2번째마을 3 : 31번도로 4: 체육관마을
