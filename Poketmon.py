@@ -28,13 +28,13 @@ class Tr_Poketmon:      # 트레이너 포켓몬 클래스
         self.Nowexp = Nowexp
 
     def Set_ability(self):
-        # RHp =   (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
-        RPattack =   (Poket_Data[self.Num].Pattack * 2 + 31 + 100) * self.level // 100 + 5   # 능력치 = [ { (종족값a x 2) + 개체값b} x 레벨Lv/100 + 5]
-        RPdefense = (Poket_Data[self.Num].Pdefense * 2 + 31 + 100) * self.level // 100 + 5
-        RSattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
-        RSdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
-        RSpeed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
-        return RPattack,RPdefense,RSattack,RSdefense,RSpeed
+        self.MaxHp =   (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
+        self.RPattack =   (Poket_Data[self.Num].Pattack * 2 + 31 + 100) * self.level // 100 + 5   # 능력치 = [ { (종족값a x 2) + 개체값b} x 레벨Lv/100 + 5]
+        self.RPdefense = (Poket_Data[self.Num].Pdefense * 2 + 31 + 100) * self.level // 100 + 5
+        self.RSattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
+        self.RSdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
+        self.Speed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
+
 
 
 def init_Poketmon():
@@ -72,9 +72,9 @@ def init_Poketmon():
     Poket_Data.append(Poketmon(343, 2527, 'Hoothoot', 60, 30, 30, 36, 56, 50,20, ['Normal', 'Flight']))     # 부우부
     Poket_Data.append(Poketmon(514, 2527, 'Noctowl', 100, 50, 50, 86, 96, 70, 101,['Normal', 'Flight']))     # 야부엉
 
-    Poket_Data.append(Poketmon(856, 4407, 'Machop', 70, 80, 50, 35, 35, 35, 28,['Fighting']))  # 알통몬
-    Poket_Data.append(Poketmon(1027, 4407, 'Machoke', 80, 100, 70, 50, 60, 45, 40,['Fighting']))  # 근육몬
-    Poket_Data.append(Poketmon(1198, 4407, 'Machamp', 90, 130, 80, 65, 85, 55, 101,['Fighting']))  # 괴력몬
+    Poket_Data.append(Poketmon(856, 4407, 'Machop', 70, 80, 50, 35, 35, 35, 28,['Fight']))  # 알통몬
+    Poket_Data.append(Poketmon(1027, 4407, 'Machoke', 80, 100, 70, 50, 60, 45, 40,['Fight']))  # 근육몬
+    Poket_Data.append(Poketmon(1198, 4407, 'Machamp', 90, 130, 80, 65, 85, 55, 101,['Fight']))  # 괴력몬
 
 
 
