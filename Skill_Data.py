@@ -29,6 +29,7 @@ class body_blow:                 # 몸통박치기
         self.Daccur = 95
         self.Maxpp = 35
         self.type = 'Normal'
+
     def Use(self):                              # 이 Use 함수와
         print(self.Damage)
 
@@ -69,7 +70,7 @@ class Synthesis:                # 광합성
     def Use(self):
         pass
 
-class Body_Slam:
+class Body_Slam:            # 돌진
     def __init__(self):
         self.Damage = 85
         self.Maxpp = 15
@@ -414,11 +415,18 @@ def init_skill():
 
 
 
-Attack = [body_blow,crying_sound]       # Attack라는 리스트에 body_blow,crying_sound라는 string을 넣은 후
+Attack = [body_blow(),crying_sound(),Razor_Leaf(),Poison_Powder(),Synthesis(),Body_Slam(),
+          Ember(), Quick_Attack(),Flame_Wheel(),Leer(),Scratch(),Rage(),Water_Gun(),
+          Bite(),Scary_Face(),Slash(),Screech(),Hydro_Pump(),Slam(),Amnesia(),
+          String_Shot(),Harden(),Confusion(),Stun_Spore(),Sleep_Powder(),Gust(),
+          Psybeam(),Poison_Sting(),Agility(),Pursuit(),Pin_Missile(),Wing_Attack(),
+          Thundershock(),Tail_Whip(),Thunder_Wave(),Thunderbolt(),Thunder(),Peck(),
+          Hypnosis(),Take_Down(),Low_Kick(),Karate_Chop(),Cross_Chop(),Submission()]       # Attack라는 리스트에 body_blow,crying_sound라는 string을 넣은 후
+ad = Dbuf()
 
 def Use_Skill(play):
     print(play,Attack[play])
-    print(Attack[play].Damage)
+    print(ad.PDefensebuf)
     Attack[play].Use()                  # Attack의 0번쨰 인덱스인 body_blow.Use()를 불러옴
                                         # self인자 없다는 오류가 발생함
                                         # 32번째 줄과 41번째 줄 참고
