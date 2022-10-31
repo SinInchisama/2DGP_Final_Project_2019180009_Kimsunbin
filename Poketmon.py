@@ -15,24 +15,19 @@ class Poketmon:
         self.type = type
 
 class Tr_Poketmon:      # 트레이너 포켓몬 클래스
-    def __init__(self,Num,level,MaxHp,Hp,Pattack,Pdefense,Sattack,Sdefense,Speed,Nowexp):
+    def __init__(self,Num,level,Hp):
         self.Num = Num
         self.level = level
-        self.MaxHp = MaxHp
         self.Hp = Hp
-        self.Pattack = Pattack
-        self.Pdefense = Pdefense
-        self.Sattack = Sattack
-        self.Sdefense = Sdefense
-        self.Speed = Speed
-        self.Nowexp = Nowexp
+        self.Nowexp = 0
+
 
     def Set_ability(self):
         self.MaxHp =   (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
-        self.RPattack =   (Poket_Data[self.Num].Pattack * 2 + 31 + 100) * self.level // 100 + 5   # 능력치 = [ { (종족값a x 2) + 개체값b} x 레벨Lv/100 + 5]
-        self.RPdefense = (Poket_Data[self.Num].Pdefense * 2 + 31 + 100) * self.level // 100 + 5
-        self.RSattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
-        self.RSdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
+        self.Pattack =   (Poket_Data[self.Num].Pattack * 2 + 31 + 100) * self.level // 100 + 5   # 능력치 = [ { (종족값a x 2) + 개체값b} x 레벨Lv/100 + 5]
+        self.Pdefense = (Poket_Data[self.Num].Pdefense * 2 + 31 + 100) * self.level // 100 + 5
+        self.Sattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
+        self.Sdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
         self.Speed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
 
 
