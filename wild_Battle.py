@@ -19,6 +19,7 @@ def enter():
         wild_Poketmon = Poketmon.Tr_Poketmon(select_Poketmon[rand(0, len(select_Poketmon) - 1)], rand(10, 20), 0)
         pass
     wild_Poketmon.Set_ability()
+    wild_Poketmon.Set_Skill()
     pass
 
 
@@ -43,7 +44,6 @@ def handle_events():
 
 
 def update():
-    print(wild_Poketmon.Pattack,wild_Poketmon.level)
     pass
 
 

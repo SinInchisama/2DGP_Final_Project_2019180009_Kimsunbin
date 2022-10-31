@@ -1,3 +1,5 @@
+import Skill_Data
+
 Poket_Data = None
 
 class Poketmon:
@@ -30,6 +32,18 @@ class Tr_Poketmon:      # 트레이너 포켓몬 클래스
         self.Sdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
         self.Speed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
 
+    def Set_Skill(self):
+        self.Skill_List = []
+        i = self.level
+        while(i>0  and len(self.Skill_List)<4):
+            if(i in Poket_Data[self.Num].Skill):
+                self.Skill_List.append(Poket_Data[self.Num].Skill.get(i))
+            i -= 1
+
+        sorted(self.Skill_List)
+        print(Poket_Data[self.Num].name,self.level)
+        for i in self.Skill_List:
+            print(Skill_Data.Attack[i])
 
 
 def init_Poketmon():

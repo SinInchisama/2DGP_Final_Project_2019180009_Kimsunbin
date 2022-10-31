@@ -30,6 +30,7 @@ def enter():
     Hp_image = pico2d.load_image('./resource/image/Hp.png')
     hero.init_pList()
     Poketmon.init_Poketmon()
+    Poketmon.init_Skill()
 
 def handle_events():
     global direct
