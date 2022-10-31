@@ -72,7 +72,7 @@ def init_Poketmon():
     Poket_Data.append(Poketmon(1198, 4407, 'Machamp', 90, 130, 80, 65, 85, 55, 101,['Fight']))  # 괴력몬
 
 
-
-
+def init_Skill():
+    Poket_Data[0].Skill = {1 : 0,2:1,8:2,}
 
 
