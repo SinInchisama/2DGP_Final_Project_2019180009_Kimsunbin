@@ -70,7 +70,7 @@ class Synthesis:                # 광합성
     def Use(self):
         pass
 
-class Body_Slam:            # 돌진
+class Body_Slam:            # 누르기
     def __init__(self):
         self.Damage = 85
         self.Maxpp = 15
@@ -84,6 +84,7 @@ class Ember:                # 불꽃세례
         self.Damage = 40
         self.Maxpp = 25
         self.type = 'Fire'
+
 
     def Use(self):
         pass
