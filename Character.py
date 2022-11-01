@@ -20,12 +20,12 @@ class Hero(character):
 
     def init_pList(self):
         self.Pcount = 1
-        self.pList = [Poketmon.Tr_Poketmon(0,100,30) for i in range(0,7)]
+        self.pList = [Poketmon.Tr_Poketmon(0,100,30,200) for i in range(0,7)]
         self.pList[0].Num = 3
         self.pList[0].level = 5
         self.pList[0].Set_ability()
         self.pList[0].Hp = self.pList[0].MaxHp
-        self.pList[0].Nowexp = 50
+        self.pList[0].Exp = 50
         self.pList[0].Skill_List = [0,9]
 
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
