@@ -20,6 +20,8 @@ def enter():
         pass
     wild_Poketmon.Set_ability()
     wild_Poketmon.Set_Skill()
+    for i in play_state.hero.pList[0].Skill_List:
+        print(i)
     pass
 
 
@@ -50,6 +52,7 @@ def update():
 def draw():
     clear_canvas()
     play_state. Maping[19].map.clip_draw(0, 0, 640, 576, 320, 288)
-    Poketmon.Poket_Data[wild_Poketmon.Num]
+    Poketmon.Poket_Data[wild_Poketmon.Num].Front_Draw(500,450,224,224)
+    Poketmon.Poket_Data[play_state.hero.pList[0].Num].Back_Draw(120, 200, 224, 224)
     update_canvas()
     pass

@@ -28,9 +28,10 @@ def enter():
     Font_image = pico2d.load_image('./resource/image/Font.png')
     HPbar_image = pico2d.load_image('./resource/image/Hp_bar.png')
     Hp_image = pico2d.load_image('./resource/image/Hp.png')
-    hero.init_pList()
     Poketmon.init_Poketmon()
     Poketmon.init_Skill()
+    hero.init_pList()
+
 
 def handle_events():
     global direct
