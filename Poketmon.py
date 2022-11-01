@@ -1,8 +1,11 @@
 import Skill_Data
+from pico2d import *
 
 Poket_Data = None
 
 class Poketmon:
+    image = None
+
     def __init__(self, Pngx, Pngy,name,Hp,Pattack,Pdefense,Sattack,Sdefense,Speed,Evolution,type):         # 이 클래스에 skill를 넣을 건데
         self.Pngx = Pngx                                                                                # 이때 딕셔너리 구조로 {1 : skill인덱스}로 찾을려고함
         self.Pngy = Pngy
@@ -15,6 +18,14 @@ class Poketmon:
         self.Speed = Speed
         self.Evolution = Evolution
         self.type = type
+        if Poketmon.image == None:
+            Poketmon.image = load_image('All_Pokemon.png')
+
+    def Front_Draw(self,x,y,width,height):
+        self.image.clip_draw(self.Pngx,self.Pngy, 56, 56, x,y, width, height)
+
+    def Back_Draw(self,x,y,width,height):
+        self.image.clip_draw(self.Pngx + 8, self.Pngy -113,  48, 47, x, y, width, height)
 
 class Tr_Poketmon:      # 트레이너 포켓몬 클래스
     def __init__(self,Num,level,Hp):
@@ -22,10 +33,11 @@ class Tr_Poketmon:      # 트레이너 포켓몬 클래스
         self.level = level
         self.Hp = Hp
         self.Nowexp = 0
+        self.Skill_List = []
 
 
     def Set_ability(self):
-        self.MaxHp =   (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
+        self.MaxHp =  (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
         self.Pattack =   (Poket_Data[self.Num].Pattack * 2 + 31 + 100) * self.level // 100 + 5   # 능력치 = [ { (종족값a x 2) + 개체값b} x 레벨Lv/100 + 5]
         self.Pdefense = (Poket_Data[self.Num].Pdefense * 2 + 31 + 100) * self.level // 100 + 5
         self.Sattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
@@ -33,7 +45,6 @@ class Tr_Poketmon:      # 트레이너 포켓몬 클래스
         self.Speed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
 
     def Set_Skill(self):
-        self.Skill_List = []
         i = self.level
         while(i>0  and len(self.Skill_List)<4):
             if(i in Poket_Data[self.Num].Skill):

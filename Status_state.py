@@ -5,19 +5,17 @@ import Poketmon
 import Choose_Poketmon
 
 Status_iamge = None
-image3 = None
 select = None
 NowPc,Nowlv = None,None            # 현재 포켓몬카운트
 RHp= None
 ability = None
 
 def enter():
-    global Status_iamge,image3,select,NowPc,Nowlv
+    global Status_iamge,select,NowPc,Nowlv
     global RHp,ability
     Status_iamge = [load_image('./resource/image/Status_state.png')]
     Status_iamge.append(load_image('./resource/image/Skill_state.png'))
     Status_iamge.append(load_image('./resource/image/ability_state.png'))
-    image3 = load_image('All_Pokemon.png')
     select = 0
     NowPc = Choose_Poketmon.CusorY
     Nowlv = play_state.hero.pList[NowPc].level
@@ -62,8 +60,8 @@ def update():
 def draw():
     clear_canvas()
     Status_iamge[select].clip_draw(0,0,160,144,320,288,640,576)
-    image3.clip_draw(Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngx, Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngy, 56, 56, 120, 450, 224, 224)
-
+    # Poketmon.Poket_Data.image.clip_draw(Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngx, Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngy, 56, 56, 120, 450, 224, 224)
+    Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Front_Draw(120,450,224,224)
     i ,j = 1,0
     while play_state.hero.pList[NowPc].Num // i != 0:             # 도감번호 출력
         result = (play_state.hero.pList[NowPc].Num // i) % 10
