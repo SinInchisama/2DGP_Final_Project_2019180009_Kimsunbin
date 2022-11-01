@@ -1,6 +1,7 @@
 from pico2d import *
 import play_state
 import Poketmon
+import Skill_Data
 from random import randint
 
 import game_framework
@@ -14,11 +15,11 @@ def enter():
     global select_Poketmon,wild_Poketmon,select_M,Menu_Bool,Skill_Bool
     if(play_state.round == 1):
         select_Poketmon = [9,11,14,17,22,24]                    # 29번 도로에서 위 도감 번호 포켓몬 중
-        wild_Poketmon = Poketmon.Tr_Poketmon(select_Poketmon[rand(0,len(select_Poketmon)-1)],rand(3,10),0)  # 랜덤 포켓몬 생성
+        wild_Poketmon = Poketmon.Wild_Poketmon(select_Poketmon[rand(0,len(select_Poketmon)-1)],rand(3,10),30)  # 랜덤 포켓몬 생성
         pass
     else:
         select_Poketmon = [10, 13, 16, 18,20, 23, 25]           # 31번 도로
-        wild_Poketmon = Poketmon.Tr_Poketmon(select_Poketmon[rand(0, len(select_Poketmon) - 1)], rand(10, 20), 0)
+        wild_Poketmon = Poketmon.Wild_Poketmon(select_Poketmon[rand(0, len(select_Poketmon) - 1)], rand(10, 20), 30)
         pass
     wild_Poketmon.Set_ability()                                 # 야생 포켓몬 능력치 세팅
     wild_Poketmon.Set_Skill()                                   # 야생 포켓몬 스킬 분배
@@ -53,6 +54,14 @@ def handle_events():
                     Menu_Bool = False
 
             elif event.key == SDLK_a:
+                print(wild_Poketmon.Hp)
+                Skill_Data.Attack[play_state.hero.pList[0].Skill_List[0]].Use(wild_Poketmon,play_state.hero.pList[0])
+                print(wild_Poketmon.Hp)
+                pass
+            elif event.key == SDLK_b:
+                print(wild_Poketmon.Hp)
+                Skill_Data.Attack[play_state.hero.pList[0].Skill_List[1]].Use(wild_Poketmon,play_state.hero.pList[0])
+                print(wild_Poketmon.Hp)
                 pass
     pass
 
