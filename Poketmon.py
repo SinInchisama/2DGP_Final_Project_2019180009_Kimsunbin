@@ -43,6 +43,65 @@ class Poketmon:
         self.Sdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
         self.Speed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
 
+    def Type_check(self, Stype):
+        sum = 1
+        for Ptype in Poket_Data[self.Num].type:
+            if Stype == 'Fight':                                # 기술이 격투
+                if Ptype == 'Normal':
+                    sum *= 2
+                elif Ptype == 'Flight' or Ptype == 'Bug' or Ptype == 'Poison':
+                    sum /= 2
+
+
+            elif Stype == 'Water':                              # 기술이 물
+                if Ptype == 'Fire':
+                    sum *= 2
+                elif Ptype == 'Water' or Ptype == 'Grass':
+                    sum /= 2
+
+
+            elif Stype == 'Fire':                               # 기술이 불
+                if Ptype == 'Grass' or Ptype == 'Bug':
+                    sum *= 2
+                elif Ptype == 'Water' or Ptype == 'Fire':
+                    sum /= 2
+
+
+            elif Stype == 'Grass':                              # 기술이 풀
+                if Ptype == 'Water':
+                    sum *= 2
+                elif Ptype == 'Poison' or Ptype == 'Flight' or Ptype == 'Bug':
+                    sum /= 2
+
+
+            elif Stype == 'Bug':
+                if Ptype == 'Grass' or Ptype == 'Esper':
+                    sum *= 2
+                elif Ptype == 'Fight' or Ptype == 'Poison' or Ptype == 'Flight' or Ptype == 'Fire':
+                    sum /= 2
+
+            elif Stype == 'Poison':
+                if Ptype == 'Poison':
+                    sum /= 2
+                elif Ptype == 'Grass':
+                    sum *= 2
+
+            elif Stype == 'Flight':
+                if Ptype == 'Fight' or Ptype == 'Bug' or Ptype == 'Grass':
+                    sum *= 2
+                elif Ptype == 'Electric':
+                    sum /= 2
+
+            elif Stype == 'Electric':
+                if Ptype == 'Flight' or Ptype == 'Water':
+                    sum*=2
+                elif Ptype == 'Electric' or Ptype == 'Grass':
+                    sum /= 2
+        return sum
+
+
+
+
 class Wild_Poketmon(Poketmon):      # 트레이너 포켓몬 클래스
     def __init__(self,Num,level,Hp):
         Poketmon.__init__(self,Num,level,Hp,[])
