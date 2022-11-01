@@ -432,6 +432,7 @@ def Use_Skill(play):
 
 def Damage_check(Damage,type):
     import wild_Battle
+    pass
 
 
 
