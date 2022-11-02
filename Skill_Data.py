@@ -12,8 +12,12 @@ class P_Skill:
 
     def Use(self,My,Enermy):
         if(random.randint(0,100)<=self.Daccur):
-            print(My.Pdefense)
-            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (Enermy.level * 2 / 5 + 2) / My.Pdefense/50 + 2)* My.Type_check(self.type))
+            print(Enermy.ChangePa)
+            print(My.Hp)
+            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1/4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1/4 * My.ChangePd) /50 + 2)* My.Type_check(self.type))
+            print(My.Hp)
+        else:
+            print('Miss')
 
 class S_Skill:
     def __init__(self,Damage,Daccur,Maxpp,type):
@@ -24,8 +28,8 @@ class S_Skill:
 
     def Use(self,My,Enermy):
         if(random.randint(0,100)<=self.Daccur):
-            print(My.Pdefense)
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (Enermy.level * 2 / 5 + 2) / My.Sdefense/50 + 2)* My.Type_check(self.type))
+            print(Enermy.ChangePa)
+            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
 
 
 
@@ -41,8 +45,10 @@ class crying_sound:             # 울음소리
         self.Maxpp = 35,
         self.type = 'Normal'
 
-    def Use(self):                              # 이 Use 함수를
-        pass
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if(My.ChangePa >-3):
+                My.ChangePa -= 1
 
 class Razor_Leaf(S_Skill):               # 잎날가르기
 
@@ -56,8 +62,10 @@ class Poison_Powder:            # 독가루
         self.Maxpp = 25
         self.type = 'Grass'
 
-    def Use(self):
-        pass
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if(My.ailment == None):
+                My.ailment = 'Poison'
 
 class Synthesis:                # 광합성
     def __init__(self):
@@ -79,8 +87,8 @@ class Ember(S_Skill):                # 불꽃세례
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (Enermy.level * 2 / 5 + 2) / My.Sdefense / 50 + 2))
-            if (random.randint(0, 100) < 10):
+            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
+            if (random.randint(0, 100) < 10 and My.ailment == None):
                 My.ailment = 'Burn'
 
 class Quick_Attack(P_Skill):         # 전광석화
@@ -93,8 +101,8 @@ class Flame_Wheel(P_Skill):          # 화염자동차
         P_Skill.__init__(self, 60, 100, 25, 'Fire')
     def Use(self,My,Enermy):
         if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (Enermy.level * 2 / 5 + 2) / My.Pdefense/50 + 2))
-            if(random.randint(0,100)<10):
+            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1 / 4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1 / 4 * My.ChangePd) / 50 + 2) * My.Type_check(self.type))
+            if(random.randint(0,100)<10 and My.ailment == None):
                 My.ailment = 'Burn'
 
 class Leer:                 # 째려보기
@@ -102,9 +110,12 @@ class Leer:                 # 째려보기
         self.PDefensebuf = -1
         self.Maxpp = 35
         self.type = 'Normal'
+        self.Daccur = 100
 
-    def Use(self):
-        pass
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (My.ChangePd > -3):
+                My.ChangePd -= 1
 
 class Scratch(P_Skill):              # 할퀴기
     def __init__(self):
@@ -130,8 +141,11 @@ class Scary_Face:           # 겁나는 얼굴
         self.Maxpp = 10
         self.Daccur = 90
         self.type = 'Normal'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (My.ChangeSp > -2):
+                My.ChangeSp -= 2
 
 class Slash(P_Skill):                # 베어가르기
     def __init__(self):
@@ -143,8 +157,11 @@ class Screech:              # 싫은소리
         self.Maxpp = 40
         self.Daccur = 85
         self.type = 'Normal'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (My.ChangePd > -2):
+                My.ChangePd -= 2
 
 class Hydro_Pump(S_Skill):           # 하이드로펌프
     def __init__(self):
@@ -161,24 +178,34 @@ class Amnesia:              # 망각술
         self.Maxpp = 20
         self.type = 'Esper'
 
-    def Use(self):
-        pass
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (Enermy.ChangeSd < 2):
+                Enermy.ChangeSd += 2
 
 class String_Shot:          # 실뿜기
     def __init__(self):
         self.Speedbuf = -2
         self.Maxpp = 20
         self.type = 'Bug'
-    def Use(self):
-        pass
+        self.Daccur = 100
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (My.ChangeSp > -2):
+                My.ChangeSp -= 2
+
 
 class Harden:               # 단단해지기
     def __init__(self):
         self.PDefensebuf = 1
         self.Maxpp = 40
         self.type = 'Normal'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (Enermy.ChangePd < 3):
+                Enermy.ChangePd += 1
 
 class Confusion(S_Skill):            # 염동력
     def __init__(self):
@@ -191,8 +218,10 @@ class Stun_Spore:               # 저리가루
         self.Daacur = 75
         self.type = 'Grass'
 
-    def Use(self):
-        pass
+    def Use(self, My, Enermy):
+        if (random.randint(0, 75) <= self.Daccur):
+            if (My.ailment == None):
+                My.ailment = 'Paralysis'
 
 
 class Sleep_Powder:  # 수면가루
@@ -201,8 +230,10 @@ class Sleep_Powder:  # 수면가루
         self.Daacur = 75
         self.type = 'Grass'
 
-    def Use(self):
-        pass
+    def Use(self, My, Enermy):
+        if (random.randint(0, 75) <= self.Daccur):
+            if (My.ailment == None):
+                My.ailment = 'Sleep'
 
 class Gust(S_Skill):     # 바람일으키기
     def __init__(self):
@@ -220,7 +251,7 @@ class Poison_Sting(S_Skill):    # 독침
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (Enermy.level * 2 / 5 + 2) / My.Sdefense / 50 + 2))
+            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
             if (random.randint(0, 100) < 10):
                 My.ailment = 'Poison'
 
@@ -229,8 +260,11 @@ class Agility:        # 고속이동
         self.Speedbuf = 2
         self.Maxpp = 30
         self.type = 'Esper'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (Enermy.ChangePd < 2):
+                Enermy.ChangePd += 2
 
 class Pursuit(P_Skill):        # 따라가때리기
     def __init__(self):
@@ -244,8 +278,8 @@ class Pin_Missile(P_Skill):      # 바늘 미사일
         i = random.randint(2,4)
         count  = 0
         while(count<i and random.randint(0,100)<=self.Daccur):
-            for count in range(0,i):
-                My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (Enermy.level * 2 / 5 + 2) / My.Pdefense/50+ 2))
+            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1/4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1/4 * My.ChangePd) /50 + 2)* My.Type_check(self.type))
+            count+= 1
         pass
 
 class Wing_Attack(P_Skill):     # 날개치기
@@ -259,7 +293,7 @@ class Thundershock:    # 전기쇼크
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (Enermy.level * 2 / 5 + 2) / My.Sdefense / 50 + 2))
+            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
             if (random.randint(0, 100) < 10):
                 My.ailment = 'Paralysis'
 
@@ -268,16 +302,22 @@ class Tail_Whip:      # 꼬리 흔들기
         self.PDefensebuf = -1
         self.Maxpp = 30
         self.type = 'Normal'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 100) <= self.Daccur):
+            if (Enermy.ChangePd > -2):
+                Enermy.ChangePd -= 1
 
 class Thunder_Wave:     # 전기 충격파
     def __init__(self):
         self.Daccur = 90
         self.Maxpp = 20
         self.type = 'Electric'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 90) <= self.Daccur):
+            if (My.ailment == None):
+                My.ailment = 'Paralysis'
 
 class Thunderbolt(S_Skill):      # 10만볼트
     def __init__(self):
@@ -285,7 +325,7 @@ class Thunderbolt(S_Skill):      # 10만볼트
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (Enermy.level * 2 / 5 + 2) / My.Sdefense / 50 + 2))
+            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
             if (random.randint(0, 100) < 10):
                 My.ailment = 'Paralysis'
 
@@ -295,7 +335,7 @@ class Thunder(S_Skill):          # 번개
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (Enermy.level * 2 / 5 + 2) / My.Sdefense / 50 + 2))
+            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
             if (random.randint(0, 100) < 10):
                 My.ailment = 'Paralysis'
 
@@ -310,8 +350,11 @@ class Hypnosis:         # 최면술
         self.Daacur = 60
         self.Maxpp = 20
         self.type = 'Esper'
-    def Use(self):
-        pass
+
+    def Use(self, My, Enermy):
+        if (random.randint(0, 90) <= self.Daccur):
+            if (My.ailment == None):
+                My.ailment = 'Sleep'
 
 class Take_Down(P_Skill):        # 돌진
     def __init__(self):
