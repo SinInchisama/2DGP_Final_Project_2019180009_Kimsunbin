@@ -108,6 +108,9 @@ class Poketmon:
         del (self.ChangeSd)
         del (self.ChangeSp)
 
+    def Use_Skill(self):
+
+
 
 
 

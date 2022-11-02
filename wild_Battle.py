@@ -1,4 +1,6 @@
 from pico2d import *
+
+import Battle
 import play_state
 import Poketmon
 import Skill_Data
@@ -11,10 +13,12 @@ select_M = None                             # 현재 커서 위치(메뉴선택�
 Menu_Bool,Skill_Bool = None,None            # 메뉴선택, 스킬선택
 rand = randint
 Cursor_image = None
+Order_Que = None
 
 def enter():
-    global select_Poketmon,wild_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image
+    global select_Poketmon,wild_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que
     Cursor_image = load_image('./resource/image/Cursor.png')
+    Order_Que = []
 
     if(play_state.round == 1):
         select_Poketmon = [9,11,14,17,22,24]                    # 29번 도로에서 위 도감 번호 포켓몬 중
@@ -53,7 +57,7 @@ def resume():
     pass
 
 def handle_events():
-    global Menu_Bool,Skill_Bool,select_M
+    global Menu_Bool,Skill_Bool,select_M,Order_Que
 
     events = get_events()
     for event in events:
@@ -72,22 +76,24 @@ def handle_events():
             elif event.key == SDLK_RIGHT:
                 if (Menu_Bool == False and select_M < 3):
                     select_M += 1
-                elif (Skill_Bool == True and select_M < len(play_state.hero.pList[0].Skill_List)):
+                elif (Skill_Bool == False and select_M < len(play_state.hero.pList[0].Skill_List)):
                     select_M += 1
 
             elif event.key == SDLK_a:
-                print(wild_Poketmon.Hp)
-                Skill_Data.Attack[play_state.hero.pList[0].Skill_List[0]].Use(wild_Poketmon,play_state.hero.pList[0])
-                print(wild_Poketmon.Hp)
-                pass
-            elif event.key == SDLK_b:
-                print(wild_Poketmon.Hp)
-                Skill_Data.Attack[play_state.hero.pList[0].Skill_List[1]].Use(wild_Poketmon,play_state.hero.pList[0])
-                print(wild_Poketmon.Hp)
-                pass
-            elif event.key == SDLK_c:
-                play_state.hero.pList[0].ChangePa += 1
-    pass
+                if(Menu_Bool == False):
+                    if(select_M == 0):
+                        Menu_Bool = True
+                        select_M = 0
+                    if(select_M == 3):
+                        game_framework.pop_state()
+                    pass
+                elif (Skill_Bool == False):
+                    print(Skill_Data.Attack[play_state.hero.pList[0].Skill_List[select_M]])
+                    Skill_Data.Attack[play_state.hero.pList[0].Skill_List[select_M]].Use(wild_Poketmon,play_state.hero.pList[0])
+                    Menu_Bool = False
+                    Order_Que = Battle.Speed_check(play_state.hero.pList[0],wild_Poketmon)
+                    print(Order_Que[0],Order_Que[1])
+                    pass
 
 
 def update():
