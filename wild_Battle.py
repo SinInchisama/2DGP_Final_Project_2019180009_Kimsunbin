@@ -13,7 +13,7 @@ select_M = None                             # 현재 커서 위치(메뉴선택�
 Menu_Bool,Skill_Bool = None,None            # 메뉴선택, 스킬선택
 rand = randint
 Cursor_image = None
-Order_Que = None
+Order_Que,Order,Frame = None,None,None
 
 def enter():
     global select_Poketmon,wild_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que
@@ -37,6 +37,7 @@ def enter():
     del (select_Poketmon)                                       # 필요 없어진 배열 삭제.
     select_M = 0
     Menu_Bool, Skill_Bool = False,False
+    print(wild_Poketmon.Hp,wild_Poketmon.MaxHp)
     pass
 
 
@@ -57,7 +58,7 @@ def resume():
     pass
 
 def handle_events():
-    global Menu_Bool,Skill_Bool,select_M,Order_Que
+    global Menu_Bool,Skill_Bool,select_M,Order_Que,Order,Frame
 
     events = get_events()
     for event in events:
@@ -88,15 +89,26 @@ def handle_events():
                         game_framework.pop_state()
                     pass
                 elif (Skill_Bool == False):
-                    print(Skill_Data.Attack[play_state.hero.pList[0].Skill_List[select_M]])
-                    Skill_Data.Attack[play_state.hero.pList[0].Skill_List[select_M]].Use(wild_Poketmon,play_state.hero.pList[0])
                     Menu_Bool = False
                     Order_Que = Battle.Speed_check(play_state.hero.pList[0],wild_Poketmon)
-                    print(Order_Que[0],Order_Que[1])
+                    Frame = 0
                     pass
 
 
 def update():
+    if(Order_Que):
+        Order = Order_Que.pop()
+        if(Order==0):
+            print('Enermy',wild_Poketmon.Hp)
+            play_state.hero.pList[0].Use_Skill(wild_Poketmon, select_M)
+            print('Enermy', wild_Poketmon.Hp)
+            pass
+        elif(Order == 1):
+            print('my',play_state.hero.pList[0].Hp)
+            wild_Poketmon.Use_Skill(play_state.hero.pList[0], 1)
+            print('my', play_state.hero.pList[0].Hp)
+            pass
+
     pass
 
 
@@ -108,5 +120,11 @@ def draw():
 
     if(Menu_Bool != True or Skill_Bool != True):
         Cursor_image.clip_draw(0, 0, 32, 32, 330 + (150 * (select_M % 2)), 200 - (80 * (select_M // 2)))
+
+    play_state.Hp_image.clip_draw(0, 0, 68, 6, 490, 300 , 272, 20)
+    play_state.HPbar_image.clip_draw(0, 0, 2, 15, 419, 300 ,383 * (play_state.hero.pList[0].Hp / play_state.hero.pList[0].MaxHp), 15)
+
+    play_state.Hp_image.clip_draw(0, 0, 68, 6, 190, 520, 272, 20)
+    play_state.HPbar_image.clip_draw(0, 0, 2, 15, 118, 520, 383 * (wild_Poketmon.Hp / wild_Poketmon.MaxHp), 15)
     update_canvas()
     pass
