@@ -108,7 +108,8 @@ class Poketmon:
         del (self.ChangeSd)
         del (self.ChangeSp)
 
-    def Use_Skill(self):
+    def Use_Skill(self,enermy,num):
+        Skill_Data.Attack[self.Skill_List[num]].Use(enermy,self)
 
 
 
@@ -129,6 +130,8 @@ class Wild_Poketmon(Poketmon):      # 트레이너 포켓몬 클래스
         print(Poket_Data[self.Num].name,self.level)
         for i in self.Skill_List:
             print(Skill_Data.Attack[i])
+
+        self.Hp = self.MaxHp
 
 class Tr_Poketmon(Poketmon):
     def __init__(self, Num, level, Hp,Exp):
