@@ -66,6 +66,8 @@ def handle_events():
                 else:
                     hero.pngy = 3350
                     speed = 0.07
+            elif event.key == SDLK_h:
+                hero.pList[0].Hp = 20
 
             elif event.key == SDLK_c:
                 game_framework.push_state(Menu_state)
