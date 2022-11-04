@@ -1,6 +1,9 @@
 import Choose_Poketmon
 from pico2d import *
-
+import game_framework
+import play_state
+import Battle
+import wild_Battle
 def enter():
     Choose_Poketmon.enter()
 
@@ -12,19 +15,23 @@ def handle_events():
             if event.key == SDLK_b:
                 game_framework.pop_state()
             elif event.key == SDLK_DOWN:
-                if CusorY + 1 < play_state.hero.Pcount:
-                    CusorY = (CusorY + 1) % 7
+                if Choose_Poketmon.CusorY + 1 < play_state.hero.Pcount:
+                    Choose_Poketmon.CusorY = (Choose_Poketmon.CusorY + 1) % 7
                 else:
-                    CusorY = 6
-                print(CusorY)
+                    Choose_Poketmon.CusorY = 6
             elif event.key == SDLK_UP:
-                if (CusorY > 0):
-                    CusorY -= 1
+                if (Choose_Poketmon.CusorY > 0):
+                    Choose_Poketmon.CusorY -= 1
             elif event.key == SDLK_a:
-                if (CusorY != 6):
-                    game_framework.push_state(Status_state)
+                if (Choose_Poketmon.CusorY != 6):
+                    if(play_state.hero.pList[Choose_Poketmon.CusorY].Hp != 0):
+                        play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
+                        Battle.Poket_Order = Choose_Poketmon.CusorY
+                        wild_Battle.Order,wild_Battle.Order_Que,wild_Battle.round = 1,[None],0
+                        play_state.hero.pList[Choose_Poketmon.CusorY].init_Change_ability()
+                        game_framework.pop_state()
                     # frame = 645       # 포켓몬 선택하고 무슨 행동할지 선택하는 창
-                elif (CusorY == 6):
+                elif (Choose_Poketmon.CusorY == 6):
                     game_framework.pop_state()
     pass
 

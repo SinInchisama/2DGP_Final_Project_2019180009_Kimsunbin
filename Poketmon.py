@@ -1,6 +1,6 @@
 import Skill_Data
 from pico2d import *
-
+import random
 Poket_Data = None
 
 class Data:
@@ -42,6 +42,21 @@ class Poketmon:
         self.Sattack = (Poket_Data[self.Num].Sattack * 2 + 31 + 100) * self.level // 100 + 5
         self.Sdefense = (Poket_Data[self.Num].Sdefense * 2 + 31 + 100) * self.level // 100 + 5
         self.Speed = (Poket_Data[self.Num].Speed* 2 + 31 + 100) * self.level // 100 + 5
+
+    def ailment_check(self):
+        if(self.ailment == 'Paralysis'):
+            if(random.randint(0,100)<50):
+                return 0
+            else:
+                return 1
+        elif(self.ailment == 'Sleep'):
+            if (random.randint(0, 100) < 50):
+                self.ailment = None
+                return 0
+            else:
+                return 1
+        else:
+            return 0
 
     def Type_check(self, Stype):
         sum = 1

@@ -19,7 +19,7 @@ class Hero(character):
         self.movey = movey
 
     def init_pList(self):
-        self.Pcount = 1
+        self.Pcount = 2
         self.pList = [Poketmon.Tr_Poketmon(0,100,30,200) for i in range(0,7)]
         self.pList[0].Num = 3
         self.pList[0].level = 5
@@ -27,6 +27,8 @@ class Hero(character):
         self.pList[0].Hp = self.pList[0].MaxHp
         self.pList[0].Exp = 50
         self.pList[0].Skill_List = [0,40]
+
+        self.pList[1].Set_ability()
 
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
         self.mapx += (self.movex * 32)
@@ -40,7 +42,7 @@ class Hero(character):
         #     self.mapx -= (self.movex * 32)
         #     self.mapy -= (self.movey * 32)
         #     return 0
-        print(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1],self.mapy // 32 + 1,self.mapx // 32 + 1)
+        # print(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1],self.mapy // 32 + 1,self.mapx // 32 + 1)
         check_num = map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]
         if(check_num  == 89 or check_num  == 45 or check_num  == 32):
             return 2

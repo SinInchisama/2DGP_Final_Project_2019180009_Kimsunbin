@@ -106,6 +106,7 @@ def Hero_working(mode):
             delay(speed)
     if(mode == 3):
         if(random.randint(0,100)<20):
+            wild_Battle.Battle_type = 'Wild'
             game_framework.push_state(wild_Battle)
             hero.movey = 0
             hero.movex = 0
