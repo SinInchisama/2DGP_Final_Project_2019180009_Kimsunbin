@@ -156,6 +156,7 @@ def update():
                 if game_Continue :
                     Order = None
                     game_framework.push_state(Battle_Choose)
+                    print(Order)
                 else:
                     game_framework.pop_state()
 

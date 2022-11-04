@@ -24,12 +24,13 @@ def handle_events():
                     Choose_Poketmon.CusorY -= 1
             elif event.key == SDLK_a:
                 if (Choose_Poketmon.CusorY != 6):
-                    if(play_state.hero.pList[Choose_Poketmon.CusorY].Hp != 0):
-                        play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
-                        Battle.Poket_Order = Choose_Poketmon.CusorY
-                        wild_Battle.Order,wild_Battle.Order_Que,wild_Battle.round = 1,[None],0
-                        play_state.hero.pList[Choose_Poketmon.CusorY].init_Change_ability()
-                        game_framework.pop_state()
+                    if(play_state.hero.pList[Battle.Poket_Order].Hp != 0):
+                        if ( play_state.hero.pList[Battle.Poket_Order].Hp != None):
+                            wild_Battle.Order, wild_Battle.Order_Que, wild_Battle.round = 1, [None], 0
+                    play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
+                    Battle.Poket_Order = Choose_Poketmon.CusorY
+                    play_state.hero.pList[Choose_Poketmon.CusorY].init_Change_ability()
+                    game_framework.pop_state()
                     # frame = 645       # 포켓몬 선택하고 무슨 행동할지 선택하는 창
                 elif (Choose_Poketmon.CusorY == 6):
                     game_framework.pop_state()

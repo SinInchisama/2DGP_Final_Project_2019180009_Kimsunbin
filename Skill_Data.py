@@ -1,4 +1,5 @@
 import random
+from pico2d import *
 
 Skill_Data = None
 
@@ -177,7 +178,7 @@ class Amnesia:              # 망각술
     def __init__(self):
         self.SDefensebuf = 2
         self.Maxpp = 20
-        self.Daccur
+        self.Daccur = 100
         self.type = 'Esper'
 
     def Use(self, My, Enermy):
@@ -203,7 +204,7 @@ class Harden:               # 단단해지기
         self.PDefensebuf = 1
         self.Maxpp = 40
         self.type = 'Normal'
-        self.Daccur
+        self.Daccur = 100
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
@@ -263,7 +264,7 @@ class Agility:        # 고속이동
         self.Speedbuf = 2
         self.Maxpp = 30
         self.type = 'Esper'
-        self.Daccur
+        self.Daccur = 100
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
@@ -306,7 +307,7 @@ class Tail_Whip:      # 꼬리 흔들기
         self.PDefensebuf = -1
         self.Maxpp = 30
         self.type = 'Normal'
-        self.Daccur
+        self.Daccur = 100
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
@@ -388,6 +389,7 @@ class Submission(P_Skill):       # 지옥의 바퀴
 
 def init_skill():
     global Skill_Data
+    Skill_Data = load_image('./resource/image/Skill_image.png')
 
 
 
@@ -401,11 +403,7 @@ Attack = [body_blow(),crying_sound(),Razor_Leaf(),Poison_Powder(),Synthesis(),Bo
           Thundershock(),Tail_Whip(),Thunder_Wave(),Thunderbolt(),Thunder(),Peck(),
           Hypnosis(),Take_Down(),Low_Kick(),Karate_Chop(),Cross_Chop(),Submission()]       # Attack라는 리스트에 body_blow,crying_sound라는 string을 넣은 후
 
-def Use_Skill(play):
-    print(play,Attack[play])
-    Attack[play].Use()                  # Attack의 0번쨰 인덱스인 body_blow.Use()를 불러옴
-                                        # self인자 없다는 오류가 발생함
-                                        # 32번째 줄과 41번째 줄 참고
+
 
 
 
