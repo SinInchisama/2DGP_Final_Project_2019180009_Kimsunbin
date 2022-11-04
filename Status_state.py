@@ -103,15 +103,15 @@ def Select_0():
         div *= 10
 
     Acount, div = 0, 1
-    while play_state.hero.pList[NowPc].Nowexp // div != 0:  # 현재 경험치 출력
-        result = (play_state.hero.pList[NowPc].Nowexp // div) % 10
+    while play_state.hero.pList[NowPc].exp // div != 0:  # 현재 경험치 출력
+        result = (play_state.hero.pList[NowPc].exp // div) % 10
         play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 600 - (Acount * 32), 230, 32, 32)
         Acount += 1
         div *= 10
 
     Acount, div = 0, 1
-    while (Nowlv * 50-play_state.hero.pList[NowPc].Nowexp) // div != 0:  # 현재 경험치 출력
-        result = ((Nowlv * 50-play_state.hero.pList[NowPc].Nowexp) // div) % 10
+    while (play_state.hero.pList[NowPc].level * 50-play_state.hero.pList[NowPc].exp) // div != 0:  # 현재 경험치 출력
+        result = ((play_state.hero.pList[NowPc].level * 50-play_state.hero.pList[NowPc].exp) // div) % 10
         play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 600 - (Acount * 32), 115, 32, 32)
         Acount += 1
         div *= 10
