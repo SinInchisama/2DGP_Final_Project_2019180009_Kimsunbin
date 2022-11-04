@@ -43,6 +43,7 @@ class crying_sound:             # 울음소리
     def __init__(self):
         self.PPowerbuf = -1
         self.Maxpp = 35,
+        self.Daccur = 100
         self.type = 'Normal'
 
     def Use(self, My, Enermy):
@@ -176,6 +177,7 @@ class Amnesia:              # 망각술
     def __init__(self):
         self.SDefensebuf = 2
         self.Maxpp = 20
+        self.Daccur
         self.type = 'Esper'
 
     def Use(self, My, Enermy):
@@ -201,6 +203,7 @@ class Harden:               # 단단해지기
         self.PDefensebuf = 1
         self.Maxpp = 40
         self.type = 'Normal'
+        self.Daccur
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
@@ -260,6 +263,7 @@ class Agility:        # 고속이동
         self.Speedbuf = 2
         self.Maxpp = 30
         self.type = 'Esper'
+        self.Daccur
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
@@ -302,6 +306,7 @@ class Tail_Whip:      # 꼬리 흔들기
         self.PDefensebuf = -1
         self.Maxpp = 30
         self.type = 'Normal'
+        self.Daccur
 
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
