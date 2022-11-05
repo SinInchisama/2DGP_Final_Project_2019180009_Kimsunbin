@@ -8,6 +8,7 @@ import Menu_state
 import Poketmon
 import random
 import wild_Battle
+import Skill_Data
 
 direct,round,mode,running,Map_change,speed =0,0,0,None,None,None
 Font_image,HPbar_image,Hp_image = None,None,None
@@ -30,6 +31,7 @@ def enter():
     Hp_image = pico2d.load_image('./resource/image/Hp.png')
     Poketmon.init_Poketmon()
     Poketmon.init_Skill()
+    Skill_Data.init_skill()
     hero.init_pList()
 
 

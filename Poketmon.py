@@ -123,8 +123,10 @@ class Poketmon:
         del (self.ChangeSd)
         del (self.ChangeSp)
 
-    def Use_Skill(self,enermy,num):
+    def Use_Skill(self,enermy,num,check):           # 공격모션 그릴때 check에 따라 그리기
+        Skill_Data.Attack[self.Skill_List[num]].Draw(check,enermy)
         Skill_Data.Attack[self.Skill_List[num]].Use(enermy,self)
+
 
 
 

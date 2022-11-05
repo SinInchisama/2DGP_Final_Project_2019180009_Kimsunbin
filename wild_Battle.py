@@ -112,7 +112,7 @@ def update():
 
             if(round == 0):
                 gap = Enermy_Poketmon.Hp
-                play_state.hero.pList[Battle.Poket_Order].Use_Skill(Enermy_Poketmon, select_M)
+                play_state.hero.pList[Battle.Poket_Order].Use_Skill(Enermy_Poketmon, select_M,True)
                 Hp = Enermy_Poketmon.Hp
                 Enermy_Poketmon.Hp = gap
                 gap = Hp
@@ -135,7 +135,7 @@ def update():
 
             if(round == 0):
                 gap = play_state.hero.pList[Battle.Poket_Order].Hp
-                Enermy_Poketmon.Use_Skill(play_state.hero.pList[Battle.Poket_Order], 1)
+                Enermy_Poketmon.Use_Skill(play_state.hero.pList[Battle.Poket_Order], 1,False)
                 Hp = play_state.hero.pList[Battle.Poket_Order].Hp
                 play_state.hero.pList[Battle.Poket_Order].Hp = gap
                 gap = Hp
