@@ -18,11 +18,12 @@ Order_Que,Order,round,gap = None,None,None,None
 exp_bar = None
 
 def enter():
-    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que,Order,exp_bar
+    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que,Order,exp_bar,round
     Cursor_image = load_image('./resource/image/Cursor.png')
     exp_bar = load_image('./resource/image/Exp_bar.png')
     Order_Que = []
     Order = None
+    round = -1
     if(Battle_type == 'Wild'):
         if(play_state.round == 1):
             select_Poketmon = [9,11,14,17,22,24]                    # 29번 도로에서 위 도감 번호 포켓몬 중
@@ -193,6 +194,8 @@ def draw_world():
 
 
 def resume():
+    if (play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+        game_framework.pop_state()
     pass
 
 def pause():
