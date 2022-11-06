@@ -1,5 +1,7 @@
 import random
 from pico2d import *
+
+import wild_Battle
 from wild_Battle import *
 
 Skill_Data = None
@@ -13,11 +15,8 @@ class P_Skill:
         self.type = type
 
     def Use(self,My,Enermy):
-        if(random.randint(0,100)<=self.Daccur):
-            print(Enermy.ChangePa)
-            print(My.Hp)
-            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1/4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1/4 * My.ChangePd) /50 + 2)* My.Type_check(self.type))
-            print(My.Hp)
+        My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1/4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1/4 * My.ChangePd) /50 + 2)* My.Type_check(self.type))
+
 
 
 
@@ -29,9 +28,7 @@ class S_Skill:
         self.type = type
 
     def Use(self,My,Enermy):
-        if(random.randint(0,100)<=self.Daccur):
-            print(Enermy.ChangePa)
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
+        My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
 
 
 
@@ -60,9 +57,8 @@ class crying_sound:             # 울음소리
         self.type = 'Normal'
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if(My.ChangePa >-3):
-                My.ChangePa -= 1
+        if(My.ChangePa >-3):
+            My.ChangePa -= 1
 
     def Draw(self, check,My):
         for i in range(0, 5):
@@ -85,6 +81,8 @@ class crying_sound:             # 울음소리
                 Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
             delay(0.03)
             update_canvas()
+
+        wild_Battle.round = 8
 
 class Razor_Leaf(S_Skill):               # 잎날가르기
 
@@ -120,9 +118,8 @@ class Poison_Powder:            # 독가루
         self.type = 'Grass'
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if(My.ailment == None):
-                My.ailment = 'Poison'
+        if(My.ailment == None):
+            My.ailment = 'Poison'
 
     def Draw(self,check,My):
         if (My.ailment == None):
@@ -136,6 +133,7 @@ class Poison_Powder:            # 독가루
                     Skill_Data.clip_draw(131 + (31 * i), 341, 27, 15, 50, 220, 108, 60)
                 delay(0.1)
                 update_canvas()
+        wild_Battle.round = 8
 
 class Synthesis:                # 광합성
     def __init__(self):
@@ -168,10 +166,9 @@ class Ember(S_Skill):                # 불꽃세례
         S_Skill.__init__(self, 40, 100, 25, 'Fire')
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
-            if (random.randint(0, 100) < 10 and My.ailment == None):
-                My.ailment = 'Burn'
+        My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
+        if (random.randint(0, 100) < 10 and My.ailment == None):
+            My.ailment = 'Burn'
 
     def Draw(self, check, My):
         for a in range(0, 200, 2):
@@ -183,7 +180,7 @@ class Ember(S_Skill):                # 불꽃세례
                 Skill_Data.clip_draw(67 - (22 * i), 1771, 18, 18, 120 + a * 1.5, 200 + a, 90, 90)
             else:  # 아니면 상대
                 Skill_Data.clip_draw(67 - (22 * i), 1771, 18, 18, 500 - a * 1.5, 450 - a, 90, 90)
-            delay(0.05)
+            delay(0.005)
             update_canvas()
 
 class Quick_Attack(P_Skill):         # 전광석화
@@ -207,10 +204,25 @@ class Flame_Wheel(P_Skill):          # 화염자동차
     def __init__(self):
         P_Skill.__init__(self, 60, 100, 25, 'Fire')
     def Use(self,My,Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1 / 4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1 / 4 * My.ChangePd) / 50 + 2) * My.Type_check(self.type))
-            if(random.randint(0,100)<10 and My.ailment == None):
-                My.ailment = 'Burn'
+        My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1 / 4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1 / 4 * My.ChangePd) / 50 + 2) * My.Type_check(self.type))
+        if(random.randint(0,100)<10 and My.ailment == None):
+            My.ailment = 'Burn'
+
+    def Draw(self,check,My):
+        for i in range(2,0,-1):
+            clear_canvas()
+
+            draw_world()
+            if(check):          # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
+                Skill_Data.clip_draw(67 - (22 * i), 1771, 18, 18, 580, 450,128,128)
+                Skill_Data.clip_draw(67 - (22 * i), 1771, 18, 18, 450, 450, 128, 128)
+            else:               # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i+2), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(67 - (22 * i+2), 1771, 18, 18, 200, 200,128,128)
+                Skill_Data.clip_draw(67 - (22 * i + 2), 1771, 18, 18, 70, 200, 128, 128)
+            delay(0.05)
+            update_canvas()
 
 class Leer:                 # 째려보기
     def __init__(self):
@@ -220,27 +232,104 @@ class Leer:                 # 째려보기
         self.Daccur = 100
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if (My.ChangePd > -3):
-                My.ChangePd -= 1
+        if (My.ChangePd > -3):
+            My.ChangePd -= 1
+
+    def Draw(self, check,My):
+        for i in range(0, 5):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(144, 1316, 8, 8, 450, 450- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 460, 470- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 430, 480- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 550, 400- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+            delay(0.03)
+            update_canvas()
+
+        wild_Battle.round = 8
 
 class Scratch(P_Skill):              # 할퀴기
     def __init__(self):
         P_Skill.__init__(self, 40, 100, 35, 'Normal')
 
+    def Draw(self,check,My):
+        for i in range(2,0,-1):
+            clear_canvas()
+
+            draw_world()
+            if(check):          # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
+            else:               # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+            delay(0.05)
+            update_canvas()
+
 class Rage(P_Skill):                 # 분노
     def __init__(self):
         P_Skill.__init__(self, 20, 100, 20, 'Normal')
+
+    def Draw(self,check,My):
+        for i in range(2,0,-1):
+            clear_canvas()
+
+            draw_world()
+            if(check):          # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
+            else:               # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+            delay(0.05)
+            update_canvas()
 
 
 class Water_Gun(S_Skill):            # 물대포
     def __init__(self):
         S_Skill.__init__(self, 40, 100, 25, 'Water')
 
+    def Draw(self, check, My):
+        for a in range(0, 200, 2):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(5, 827, 10, 10, 120 + a * 1.5, 200 + a, 50, 50)
+                Skill_Data.clip_draw(5, 827, 10, 10, 100 + a * 1.5, 180 + a, 50, 50)
+                Skill_Data.clip_draw(5, 827, 10, 10, 140 + a * 1.5, 190 + a, 50, 50)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(5, 827, 10, 10, 500 - a * 1.5, 450 - a, 50, 50)
+                Skill_Data.clip_draw(5, 827, 10, 10, 480 - a * 1.5, 430 - a, 50, 50)
+                Skill_Data.clip_draw(5, 827, 10, 10, 520 - a * 1.5, 440 - a, 50, 50)
+            delay(0.005)
+            update_canvas()
+
+
+
 
 class Bite(P_Skill):                 # 물기
     def __init__(self):
         P_Skill.__init__(self, 60, 100, 25, 'Dark')
+
+    def Draw(self,check,My):
+        for i in range(2,0,-1):
+            clear_canvas()
+
+            draw_world()
+            if(check):          # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
+            else:               # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+            delay(0.05)
+            update_canvas()
 
 class Scary_Face:           # 겁나는 얼굴
     def __init__(self):
@@ -250,13 +339,48 @@ class Scary_Face:           # 겁나는 얼굴
         self.type = 'Normal'
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if (My.ChangeSp > -2):
-                My.ChangeSp -= 2
+        if (My.ChangeSp > -2):
+            My.ChangeSp -= 2
+
+    def Draw(self, check,My):
+        for i in range(0, 5):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(144, 1316, 8, 8, 450, 450- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 460, 470- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 430, 480- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 550, 400- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+            delay(0.03)
+            update_canvas()
+
+        wild_Battle.round = 8
 
 class Slash(P_Skill):                # 베어가르기
     def __init__(self):
         P_Skill.__init__(self, 70, 100, 20, 'Normal')
+
+    def Draw(self,check,My):
+        for i in range(2,0,-1):
+            clear_canvas()
+
+            draw_world()
+            if(check):          # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
+            else:               # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+            delay(0.05)
+            update_canvas()
 
 class Screech:              # 싫은소리
     def __init__(self):
@@ -266,17 +390,73 @@ class Screech:              # 싫은소리
         self.type = 'Normal'
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if (My.ChangePd > -2):
-                My.ChangePd -= 2
+
+        if (My.ChangePd > -2):
+            My.ChangePd -= 2
+
+    def Draw(self, check,My):
+        for i in range(0, 5):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(144, 1316, 8, 8, 450, 450- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 460, 470- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 430, 480- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 550, 400- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+            delay(0.03)
+            update_canvas()
+
+        wild_Battle.round = 8
 
 class Hydro_Pump(S_Skill):           # 하이드로펌프
     def __init__(self):
         S_Skill.__init__(self, 120, 80, 5, 'Water')
 
+    def Draw(self, check,My):
+
+        clear_canvas()
+        draw_world()
+        for i in range(0, 8):
+
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(0, 800, 12, 12, 250 + (18 * i), 270 + (18 * i), 36, 36)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(0, 800, 12, 12, 450 - (18 * i), 450 - (18 * i), 36, 36)
+            delay(0.1)
+            update_canvas()
+
+        if (check):  # check면 상대한테 공격들어옴
+            Skill_Data.clip_draw(36, 796, 17, 17, 394, 414, 34, 34)
+        else:  # 아니면 상대
+            Skill_Data.clip_draw(36, 796, 17, 17, 450 - (18 * i), 450 - (18 * i), 36, 36)
+        delay(0.1)
+        update_canvas()
+
 class Slam(P_Skill):                 # 힘껏치기
     def __init__(self):
         P_Skill.__init__(self, 80, 75, 20, 'Normal')
+
+    def Draw(self,check,My):
+        for i in range(2,0,-1):
+            clear_canvas()
+
+            draw_world()
+            if(check):          # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
+            else:               # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+            delay(0.05)
+            update_canvas()
 
 
 class Amnesia:              # 망각술
@@ -287,9 +467,32 @@ class Amnesia:              # 망각술
         self.type = 'Esper'
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if (Enermy.ChangeSd < 2):
-                Enermy.ChangeSd += 2
+        if (Enermy.ChangeSd < 2):
+            Enermy.ChangeSd += 2
+
+    def Draw(self, check,My):
+        for i in range(0, 5):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(132, 1316, 8, 8, 450, 400 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 460, 420 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 430, 430 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 550, 350 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 540, 370 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 520, 380 + i * 10, 32, 32)
+            delay(0.03)
+            update_canvas()
+
+        wild_Battle.round = 8
 
 class String_Shot:          # 실뿜기
     def __init__(self):
@@ -299,9 +502,17 @@ class String_Shot:          # 실뿜기
         self.Daccur = 100
 
     def Use(self, My, Enermy):
-        if (random.randint(0, 100) <= self.Daccur):
-            if (My.ChangeSp > -2):
-                My.ChangeSp -= 2
+        if (My.ChangeSp > -2):
+            My.ChangeSp -= 2
+
+    def Draw(self, check, My):
+        if (check):  # check면 상대한테 공격들어옴
+            Skill_Data.clip_draw(68, 512, 25, 18, 500, 450, 100, 72)
+        else:  # 아니면 상대
+            Skill_Data.clip_draw(68, 512, 25, 18, 120, 200, 100, 72)
+        update_canvas()
+        delay(0.5)
+        wild_Battle.round = 9
 
 
 class Harden:               # 단단해지기
