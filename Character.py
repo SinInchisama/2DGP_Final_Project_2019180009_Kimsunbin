@@ -26,7 +26,7 @@ class Hero(character):
         self.pList[0].Set_ability()
         self.pList[0].Hp = self.pList[0].MaxHp
         self.pList[0].Exp = 50
-        self.pList[0].Skill_List = [20,40]
+        self.pList[0].Skill_List = [27,40]
 
         self.pList[1].Set_ability()
 
