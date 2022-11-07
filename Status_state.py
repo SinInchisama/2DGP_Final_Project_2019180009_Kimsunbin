@@ -4,6 +4,7 @@ import play_state
 import Poketmon
 import Choose_Poketmon
 import Font
+import Skill_Data
 
 Status_iamge = None
 select = None
@@ -72,6 +73,9 @@ def draw():
 
     if select == 0:
         Select_0()
+    elif select == 1:
+        Select_1()
+        pass
     elif select == 2:
         Select_2()
     update_canvas()
@@ -97,8 +101,14 @@ def Select_0():
 
     for i in range(0,len(Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].type)):  # 포켓몬 타입 출력
         Font.Draw_Al(Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].type[i], 40, 70 - (32 * i), 32, 32)
-        
+
     pass
+
+def Select_1():
+    for i in range(0, len(play_state.hero.pList[NowPc].Skill_List)):  # 포켓몬 타입 출력
+        Font.Draw_Al( Skill_Data.Attack[play_state.hero.pList[NowPc].Skill_List[i]].name, 180, 240 - (65 * i), 25, 25)
+        Font.Draw_Num(Skill_Data.Attack[play_state.hero.pList[NowPc].Skill_List[i]].Maxpp, 620, 210 - (65 * i), 25, 25)
+
 
 def Select_2():
     #RHp,RPattack,  RPdefense, RSattack, RSdefense, RSpeed
