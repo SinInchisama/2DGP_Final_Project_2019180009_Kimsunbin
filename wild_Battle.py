@@ -7,6 +7,7 @@ from random import randint
 import Battle_Choose
 import game_framework
 import Exp_state
+import Evolution_state
 
 Battle_type = None
 select_Poketmon,Enermy_Poketmon = None,None
@@ -199,7 +200,7 @@ def draw_world():
 def resume():
     global Push_type
     if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <= play_state.hero.pList[Battle.Poket_Order].level):
-        pass
+        game_framework.push_state(Evolution_state)
     elif(Push_type == 'Exp_state'):
         game_framework.pop_state()
     elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
