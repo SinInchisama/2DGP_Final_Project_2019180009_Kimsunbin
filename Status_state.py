@@ -3,6 +3,7 @@ import game_framework
 import play_state
 import Poketmon
 import Choose_Poketmon
+import Font
 
 Status_iamge = None
 select = None
@@ -63,11 +64,14 @@ def draw():
     # Poketmon.Poket_Data.image.clip_draw(Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngx, Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngy, 56, 56, 120, 450, 224, 224)
     Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Front_Draw(120,450,224,224)
     i ,j = 1,0
-    while play_state.hero.pList[NowPc].Num // i != 0:             # 도감번호 출력
-        result = (play_state.hero.pList[NowPc].Num // i) % 10
-        play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 345 - (j * 22), 555, 20, 20)
-        j += 1
-        i *= 10
+
+    Font.Draw_Num(play_state.hero.pList[NowPc].Num + 1, 345, 555, 20, 20)  # Hp 출력
+
+    # while play_state.hero.pList[NowPc].Num // i != 0:             # 도감번호 출력
+    #     result = (play_state.hero.pList[NowPc].Num // i) % 10
+    #     play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 345 - (j * 22), 555, 20, 20)
+    #     j += 1
+    #     i *= 10
 
     j = 0
     for Alpha in Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].name:  # 포켓몬 이름 출력
@@ -88,33 +92,15 @@ def exit():
 def Select_0():
     play_state.HPbar_image.clip_draw(0,0,2,15,64,273,383 * (play_state.hero.pList[NowPc].Hp / play_state.hero.pList[NowPc].MaxHp),15)
 
-    Acount, div = 0, 1
-    while play_state.hero.pList[NowPc].Hp // div != 0:                  # Hp 출력
-        result = (play_state.hero.pList[NowPc].Hp // div) % 10
-        play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 110 - (Acount * 32), 240, 32, 32)
-        Acount += 1
-        div *= 10
+    Font.Draw_Num(play_state.hero.pList[NowPc].Hp,110,240,32,32)        # Hp 출력
 
-    Acount, div = 0, 1
-    while play_state.hero.pList[NowPc].MaxHp // div != 0:           # Max Hp 출력
-        result = (play_state.hero.pList[NowPc].MaxHp // div) % 10
-        play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 240 - (Acount * 32), 240, 32, 32)
-        Acount += 1
-        div *= 10
+    Font.Draw_Num(play_state.hero.pList[NowPc].MaxHp, 240, 240, 32, 32) # Max Hp 출력
 
-    Acount, div = 0, 1
-    while play_state.hero.pList[NowPc].Exp // div != 0:  # 현재 경험치 출력
-        result = (play_state.hero.pList[NowPc].Exp // div) % 10
-        play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 600 - (Acount * 32), 230, 32, 32)
-        Acount += 1
-        div *= 10
+    Font.Draw_Num(play_state.hero.pList[NowPc].Exp, 600, 230, 32, 32)  # 현재 경험치 출력
 
-    Acount, div = 0, 1
-    while (play_state.hero.pList[NowPc].level * 50-play_state.hero.pList[NowPc].Exp) // div != 0:  # 현재 경험치 출력
-        result = ((play_state.hero.pList[NowPc].level * 50-play_state.hero.pList[NowPc].Exp) // div) % 10
-        play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 600 - (Acount * 32), 115, 32, 32)
-        Acount += 1
-        div *= 10
+    Font.Draw_Num(play_state.hero.pList[NowPc].level * 50-play_state.hero.pList[NowPc].Exp, 600, 115, 32, 32)  # 남은 경험치 출력
+
+
 
 
 
