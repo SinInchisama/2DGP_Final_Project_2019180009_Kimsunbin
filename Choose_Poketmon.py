@@ -3,6 +3,7 @@ import game_framework
 import Status_state
 import play_state
 import Poketmon
+import Font
 
 Choose_image = None
 Cursor_image = None
@@ -50,34 +51,17 @@ def draw():
         play_state.hero.character_image.clip_draw(220 + (int(Pframe) * 34),610,36,36,45,525- (64 * i))      # 포켓몬 이미지
 
         Acount = 0
-
-        for Alpha in Poketmon.Poket_Data[play_state.hero.pList[i].Num].name:        # 포켓몬 이름 출력
-            play_state.Font_image.clip_draw(167 +((ord(Alpha) - 97) % 16) * 9,437 - ((ord(Alpha) - 97) // 16) * 9,8,8,80 + (Acount * 16),520- (64 * i),16,16)
-            Acount += 1
+        Font.Draw_Al(Poketmon.Poket_Data[play_state.hero.pList[i].Num].name,80,520 - (64 * i),16,16)        # 포켓몬 이름
 
         play_state.Font_image.clip_draw(275, 446, 8, 8, 260, 520 - (64 * i), 16, 16)        # :
         play_state.Font_image.clip_draw(266, 455, 8, 8, 280, 520 - (64 * i), 16, 16)        # L
 
-        Acount,div = 0,1
-        while play_state.hero.pList[i].level // div != 0:              # 레벨 출력
-            result = (play_state.hero.pList[i].level // div) % 10
-            play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 340 - (Acount * 16), 520 - (64 * i), 16, 16)
-            Acount += 1
-            div *= 10
+        Font.Draw_Num(play_state.hero.pList[i].level,340,520-(64*i),16,16)          # 레벨
 
-        Acount, div = 0, 1
-        while play_state.hero.pList[i].Hp // div != 0:               # max 체력출력
-            result = (play_state.hero.pList[i].Hp // div) % 10
-            play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 480 - (Acount * 16), 540 - (64 * i), 16, 16)
-            Acount += 1
-            div *= 10
+        Font.Draw_Num(play_state.hero.pList[i].Hp, 470, 540 - (64 * i), 16, 16)     # 체력
 
-        Acount, div = 0, 1
-        while play_state.hero.pList[i].MaxHp // div != 0:          # 체력 출력
-            result = (play_state.hero.pList[i].MaxHp // div) % 10
-            play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, 550 - (Acount * 16), 540 - (64 * i), 16, 16)
-            Acount += 1
-            div *= 10
+        Font.Draw_Num(play_state.hero.pList[i].MaxHp, 550, 540 - (64 * i), 16, 16)
+
 
         play_state.Hp_image.clip_draw(0,0,68,6,490,520 - (64 * i),272,20)
 

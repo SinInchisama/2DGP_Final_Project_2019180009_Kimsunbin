@@ -8,6 +8,7 @@ import Battle_Choose
 import game_framework
 import Exp_state
 import Evolution_state
+import Font
 
 Battle_type = None
 select_Poketmon,Enermy_Poketmon = None,None
@@ -90,9 +91,11 @@ def handle_events():
                 if(Menu_Bool == False):
                     if(select_M == 0):
                         Menu_Bool = True
+                        select_M = 0
                     if (select_M == 1):
                         game_framework.push_state(Battle_Choose)
                         Push_type = 'Battle_Choose'
+                        select_M = 0
                     if(select_M == 3):
                         game_framework.pop_state()
                     pass
@@ -102,11 +105,11 @@ def handle_events():
                     Order = Order_Que.pop(0)
                     round = 0
                     pass
-                select_M = 0
+
 
 
 def update():
-    global round,gap,Order,Push_type
+    global round,gap,Order,Push_type,select_M
     if(Order != None):
         if(Order==0):
             if(play_state.hero.pList[Battle.Poket_Order].ailment_check()):
@@ -121,9 +124,11 @@ def update():
                 print('attack1')
             elif (Enermy_Poketmon.Hp != gap and round > 7):
                 Enermy_Poketmon.Hp -= 1
+                select_M = 0
             elif (round > 7):
                 Order = Order_Que.pop(0)
                 round = -2
+                select_M = 0
 
             round += 1
 
@@ -186,7 +191,15 @@ def draw_world():
         Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Back_Draw(120, 200, 224, 224)  # 내 포켓몬 그리기
 
     if((Menu_Bool != True or Skill_Bool != True) and Order == None):
-        Cursor_image.clip_draw(0, 0, 32, 32, 330 + (150 * (select_M % 2)), 200 - (80 * (select_M // 2)))
+        Cursor_image.clip_draw(0, 0, 32, 32, 280 + (180 * (select_M % 2)), 200 - (80 * (select_M // 2)),16,16)
+        if(Menu_Bool == False):
+            Font.Draw_Al('Skill', 300 , 200 , 16,16)
+            Font.Draw_Al('Poketmon', 480, 200, 16, 16)
+            Font.Draw_Al('Inven', 300, 120, 16, 16)
+            Font.Draw_Al('Run', 480, 120, 16, 16)
+        elif(Menu_Bool == True):
+            for i in range(0, len(play_state.hero.pList[Battle.Poket_Order].Skill_List)):  # 포켓몬 타입 출력
+                Font.Draw_Al(Skill_Data.Attack[play_state.hero.pList[Battle.Poket_Order].Skill_List[i]].name, 300 + (180 * (i % 2)), 200 - (80 * (i // 2)), 12,12)
 
     play_state.Hp_image.clip_draw(0, 0, 68, 6, 490, 300, 272, 20)
     play_state.HPbar_image.clip_draw(0, 0, 2, 15, 419, 300, 383 * (
