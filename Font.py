@@ -12,7 +12,10 @@ def Draw_Num(Num,x,y,sizex,sizey):
 def Draw_Al(Sentence,x,y,sizex,sizey):
     Acount = 0
     for Alpha in Sentence:  # 포켓몬 타입 출력
-        play_state.Font_image.clip_draw(167 + ((ord(Alpha) - 97) % 16) * 9, 437 - ((ord(Alpha) - 97) // 16) * 9, 8, 8,x + (Acount * sizex), y, sizex, sizey)
+        if(Alpha == ' '):
+            pass
+        else:
+            play_state.Font_image.clip_draw(167 + ((ord(Alpha) - 97) % 16) * 9, 437 - ((ord(Alpha) - 97) // 16) * 9, 8, 8,x + (Acount * sizex), y, sizex, sizey)
         Acount += 1
 
 # Acount = 0
