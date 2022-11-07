@@ -23,9 +23,9 @@ def handle_events():
                 if (Choose_Poketmon.CusorY > 0):
                     Choose_Poketmon.CusorY -= 1
             elif event.key == SDLK_a:
-                if (Choose_Poketmon.CusorY != 6):
+                if (Choose_Poketmon.CusorY != 6 and Choose_Poketmon.CusorY != Battle.Poket_Order):
                     if(play_state.hero.pList[Battle.Poket_Order].Hp != 0):
-                        if ( play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+                        if ( play_state.hero.pList[Battle.Poket_Order].Hp >= 0):
                             wild_Battle.Order, wild_Battle.Order_Que, wild_Battle.round = 1, [None], 0
                     play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
                     Battle.Poket_Order = Choose_Poketmon.CusorY

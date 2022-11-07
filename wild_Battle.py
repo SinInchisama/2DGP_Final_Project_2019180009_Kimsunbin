@@ -1,5 +1,4 @@
 from pico2d import *
-
 import Battle
 import play_state
 import Poketmon
@@ -7,6 +6,7 @@ import Skill_Data
 from random import randint
 import Battle_Choose
 import game_framework
+import Exp_state
 
 Battle_type = None
 select_Poketmon,Enermy_Poketmon = None,None
@@ -14,7 +14,7 @@ select_M = None                             # 현재 커서 위치(메뉴선택�
 Menu_Bool,Skill_Bool = None,None            # 메뉴선택, 스킬선택
 rand = randint
 Cursor_image = None
-Order_Que,Order,round,gap = None,None,None,None
+Order_Que,Order,round,gap,Push_type = None,None,None,None,None
 exp_bar = None
 
 def enter():
@@ -63,7 +63,7 @@ def resume():
     pass
 
 def handle_events():
-    global Menu_Bool,Skill_Bool,select_M,Order_Que,Order,round
+    global Menu_Bool,Skill_Bool,select_M,Order_Que,Order,round,Push_type
 
     events = get_events()
     for event in events:
@@ -82,16 +82,16 @@ def handle_events():
             elif event.key == SDLK_RIGHT:
                 if (Menu_Bool == False and select_M < 3):
                     select_M += 1
-                elif (Skill_Bool == False and select_M < len(play_state.hero.pList[Battle.Poket_Order].Skill_List)):
+                elif (Skill_Bool == False and select_M < len(play_state.hero.pList[Battle.Poket_Order].Skill_List) - 1):
                     select_M += 1
 
             elif event.key == SDLK_a:
                 if(Menu_Bool == False):
                     if(select_M == 0):
                         Menu_Bool = True
-                        select_M = 0
                     if (select_M == 1):
                         game_framework.push_state(Battle_Choose)
+                        Push_type = 'Battle_Choose'
                     if(select_M == 3):
                         game_framework.pop_state()
                     pass
@@ -101,10 +101,11 @@ def handle_events():
                     Order = Order_Que.pop(0)
                     round = 0
                     pass
+                select_M = 0
 
 
 def update():
-    global round,gap,Order
+    global round,gap,Order,Push_type
     if(Order != None):
         if(Order==0):
             if(play_state.hero.pList[Battle.Poket_Order].ailment_check()):
@@ -121,12 +122,13 @@ def update():
                 Enermy_Poketmon.Hp -= 1
             elif (round > 7):
                 Order = Order_Que.pop(0)
-                round = -1
+                round = -2
 
             round += 1
 
             if (Enermy_Poketmon.Hp <= 0):
-                game_framework.pop_state()
+                game_framework.push_state(Exp_state)
+                Push_type = 'Exp_state'
 
 
         elif(Order == 1):
@@ -143,7 +145,7 @@ def update():
                 play_state.hero.pList[Battle.Poket_Order].Hp -= 1
             elif(round>7):
                 Order = Order_Que.pop(0)
-                round = -1
+                round = -2
 
             round += 1
 
@@ -157,6 +159,7 @@ def update():
                 if game_Continue :
                     Order = None
                     game_framework.push_state(Battle_Choose)
+                    Push_type = 'Battle_Choose'
                     print(Order)
                 else:
                     game_framework.pop_state()
@@ -181,7 +184,7 @@ def draw_world():
     if (not (Order == 1 and (round == 3 or round == 5 or round == 7))):
         Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Back_Draw(120, 200, 224, 224)  # 내 포켓몬 그리기
 
-    if(Menu_Bool != True or Skill_Bool != True):
+    if((Menu_Bool != True or Skill_Bool != True) and Order == None):
         Cursor_image.clip_draw(0, 0, 32, 32, 330 + (150 * (select_M % 2)), 200 - (80 * (select_M // 2)))
 
     play_state.Hp_image.clip_draw(0, 0, 68, 6, 490, 300, 272, 20)
@@ -194,8 +197,16 @@ def draw_world():
 
 
 def resume():
-    if (play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+    global Push_type
+    if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <= play_state.hero.pList[Battle.Poket_Order].level):
+        pass
+    elif(Push_type == 'Exp_state'):
         game_framework.pop_state()
+    elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+        game_framework.pop_state()
+        Push_type = None
+    else:
+        Push_type = None
     pass
 
 def pause():
