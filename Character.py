@@ -22,10 +22,10 @@ class Hero(character):
         self.Pcount = 2
         self.pList = [Poketmon.Tr_Poketmon(0,100,30,200) for i in range(0,7)]
         self.pList[0].Num = 3
-        self.pList[0].level = 15
+        self.pList[0].level = 9
         self.pList[0].Set_ability()
         self.pList[0].Hp = self.pList[0].MaxHp
-        self.pList[0].Exp = 740
+        self.pList[0].Exp = 440
         self.pList[0].Skill_List = [35,40,1,0]
 
         self.pList[1].Set_ability()

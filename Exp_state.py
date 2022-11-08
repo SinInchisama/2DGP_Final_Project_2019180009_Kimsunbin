@@ -3,6 +3,7 @@ import game_framework
 import wild_Battle
 import play_state
 import Poketmon
+import Change_Skill
 
 Plus_exp = None
 Now_exp = None
@@ -30,6 +31,8 @@ def update():
             if(len(play_state.hero.pList[wild_Battle.Battle.Poket_Order].Skill_List)<4):
                 play_state.hero.pList[wild_Battle.Battle.Poket_Order].Skill_List.append(Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Skill[play_state.hero.pList[wild_Battle.Battle.Poket_Order].level])
                 print(Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Skill[play_state.hero.pList[wild_Battle.Battle.Poket_Order].level])
+            else:
+                game_framework.push_state(Change_Skill)
 
     if(Plus_exp == Now_exp):
         game_framework.pop_state()
