@@ -1,5 +1,8 @@
 import pico2d
+
+import Map
 import Poketmon
+import play_state
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -11,12 +14,15 @@ class character:
         self.mapy = mapy
 
 class Hero(character):
+    import Npc
     def __init__(self,pngx,pngy,height,weight,chx,chy,mapx,mapy,movex,movey):       # 이후 추가 예정
         character.__init__(self,pngx,pngy,height,weight,mapx,mapy)
         self.chx = chx
         self.chy = chy
         self.movex = movex
         self.movey = movey
+        self.Movecheck = False
+        self.dircet = 0
 
     def init_pList(self):
         self.Pcount = 2
@@ -55,19 +61,18 @@ class Hero(character):
         else:
             return 1
 
-    def A_check(self,map_array,direct):
-        if direct == 0:     # 아래버튼
-            if (map_array[self.mapy // 32 + 1][self.mapx // 32] == 3):
-                pass
-        elif direct == 1:   # 위버튼
-            if (map_array[self.mapy // 32 + 1][self.mapx // 32 + 2] == 3):
-                pass
-        elif direct == 2:   # 왼버튼
-            if (map_array[self.mapy // 32][self.mapx // 32] == 3):
-                pass
-        elif direct == 3:   # 오른버튼
-            if (map_array[self.mapy // 32 + 2][self.mapx // 32] == 3):
-                pass
+    def A_check(self):
+        if(Map.Maping[play_state.round].Npccount>0):
+            for Npc in Map.Maping[play_state.round].Npc:
+                if self.direct == 0:     # 아래버튼
+                    if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
+                elif self.direct == 1:   # 위버튼
+                    if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
+                elif self.direct == 2:   # 왼버튼
+                    if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
+                elif self.direct == 3:   # 오른버튼
+                    if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
+
 
 
     def Map_move(self,round,mapx,mapy):
