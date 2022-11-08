@@ -10,13 +10,12 @@ import random
 import wild_Battle
 import Skill_Data
 
-direct,round,mode,running,Map_change,speed =0,0,0,None,None,None
+round,mode,running,Map_change,speed =0,0,None,None,None
 Font_image,HPbar_image,Hp_image,Board = None,None,None,None
 hero = None
 
 def enter():
-    global direct,round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board
-    direct = -1  # 방향
+    global round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board
     round = 0  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
@@ -34,10 +33,10 @@ def enter():
     Poketmon.init_Skill()
     Skill_Data.init_skill()
     hero.init_pList()
+    import Npc
 
 
 def handle_events():
-    global direct
     global hero
     global mode
     global round,speed
@@ -46,21 +45,22 @@ def handle_events():
 
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면
-                direct = 2  # array가 1 또는 5면 ch값 -16)
+                hero.direct = 2  # array가 1 또는 5면 ch값 -16)
                 hero.movex -= 1
+                hero.Movecheck = True
             elif event.key == SDLK_RIGHT:
-                direct = 3  # 오른쪽 버튼 눌리면
+                hero.direct = 3  # 오른쪽 버튼 눌리면
                 hero.movex += 1
-
+                hero.Movecheck = True
             elif event.key == SDLK_UP:  # 윗 버튼 눌리면
-                direct = 1
+                hero.direct = 1
                 hero.movey += 1
-                hero.movex = 0
+                hero.Movecheck = True
 
             elif event.key == SDLK_DOWN:  # 아래 버튼 눌리면
-                direct = 0
+                hero.direct = 0
                 hero.movey -= 1
-                hero.movex = 0
+                hero.Movecheck = True
 
             elif event.key == SDLK_x:  # 윗 버튼 눌리면
                 if speed == 0.07:
@@ -69,8 +69,8 @@ def handle_events():
                 else:
                     hero.pngy = 3350
                     speed = 0.07
-            elif event.key == SDLK_h:
-                hero.pList[0].Hp = 20
+            elif event.key == SDLK_a:
+                hero.A_check()
 
             elif event.key == SDLK_c:
                 game_framework.push_state(Menu_state)
@@ -78,23 +78,25 @@ def handle_events():
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면
                 hero.movex = 0
-                direct = -1
+
+                hero.Movecheck = False
             elif event.key == SDLK_RIGHT:
                 hero.movex = 0
-                direct = -1
+
+                hero.Movecheck = False
             elif event.key == SDLK_UP:  # 윗 버튼 눌리면
                 hero.movey = 0
-                direct = -1
+                hero.Movecheck = False
             elif event.key == SDLK_DOWN:  # 윗 버튼 눌리면
                 hero.movey = 0
-                direct = -1
+                hero.Movecheck = False
 def Hero_working(mode):
     global hero
-    global direct
 
-    if(direct != -1):
+
+    if(hero.Movecheck):
         for i in range(0,4):
-            hero.pngx = 18 + (68 * direct) + 34 * (i % 2)
+            hero.pngx = 18 + (68 * hero.direct) + 34 * (i % 2)
         # if ((Maping[round].Nowx  == 0 and hero.movex<0)or(Maping[round].Nowx == Maping[round].Sizex - 640 and hero.movex>0 )or(Maping[round].Nowx + 640 >= Maping[round].Sizex and Maping[round].Nowx == 0)):
         # 캐릭터가 왼쪽벽에 부딪히거나 오른쪽벽에 부딪힐때, 그리고 맵크기가 weight가 640보다 클 때 맵이 움직임.
             if ((hero.chx == 16 and hero.movex<0 and Maping[round].Nowx != 0) or(hero.chx == 624 and hero.movex>0 and Maping[round].Nowx != Maping[round].Sizex - 640) ):
@@ -113,13 +115,13 @@ def Hero_working(mode):
             game_framework.push_state(wild_Battle)
             hero.movey = 0
             hero.movex = 0
-            direct = -1
+            hero.Movecheck = False
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 
 def draw():       # 전체적인 캔버스에 그리는 함수.
     global round
-    global Map_change,direct
+    global Map_change
     clear_canvas()
 
     if(Map_change):             # 맵 변경시 깜빡이는 이미지 출력
@@ -129,7 +131,7 @@ def draw():       # 전체적인 캔버스에 그리는 함수.
             delay(0.03)
             clear_canvas()
         Map_change = False
-        direct,hero.movex,hero.movey  = -1, 0, 0
+        hero.Movecheck,hero.movex,hero.movey  = False, 0, 0
 
     draw_world()
     update_canvas()
@@ -148,7 +150,7 @@ def draw_world():
 def update():
     global mode
     global Maping,Map_change,round
-    if direct != -1:
+    if hero.Movecheck:
         mode = hero.move_check(Maping[round].array)  # move_checking.py내 함수 호출, 맵 행렬이 갈 수 있는지 체크하는 클래스함수
         # print(Maping[round].Nowx,Maping[round].Nowy)
         if mode == 1 or mode == 3:
