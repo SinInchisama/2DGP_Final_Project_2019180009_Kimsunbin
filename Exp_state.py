@@ -54,6 +54,6 @@ def pause():
     pass
 
 def exit():
-    delay(0.2)
+    delay(0.05)
     play_state.hero.pList[wild_Battle.Battle.Poket_Order].Set_ability()
     pass
