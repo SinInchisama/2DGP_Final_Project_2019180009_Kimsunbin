@@ -9,6 +9,8 @@ import game_framework
 import Exp_state
 import Evolution_state
 import Font
+from Map import Maping
+import Sub_Draw
 
 Battle_type = None
 select_Poketmon,Enermy_Poketmon = None,None
@@ -16,16 +18,17 @@ select_M = None                             # 현재 커서 위치(메뉴선택�
 Menu_Bool,Skill_Bool = None,None            # 메뉴선택, 스킬선택
 rand = randint
 Cursor_image = None
-Order_Que,Order,round,gap,Push_type = None,None,None,None,None
-exp_bar = None
+Order_Que,Order,round,gap,Push_type,Ncount,Pcount = None,None,None,None,None,None,None
+exp_bar,DrawFrame = None,None
 
 def enter():
-    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que,Order,exp_bar,round
+    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que,Order,exp_bar,round,Pcount,DrawFrame
     Cursor_image = load_image('./resource/image/Cursor.png')
     exp_bar = load_image('./resource/image/Exp_bar.png')
     Order_Que = []
     Order = None
     round = -1
+    Pcount = 100
     if(Battle_type == 'Wild'):
         if(play_state.round == 1):
             select_Poketmon = [9,11,14,17,22,24]                    # 29번 도로에서 위 도감 번호 포켓몬 중
@@ -35,11 +38,17 @@ def enter():
             select_Poketmon = [10, 13, 16, 18,20, 23, 25]           # 31번 도로
             Enermy_Poketmon = Poketmon.Wild_Poketmon(select_Poketmon[rand(0, len(select_Poketmon) - 1)], rand(10, 20), 30)
             pass
+    elif(Battle_type == 'Trainer'):
+        Pcount = 0
+        Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
+        select_Poketmon = 0
+        print(Enermy_Poketmon.Num)
     Enermy_Poketmon.Set_ability()                                 # 야생 포켓몬 능력치 세팅
     Enermy_Poketmon.Set_Skill()                                   # 야생 포켓몬 스킬 분배
     Enermy_Poketmon.init_Change_ability()
     Battle.Poket_Order_Check()
     play_state.hero.pList[Battle.Poket_Order].init_Change_ability()
+    DrawFrame = 0
 
 
     del (select_Poketmon)                                       # 필요 없어진 배열 삭제.
@@ -60,9 +69,6 @@ def exit():
 def pause():
     pass
 
-
-def resume():
-    pass
 
 def handle_events():
     global Menu_Bool,Skill_Bool,select_M,Order_Que,Order,round,Push_type
@@ -109,10 +115,11 @@ def handle_events():
 
 
 def update():
-    global round,gap,Order,Push_type,select_M
+    global round,gap,Order,Push_type,select_M,DrawFrame
     if(Order != None):
-        if(Order==0):
+        if(Order==0):                       # 내 포켓몬 공격 체크
             if(play_state.hero.pList[Battle.Poket_Order].ailment_check()):
+                gap = Enermy_Poketmon.Hp
                 round  = 8
 
             if(round == 0):
@@ -130,28 +137,36 @@ def update():
                 round = -2
                 select_M = 0
 
+
             round += 1
 
             if (Enermy_Poketmon.Hp <= 0):
                 game_framework.push_state(Exp_state)
                 Push_type = 'Exp_state'
+                Order = None
 
 
-        elif(Order == 1):
+        elif(Order == 1):               # 상대 포켓몬 공격체크
             if (Enermy_Poketmon.ailment_check()):
+                gap = play_state.hero.pList[Battle.Poket_Order].Hp
                 round = 8
 
             if(round == 0):
+                print(play_state.hero.pList[Battle.Poket_Order].Hp)
                 gap = play_state.hero.pList[Battle.Poket_Order].Hp
                 round = Enermy_Poketmon.Use_Skill(play_state.hero.pList[Battle.Poket_Order], 1,False)
                 Hp = play_state.hero.pList[Battle.Poket_Order].Hp
                 play_state.hero.pList[Battle.Poket_Order].Hp = gap
                 gap = Hp
             elif(play_state.hero.pList[Battle.Poket_Order].Hp != gap and round > 7):
+                print(play_state.hero.pList[Battle.Poket_Order].Hp,gap)
                 play_state.hero.pList[Battle.Poket_Order].Hp -= 1
             elif(round>7):
                 Order = Order_Que.pop(0)
                 round = -2
+                print(12121212)
+
+
 
             round += 1
 
@@ -169,16 +184,20 @@ def update():
                     print(Order)
                 else:
                     game_framework.pop_state()
+    DrawFrame +=1
 
     pass
 
 
 def draw():
+    global DrawFrame
     clear_canvas()
+    if(DrawFrame<29):
+        Sub_Draw.Emergence(DrawFrame)
+    else:
+        draw_world()
 
-    draw_world()
-
-    delay(0.05)
+    delay(0.03)
     update_canvas()
     pass
 
@@ -211,16 +230,24 @@ def draw_world():
 
 
 def resume():
-    global Push_type
-    if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <= play_state.hero.pList[Battle.Poket_Order].level):
-        game_framework.push_state(Evolution_state)
-    elif(Push_type == 'Exp_state'):
-        game_framework.pop_state()
-    elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
-        game_framework.pop_state()
-        Push_type = None
+    global Push_type,Enermy_Poketmon,Pcount
+
+    if(Battle_type == 'Wild' or Pcount + 1 >=len(Maping[play_state.round].Npc[Ncount].Poket)):
+        if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <= play_state.hero.pList[Battle.Poket_Order].level):
+            game_framework.push_state(Evolution_state)
+        elif(Push_type == 'Exp_state'):
+            game_framework.pop_state()
+        elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+            game_framework.pop_state()
+            Push_type = None
+        else:
+            Push_type = None
     else:
-        Push_type = None
+        Pcount +=1
+        Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
+        Enermy_Poketmon.Set_ability()  # 야생 포켓몬 능력치 세팅
+        Enermy_Poketmon.Set_Skill()  # 야생 포켓몬 스킬 분배
+        Enermy_Poketmon.init_Change_ability()
     pass
 
 def pause():

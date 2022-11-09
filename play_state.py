@@ -9,6 +9,7 @@ import Poketmon
 import random
 import wild_Battle
 import Skill_Data
+import Sub_Draw
 
 round,mode,running,Map_change,speed =0,0,None,None,None
 Font_image,HPbar_image,Hp_image,Board = None,None,None,None
@@ -33,7 +34,6 @@ def enter():
     Poketmon.init_Skill()
     Skill_Data.init_skill()
     hero.init_pList()
-    import Npc
 
 
 def handle_events():
