@@ -3,6 +3,8 @@ import pico2d
 import Map
 import Poketmon
 import play_state
+import wild_Battle
+import game_framework
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -63,15 +65,32 @@ class Hero(character):
 
     def A_check(self):
         if(Map.Maping[play_state.round].Npccount>0):
+            i = 0
             for Npc in Map.Maping[play_state.round].Npc:
                 if self.direct == 0:     # 아래버튼
                     if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
+                        wild_Battle.Battle_type = 'Trainer'
+                        wild_Battle.Ncount = i
+                        game_framework.push_state(wild_Battle)
+                        pass
                 elif self.direct == 1:   # 위버튼
                     if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
+                        wild_Battle.Battle_type = 'Trainer'
+                        wild_Battle.Ncount = i
+                        game_framework.push_state(wild_Battle)
+                        pass
                 elif self.direct == 2:   # 왼버튼
                     if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
+                        wild_Battle.Battle_type = 'Trainer'
+                        wild_Battle.Ncount = i
+                        game_framework.push_state(wild_Battle)
+                        pass
                 elif self.direct == 3:   # 오른버튼
                     if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
+                        wild_Battle.Battle_type = 'Trainer'
+                        wild_Battle.Ncount = i
+                        game_framework.push_state(wild_Battle)
+                        pass
 
 
 
