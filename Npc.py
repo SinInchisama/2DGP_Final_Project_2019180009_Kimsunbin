@@ -1,21 +1,29 @@
 import Character
 from Map import Maping
+import Poketmon
 
 class Npc(Character.character):
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):
         Character.character.__init__(self,pngx,pngy,height,weight,mapx,mapy)
 
+class Battle_Npc(Npc):
+    def __init__(self, pngx, pngy, height, weight, mapx, mapy,Pcount):
+        Npc.__init__(self,pngx,pngy,height,weight,mapx,mapy)
+        self.Pcount = Pcount
+        self.Poket = []
+
 
 Maping[1].Npccount = 1
-Maping[1].Npc = [Npc(154, 2261, 32, 32, 336, 208) for i in range(0, 1)]  # 어무니
+Maping[1].Npc = [Npc(154, 2261, 32, 32, 336, 208) for i in range(0, 1)]  # 트레이너
 
 
 Maping[3].Npccount = 1
-Maping[3].Npc = [Npc(154, 2261, 32, 32, 528, 80) for i in range(0, 1)]  # 어무니
+Maping[3].Npc = [Npc(154, 2261, 32, 32, 528, 80) for i in range(0, 1)]  #트레이너
 Maping[3].Npc.append(Npc(290, 3044, 32, 32, 560, 240))
 
 Maping[6].Npccount = 1
-Maping[6].Npc = [Npc(51, 3111, 32, 32, 304, 240) for i in range(0, 1)]  # 어무니
+Maping[6].Npc = [Battle_Npc(51, 3111, 32, 32, 304, 240,2) for i in range(0, 1)]  # 어무니
+Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(1,10,10)),Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(4,10,10))
 
 
 Maping[7].Npccount = 3
