@@ -100,22 +100,28 @@ def Hero_working(mode):
         # if ((Maping[round].Nowx  == 0 and hero.movex<0)or(Maping[round].Nowx == Maping[round].Sizex - 640 and hero.movex>0 )or(Maping[round].Nowx + 640 >= Maping[round].Sizex and Maping[round].Nowx == 0)):
         # 캐릭터가 왼쪽벽에 부딪히거나 오른쪽벽에 부딪힐때, 그리고 맵크기가 weight가 640보다 클 때 맵이 움직임.
             if ((hero.chx == 16 and hero.movex<0 and Maping[round].Nowx != 0) or(hero.chx == 624 and hero.movex>0 and Maping[round].Nowx != Maping[round].Sizex - 640) ):
-                Maping[round].Nowx += hero.movex * 8
+                Maping[round].Minusx += hero.movex * 8
             elif(hero.movex != 0):
                 hero.chx += hero.movex * 8
             elif ((hero.chy == 16 and hero.movey < 0 and Maping[round].Nowy != 0) or (hero.chy == 560 and hero.movey > 0 and Maping[round].Nowy != Maping[round].Sizey - 576)):
-                Maping[round].Nowy += hero.movey * 8
+                Maping[round].Minusy += hero.movey * 8
             elif(hero.movey !=0 ):
                 hero.chy += hero.movey * 8
             draw()
             delay(speed)
+        if(Maping[round].Minusx == 32 or Maping[round].Minusx == -32):
+            Maping[round].Nowx += hero.movex * 32
+            Maping[round].Minusx = 0
+        elif(Maping[round].Minusy == 32 or Maping[round].Minusy == -32):
+            Maping[round].Nowy += hero.movey * 32
+            Maping[round].Minusy = 0
     if(mode == 3):
         if(random.randint(0,100)<20):
             wild_Battle.Battle_type = 'Wild'
-            game_framework.push_state(wild_Battle)
-            hero.movey = 0
-            hero.movex = 0
-            hero.Movecheck = False
+            # game_framework.push_state(wild_Battle)
+            # hero.movey = 0
+            # hero.movex = 0
+            # hero.Movecheck = False
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 
@@ -142,8 +148,8 @@ def draw_world():
 
     if Maping[round].Npccount != 0:
         for Npc in Maping[round].Npc:
-            hero.character_image.clip_draw(Npc.pngx, Npc.pngy, Npc.weight, Npc.height, Npc.mapx - Maping[round].Nowx,
-                                           Npc.mapy - - Maping[round].Nowy)
+            hero.character_image.clip_draw(Npc.pngx, Npc.pngy, Npc.weight, Npc.height, Npc.mapx - Maping[round].Nowx - Maping[round].Minusx,
+                                           Npc.mapy - - Maping[round].Nowy - Maping[round].Minusy)
 
     hero.character_image.clip_draw(hero.pngx, hero.pngy, hero.weight, hero.height, hero.chx, hero.chy)
 

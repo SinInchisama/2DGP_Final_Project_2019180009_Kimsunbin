@@ -2,14 +2,16 @@ from pico2d import *
 import Character
 
 class Map:
-    def __init__(self,Sizex,Sizey,Nowx,Nowy,Npccount):
+    def __init__(self,Sizex,Sizey,Nowx,Nowy,Npccount,Minusx,Minusy):
         self.Sizex = Sizex
         self.Sizey = Sizey
         self.Nowx = Nowx
         self.Nowy = Nowy
         self.Npccount = Npccount
+        self.Minusx = Minusx
+        self.Minusy = Minusy
 
-Maping = [Map(640, 576, 0, 0, 0) for i in range(0, 27)]
+Maping = [Map(640, 576, 0, 0, 0,0,0) for i in range(0, 27)]
 
 def init_map():
     global Maping
@@ -515,44 +517,15 @@ def init_map():
 
 def Draw_Map(round):
     x,y = 0,0
-    # for i  in Maping[0].array:
-    #
-    #     for a in Maping[0].array[y]:
-    #         Maping[26].map.clip_draw(Maping[0].array[y][x] % 10 * 32,518 - Maping[0].array[y][x] // 10 * 32,32,32,-16+32*x,-16+32*y)
-    #         x = (1 + x) % 22
-    #
-    #         print(Maping[0].array[y][x] % 10 * 32 + 32,518 - Maping[0].array[y][x] // 10 * 32,16+32*x,560-32*y)
-    #     y += 1
-
     while(y<20):
         x = 0
         while(x<22):
-            Maping[26].map.clip_draw(Maping[round].array[Maping[round].Nowy // 32 + y][Maping[round].Nowx // 32 + x] % 10 * 32, 518 - Maping[round].array[Maping[round].Nowy // 32 + y][Maping[round].Nowx // 32 + x] // 10 * 32, 32, 32, -16 + 32 * x, -16 + 32 * y)
+            Maping[26].map.clip_draw(Maping[round].array[Maping[round].Nowy // 32 + y][Maping[round].Nowx // 32 + x] % 10 * 32, 518 - Maping[round].array[Maping[round].Nowy // 32 + y][Maping[round].Nowx // 32 + x] // 10 * 32, 32, 32, -16 + 32 * x - Maping[round].Minusx , -16 + 32 * y - Maping[round].Minusy)
             x += 1
             # print(y,x)
         y += 1
 
 
 
-# Maping[8].array = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              #1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
 
