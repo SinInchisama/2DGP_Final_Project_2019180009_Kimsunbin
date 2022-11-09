@@ -21,6 +21,11 @@ class Data:
         if Data.image == None:
             Data.image = load_image('All_Pokemon.png')
 
+    def Front_Draw(self,x,y,width,height):
+        self.image.clip_draw(self.Pngx,self.Pngy, 56, 56, x,y, width, height)
+
+    def Back_Draw(self,x,y,width,height):
+        self.image.clip_draw(self.Pngx + 8, self.Pngy -113,  48, 47, x, y, width, height)
 
 class Poketmon:
     def __init__(self,Num,level,Hp,Skill_List):
@@ -29,7 +34,6 @@ class Poketmon:
         self.Hp = Hp
         self.Skill_List = Skill_List
         self.ailment = None
-        self.MinusY = 0
 
     def Set_ability(self):
         self.MaxHp =  (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10
@@ -127,12 +131,6 @@ class Poketmon:
         else:
             return 8
 
-    def Front_Draw(self,x,y,sizex,sizey,width,height):
-        Data.image.clip_draw(Poket_Data[self.Num].Pngx,Poket_Data[self.Num].Pngy+ self.MinusY, sizex, sizey - self.MinusY, x,y - self.MinusY, width, height- self.MinusY*4)
-
-    def Back_Draw(self,x,y,sizex,sizey,width,height):
-        Data.image.clip_draw(Poket_Data[self.Num].Pngx + 8, Poket_Data[self.Num].Pngy -113 + self.MinusY,  sizex, sizey - self.MinusY, x, y - self.MinusY, width, height- self.MinusY*4)
-
 
 
 
@@ -201,7 +199,6 @@ def init_Poketmon():
     Poket_Data.append(Data(856, 4407, 'Machop', 70, 80, 50, 35, 35, 35, 28,['Fight']))  # 알통몬
     Poket_Data.append(Data(1027, 4407, 'Machoke', 80, 100, 70, 50, 60, 45, 40,['Fight']))  # 근육몬
     Poket_Data.append(Data(1198, 4407, 'Machamp', 90, 130, 80, 65, 85, 55, 101,['Fight']))  # 괴력몬
-
 
 
 def init_Skill():
