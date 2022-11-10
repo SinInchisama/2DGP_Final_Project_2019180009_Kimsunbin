@@ -49,6 +49,7 @@ def enter():
     Enermy_Poketmon.init_Change_ability()
     Battle.Poket_Order_Check()
     play_state.hero.pList[Battle.Poket_Order].init_Change_ability()
+    play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
     DrawFrame = 0
 
 
@@ -277,6 +278,7 @@ def resume():
         Enermy_Poketmon.Set_Skill()  # 야생 포켓몬 스킬 분배
         Enermy_Poketmon.init_Change_ability()
         DrawFrame = 29
+        play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
     pass
 
 def pause():
