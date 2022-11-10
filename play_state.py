@@ -9,14 +9,14 @@ import Poketmon
 import random
 import wild_Battle
 import Skill_Data
-import Sub_Draw
+import PokeDex
 
 round,mode,running,Map_change,speed =0,0,None,None,None
-Font_image,HPbar_image,Hp_image,Board = None,None,None,None
+Font_image,HPbar_image,Hp_image,Board,Pokedex = None,None,None,None,None
 hero = None
 
 def enter():
-    global round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board
+    global round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board,Pokedex
     round = 0  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
@@ -34,6 +34,7 @@ def enter():
     Poketmon.init_Skill()
     Skill_Data.init_skill()
     hero.init_pList()
+    Pokedex = PokeDex.PokeDex
 
 
 def handle_events():
