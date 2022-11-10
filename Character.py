@@ -5,6 +5,7 @@ import Poketmon
 import play_state
 import wild_Battle
 import game_framework
+import Heal_state
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -27,16 +28,15 @@ class Hero(character):
         self.dircet = 0
 
     def init_pList(self):
-        self.Pcount = 2
-        self.pList = [Poketmon.Tr_Poketmon(0,100,30,200) for i in range(0,7)]
+        self.Pcount = 1
+        self.pList = [Poketmon.Tr_Poketmon(0,100,30,200) for i in range(0,1)]
         self.pList[0].Num = 3
         self.pList[0].level = 9
         self.pList[0].Set_ability()
-        self.pList[0].Hp = self.pList[0].MaxHp
+        self.pList[0].Hp = 10
         self.pList[0].Exp = 440
         self.pList[0].Skill_List = [35,40,1,0]
 
-        self.pList[1].Set_ability()
 
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
         self.mapx += (self.movex * 32)
@@ -67,30 +67,39 @@ class Hero(character):
         if(Map.Maping[play_state.round].Npccount>0):
             i = 0
             for Npc in Map.Maping[play_state.round].Npc:
-                if self.direct == 0:     # 아래버튼
-                    if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
-                        wild_Battle.Battle_type = 'Trainer'
-                        wild_Battle.Ncount = i
-                        game_framework.push_state(wild_Battle)
-                        pass
-                elif self.direct == 1:   # 위버튼
-                    if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
-                        wild_Battle.Battle_type = 'Trainer'
-                        wild_Battle.Ncount = i
-                        game_framework.push_state(wild_Battle)
-                        pass
-                elif self.direct == 2:   # 왼버튼
-                    if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
-                        wild_Battle.Battle_type = 'Trainer'
-                        wild_Battle.Ncount = i
-                        game_framework.push_state(wild_Battle)
-                        pass
-                elif self.direct == 3:   # 오른버튼
-                    if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
-                        wild_Battle.Battle_type = 'Trainer'
-                        wild_Battle.Ncount = i
-                        game_framework.push_state(wild_Battle)
-                        pass
+                if type(Npc).__name__ == 'Battle_Npc':
+                    if self.direct == 0:     # 아래버튼
+                        if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
+                            wild_Battle.Battle_type = 'Trainer'
+                            wild_Battle.Ncount = i
+                            game_framework.push_state(wild_Battle)
+                            pass
+                    elif self.direct == 1:   # 위버튼
+                        if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
+                            wild_Battle.Battle_type = 'Trainer'
+                            wild_Battle.Ncount = i
+                            game_framework.push_state(wild_Battle)
+                            pass
+                    elif self.direct == 2:   # 왼버튼
+                        if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
+                            wild_Battle.Battle_type = 'Trainer'
+                            wild_Battle.Ncount = i
+                            game_framework.push_state(wild_Battle)
+                            pass
+                    elif self.direct == 3:   # 오른버튼
+                        if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
+                            wild_Battle.Battle_type = 'Trainer'
+                            wild_Battle.Ncount = i
+                            game_framework.push_state(wild_Battle)
+                            pass
+                elif type(Npc).__name__ == 'Healer':
+                    if self.direct == 1:  # 위버튼
+                        if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 64):
+                            game_framework.push_state(Heal_state)
+        if(169 <= Map.Maping[play_state.round].array[self.mapy//32 + 3][self.mapx//32 + 1] <= 170):
+            game_framework.push_state(Heal_state)
+
+
 
 
 
