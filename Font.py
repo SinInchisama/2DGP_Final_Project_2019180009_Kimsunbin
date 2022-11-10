@@ -18,6 +18,10 @@ def Draw_Al(Sentence,x,y,sizex,sizey):
             play_state.Font_image.clip_draw(167 + ((ord(Alpha) - 97) % 16) * 9, 437 - ((ord(Alpha) - 97) // 16) * 9, 8, 8,x + (Acount * sizex), y, sizex, sizey)
         Acount += 1
 
+def Draw_question(count,x,y,sizex,sizey):
+    for i in range(0,count):
+        play_state.Font_image.clip_draw(221,402,8,8,x + (i * sizex),y,sizex,sizey)
+
 # Acount = 0
 #         for Alpha in Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].type[i]:  # 포켓몬 타입 출력
 #             play_state.Font_image.clip_draw(167 + ((ord(Alpha) - 97) % 16) * 9, 437 - ((ord(Alpha) - 97) // 16) * 9, 8, 8,40 + (Acount * 32), 70 - (32 * i), 32, 32)
