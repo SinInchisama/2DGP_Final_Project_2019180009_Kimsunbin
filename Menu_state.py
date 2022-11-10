@@ -2,6 +2,7 @@ from pico2d import *
 import game_framework
 import play_state
 import Choose_Poketmon
+import View_PokeDex_state
 
 Menu_image = None
 Cursor_image = None
@@ -31,6 +32,7 @@ def handle_events():
 
             elif event.key == SDLK_a:
                 if CusorY == 0:
+                    game_framework.push_state(View_PokeDex_state)
                     pass
                 elif CusorY == 1:
                     game_framework.push_state(Choose_Poketmon)

@@ -34,7 +34,7 @@ def enter():
     Poketmon.init_Skill()
     Skill_Data.init_skill()
     hero.init_pList()
-    Pokedex = PokeDex.PokeDex
+    Pokedex = PokeDex.PokeDex()
 
 
 def handle_events():
