@@ -46,7 +46,7 @@ class body_blow(P_Skill):                 # 몸통박치기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -76,12 +76,12 @@ class crying_sound:             # 울음소리
                 Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
                 Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
             else:  # 아니면 상대
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 220- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 250- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 300- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 110, 240- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 140, 270- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 120, 290- i*10, 32, 32)
             delay(0.03)
             update_canvas()
 
@@ -135,7 +135,7 @@ class Poison_Powder:            # 독가루
                 if (check):  # check면 상대한테 공격들어옴
                     Skill_Data.clip_draw(131 + (31 * i), 341, 27, 15, 430, 470, 108, 60)
                 else:  # 아니면 상대
-                    Skill_Data.clip_draw(131 + (31 * i), 341, 27, 15, 50, 220, 108, 60)
+                    Skill_Data.clip_draw(131 + (31 * i), 341, 27, 15, 50, 260, 108, 60)
                 delay(0.1)
                 update_canvas()
         wild_Battle.round = 8
@@ -163,7 +163,7 @@ class Body_Slam(P_Skill):            # 누르기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -204,7 +204,7 @@ class Quick_Attack(P_Skill):         # 전광석화
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -228,9 +228,9 @@ class Flame_Wheel(P_Skill):          # 화염자동차
                 Skill_Data.clip_draw(67 - (22 * i), 1771, 18, 18, 580, 450,128,128)
                 Skill_Data.clip_draw(67 - (22 * i), 1771, 18, 18, 450, 450, 128, 128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i+2), 1937, 32, 32, 120, 200,128,128)
-                Skill_Data.clip_draw(67 - (22 * i+2), 1771, 18, 18, 200, 200,128,128)
-                Skill_Data.clip_draw(67 - (22 * i + 2), 1771, 18, 18, 70, 200, 128, 128)
+                Skill_Data.clip_draw(2 + (36 * i+2), 1937, 32, 32, 120, 240,128,128)
+                Skill_Data.clip_draw(67 - (22 * i+2), 1771, 18, 18, 200, 240,128,128)
+                Skill_Data.clip_draw(67 - (22 * i + 2), 1771, 18, 18, 70, 240, 128, 128)
             delay(0.05)
             update_canvas()
 
@@ -259,12 +259,12 @@ class Leer:                 # 째려보기
                 Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
                 Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
             else:  # 아니면 상대
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 220 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 250 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 300 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 110, 240 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 140, 270 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 120, 290 - i * 10, 32, 32)
             delay(0.03)
             update_canvas()
 
@@ -281,7 +281,7 @@ class Scratch(P_Skill):              # 할퀴기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -298,7 +298,7 @@ class Rage(P_Skill):                 # 분노
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -340,7 +340,7 @@ class Bite(P_Skill):                 # 물기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -369,12 +369,12 @@ class Scary_Face:           # 겁나는 얼굴
                 Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
                 Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
             else:  # 아니면 상대
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 220 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 250 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 300 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 110, 240 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 140, 270 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 120, 290 - i * 10, 32, 32)
             delay(0.03)
             update_canvas()
 
@@ -393,7 +393,7 @@ class Slash(P_Skill):                # 베어가르기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -423,12 +423,12 @@ class Screech:              # 싫은소리
                 Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
                 Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
             else:  # 아니면 상대
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 220 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 250 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 300 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 110, 240 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 140, 270 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 120, 290 - i * 10, 32, 32)
             delay(0.03)
             update_canvas()
 
@@ -472,7 +472,7 @@ class Slam(P_Skill):                 # 힘껏치기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -495,12 +495,12 @@ class Amnesia:              # 망각술
 
             draw_world()
             if (check):  # check면 상대한테 공격들어옴
-                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 200 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 230 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 280 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 110, 220 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 140, 250 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 120, 270 + i * 10, 32, 32)
             else:  # 아니면 상대
                 Skill_Data.clip_draw(132, 1316, 8, 8, 450, 400 + i * 10, 32, 32)
                 Skill_Data.clip_draw(132, 1316, 8, 8, 460, 420 + i * 10, 32, 32)
@@ -527,7 +527,7 @@ class String_Shot:          # 실뿜기
         if (check):  # check면 상대한테 공격들어옴
             Skill_Data.clip_draw(68, 512, 25, 18, 500, 450, 100, 72)
         else:  # 아니면 상대
-            Skill_Data.clip_draw(68, 512, 25, 18, 120, 200, 100, 72)
+            Skill_Data.clip_draw(68, 512, 25, 18, 120, 240, 100, 72)
         update_canvas()
         delay(0.5)
 
@@ -550,12 +550,12 @@ class Harden:               # 단단해지기
 
             draw_world()
             if (check):  # check면 상대한테 공격들어옴
-                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 200 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 230 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 280 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 110, 220 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 140, 250 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 120, 270 + i * 10, 32, 32)
             else:  # 아니면 상대
                 Skill_Data.clip_draw(132, 1316, 8, 8, 450, 400 + i * 10, 32, 32)
                 Skill_Data.clip_draw(132, 1316, 8, 8, 460, 420 + i * 10, 32, 32)
@@ -605,7 +605,7 @@ class Stun_Spore:               # 저리가루
                 if (check):  # check면 상대한테 공격들어옴
                     Skill_Data.clip_draw(131 + (31 * i), 318, 27, 15, 430, 470, 108, 60)
                 else:  # 아니면 상대
-                    Skill_Data.clip_draw(131 + (31 * i), 318, 27, 15, 50, 220, 108, 60)
+                    Skill_Data.clip_draw(131 + (31 * i), 318, 27, 15, 50, 260, 108, 60)
                 delay(0.1)
                 update_canvas()
         wild_Battle.round = 8
@@ -632,7 +632,7 @@ class Sleep_Powder:  # 수면가루
                 if (check):  # check면 상대한테 공격들어옴
                     Skill_Data.clip_draw(131 + (31 * i), 293, 27, 15, 430, 470, 108, 60)
                 else:  # 아니면 상대
-                    Skill_Data.clip_draw(131 + (31 * i), 293, 27, 15, 50, 220, 108, 60)
+                    Skill_Data.clip_draw(131 + (31 * i), 293, 27, 15, 50, 260, 108, 60)
                 delay(0.1)
                 update_canvas()
         wild_Battle.round = 8
@@ -650,7 +650,7 @@ class Gust(S_Skill):     # 바람일으키기
         if(check):          # check면 상대한테 공격들어옴
             Skill_Data.clip_draw(132, 123, 25, 23, 500, 450,100,92)
         else:               # 아니면 상대
-            Skill_Data.clip_draw(132, 123, 25, 23, 120, 200,100,92)
+            Skill_Data.clip_draw(132, 123, 25, 23, 120, 240,100,92)
         delay(0.05)
         update_canvas()
 
@@ -714,12 +714,12 @@ class Agility:        # 고속이동
 
             draw_world()
             if (check):  # check면 상대한테 공격들어옴
-                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 100 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 120 + i * 10, 32, 32)
-                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 180 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 70, 200 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 80, 230 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 50, 280 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 110, 220 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 140, 250 + i * 10, 32, 32)
+                Skill_Data.clip_draw(132, 1316, 8, 8, 120, 270 + i * 10, 32, 32)
             else:  # 아니면 상대
                 Skill_Data.clip_draw(132, 1316, 8, 8, 450, 400 + i * 10, 32, 32)
                 Skill_Data.clip_draw(132, 1316, 8, 8, 460, 420 + i * 10, 32, 32)
@@ -743,7 +743,7 @@ class Pursuit(P_Skill):        # 따라가때리기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -785,7 +785,7 @@ class Wing_Attack(P_Skill):     # 날개치기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -825,12 +825,12 @@ class Tail_Whip:      # 꼬리 흔들기
                 Skill_Data.clip_draw(144, 1316, 8, 8, 540, 420- i*10, 32, 32)
                 Skill_Data.clip_draw(144, 1316, 8, 8, 520, 430- i*10, 32, 32)
             else:  # 아니면 상대
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 150- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 170- i*10, 32, 32)
-                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 230- i*10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 70, 220 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 80, 250 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 50, 300 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 110, 240 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 140, 270 - i * 10, 32, 32)
+                Skill_Data.clip_draw(144, 1316, 8, 8, 120, 290 - i * 10, 32, 32)
             delay(0.03)
             update_canvas()
 
@@ -882,7 +882,7 @@ class Peck(P_Skill):             # 쪼기
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
@@ -911,7 +911,7 @@ class Take_Down(P_Skill):        # 돌진
             if(check):          # check면 상대한테 공격들어옴
                 Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450,128,128)
             else:               # 아니면 상대
-                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 200,128,128)
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240,128,128)
             delay(0.05)
             update_canvas()
 
