@@ -1,6 +1,8 @@
 import Skill_Data
 from pico2d import *
 import random
+import play_state
+import Battle
 Poket_Data = None
 
 class Data:
@@ -119,7 +121,10 @@ class Poketmon:
         del (self.ChangeSd)
         del (self.ChangeSp)
 
-    def Use_Skill(self,enermy,num,check):           # 공격모션 그릴때 check에 따라 그리기
+    def Use_Skill(self,enermy,num):           # 공격모션 그릴때 check에 따라 그리기
+        check = True
+        if(enermy == play_state.hero.pList[Battle.Poket_Order]):
+            check = False
         if (random.randint(0, 100) <= Skill_Data.Attack[self.Skill_List[num]].Daccur):
             Skill_Data.Attack[self.Skill_List[num]].Draw(check,enermy)
             Skill_Data.Attack[self.Skill_List[num]].Use(enermy,self)

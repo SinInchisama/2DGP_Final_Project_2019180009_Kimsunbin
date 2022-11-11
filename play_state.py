@@ -119,10 +119,10 @@ def Hero_working(mode):
     if(mode == 3):
         if(random.randint(0,100)<20):
             wild_Battle.Battle_type = 'Wild'
-            # game_framework.push_state(wild_Battle)
-            # hero.movey = 0
-            # hero.movex = 0
-            # hero.Movecheck = False
+            game_framework.push_state(wild_Battle)
+            hero.movey = 0
+            hero.movex = 0
+            hero.Movecheck = False
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 
