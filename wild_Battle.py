@@ -11,6 +11,7 @@ import Evolution_state
 import Font
 from Map import Maping
 import Sub_Draw
+import Throw_Ball
 
 Battle_type = None
 select_Poketmon,Enermy_Poketmon = None,None
@@ -20,10 +21,10 @@ rand = randint
 Cursor_image = None
 Order_Que1,Order_Que2,Attacker,Defenser,round,gap,Push_type,Ncount,Pcount = None,None,None,None,None,None,None,None,None
 exp_bar,DrawFrame = None,None
-Enermy_Down,My_Down = False,False
+Enermy_Down,My_Down,Now_Pcount = False,False,None
 
 def enter():
-    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que1,Order_Que2,Attacker,Defenser,exp_bar,round,Pcount,DrawFrame
+    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que1,Order_Que2,Attacker,Defenser,exp_bar,round,Pcount,DrawFrame,Now_Pcount
     Cursor_image = load_image('./resource/image/Cursor.png')
     exp_bar = load_image('./resource/image/Exp_bar.png')
     Order_Que1,Order_Que2 = [],[]
@@ -51,6 +52,7 @@ def enter():
     play_state.hero.pList[Battle.Poket_Order].init_Change_ability()
     play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
     DrawFrame = 0
+    Now_Pcount = play_state.hero.Pcount
 
 
     del (select_Poketmon)                                       # 필요 없어진 배열 삭제.
@@ -105,11 +107,14 @@ def handle_events():
                     if(select_M == 0):
                         Menu_Bool = True
                         select_M = 0
-                    if (select_M == 1):
+                    elif (select_M == 1):
                         game_framework.push_state(Battle_Choose)
                         Push_type = 'Battle_Choose'
                         select_M = 0
-                    if(select_M == 3):
+                    elif(select_M == 2):
+                        game_framework.push_state(Throw_Ball)
+                        Push_type = 'Throw_Ball'
+                    elif(select_M == 3):
                         game_framework.pop_state()
                     pass
                 elif (Skill_Bool == False):
@@ -130,8 +135,8 @@ def update():
 
         if(round == 0):
             gap = Defenser.Hp
-            round = Attacker.Use_Skill(Defenser, select_M)
             print(Attacker, Defenser)
+            round = Attacker.Use_Skill(Defenser, select_M)
             Hp = Defenser.Hp
             Defenser.Hp = gap
             gap = Hp
@@ -149,31 +154,6 @@ def update():
             round = -2
             select_M = 0
         round += 1
-            # Enermy_Down = True
-            # Attacker,Defenser = None,None
-        #
-        #
-        # if (Enermy_Poketmon.ailment_check()):
-        #     gap = play_state.hero.pList[Battle.Poket_Order].Hp
-        #     round = 8
-        #
-        # if(round == 0):
-        #     gap = play_state.hero.pList[Battle.Poket_Order].Hp
-        #     round = Enermy_Poketmon.Use_Skill(play_state.hero.pList[Battle.Poket_Order], 1,False)
-        #     Hp = play_state.hero.pList[Battle.Poket_Order].Hp
-        #     play_state.hero.pList[Battle.Poket_Order].Hp = gap
-        #     gap = Hp
-        # elif(play_state.hero.pList[Battle.Poket_Order].Hp != gap and round > 7):
-        #     print(play_state.hero.pList[Battle.Poket_Order].Hp,gap)
-        #     play_state.hero.pList[Battle.Poket_Order].Hp -= 1
-        # elif(round>7):
-        #     Order = Order_Que.pop(0)
-        #     round = -2
-        #
-        # round += 1
-        #
-        # if (play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
-        #     My_Down = True
 
     DrawFrame +=1
 
@@ -208,7 +188,7 @@ def draw():
     clear_canvas()
     if(DrawFrame<29):
         Sub_Draw.Emergence(DrawFrame)
-        delay(0.001)
+        delay(0.005)
     elif(DrawFrame<77 and Battle_type != 'Wild'):
         Sub_Draw.Throw_Monster(DrawFrame)
         delay(0.005)
@@ -269,25 +249,43 @@ def draw_world():
 def resume():
     global Push_type,Enermy_Poketmon,Pcount,DrawFrame
 
-    if(Battle_type == 'Wild' or Pcount + 1 >=len(Maping[play_state.round].Npc[Ncount].Poket)):
-        if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <= play_state.hero.pList[Battle.Poket_Order].level):
-            game_framework.push_state(Evolution_state)
-        elif(Push_type == 'Exp_state'):
-            game_framework.pop_state()
-        elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+    # if(Battle_type == 'Wild' or Pcount + 1 >=len(Maping[play_state.round].Npc[Ncount].Poket)):
+    #     elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+    #         game_framework.pop_state()
+    #         Push_type = None
+    #     else:
+    #         Push_type = None
+    if(Push_type == 'Exp_state'):
+        print(Battle_type != 'Wild',Pcount)
+        if(Battle_type != 'Wild' and Pcount + 1 < len(Maping[play_state.round].Npc[Ncount].Poket)):
+            Pcount += 1
+            Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
+            Enermy_Poketmon.Set_ability()  # 야생 포켓몬 능력치 세팅
+            Enermy_Poketmon.Set_Skill()  # 야생 포켓몬 스킬 분배
+            Enermy_Poketmon.init_Change_ability()
+            DrawFrame = 29
+            play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
+        else:
+            print(';2222222222')
+            if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <=
+                    play_state.hero.pList[Battle.Poket_Order].level):
+                game_framework.push_state(Evolution_state)
+            else:
+                game_framework.pop_state()
+    elif(Push_type == 'Battle_Choose'):
+        if(play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
+            print(play_state.hero.pList[Battle.Poket_Order].Hp,Battle.Poket_Order)
             game_framework.pop_state()
             Push_type = None
         else:
             Push_type = None
-    else:
-        Pcount +=1
-        Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
-        Enermy_Poketmon.Set_ability()  # 야생 포켓몬 능력치 세팅
-        Enermy_Poketmon.Set_Skill()  # 야생 포켓몬 스킬 분배
-        Enermy_Poketmon.init_Change_ability()
-        DrawFrame = 29
-        play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
-    pass
+
+    elif(Push_type == 'Throw_Ball'):
+        if(Now_Pcount!=play_state.hero.Pcount):
+            game_framework.pop_state()
+        else:
+            Push_type = None
+
 
 def pause():
     pass

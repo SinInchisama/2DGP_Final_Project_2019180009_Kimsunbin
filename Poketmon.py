@@ -113,6 +113,7 @@ class Poketmon:
         return sum
     def init_Change_ability(self):                  # 전투시 능력치 변화 생성 함수
         self.ChangePa,self.ChangeSa,self.ChangePd,self.ChangeSd,self.ChangeSp = 0,0,0,0,0
+        print('init_change')
 
     def del_Change_ability(self):                   # 전투 종료 또는 교체시 발동되는 능력치 변화 제거 함수
         del(self.ChangePa)
@@ -246,3 +247,20 @@ def init_Skill():
     Poket_Data[24].Skill = {1:40,2:9,10:41,17:42,25:14,30:43}
     Poket_Data[25].Skill = {1: 40, 2: 9, 10: 41, 17: 42, 25: 14, 30: 43}
     Poket_Data[26].Skill = {1: 40, 2: 9, 10: 41, 17: 42, 25: 14, 30: 43}
+
+def Change_to_Wild_from_TR(Wild_P):
+    new = Tr_Poketmon(Wild_P.Num,Wild_P.level,Wild_P.Hp,0)
+    new.Skill_List = Wild_P.Skill_List
+    new.Set_ability()
+
+    return new
+
+
+    # class Tr_Poketmon(Poketmon):
+    #     def __init__(self, Num, level, Hp, Exp):
+    #         Poketmon.__init__(self, Num, level, Hp, [])
+    #         self.Exp = Exp
+    #
+    # self.Skill_List = Skill_List
+    # def __init__(self,Num,level,Hp):
+    #     Poketmon.__init__(self,Num,level,Hp,[])

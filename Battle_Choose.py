@@ -1,5 +1,7 @@
 import Choose_Poketmon
 from pico2d import *
+
+import Poketmon
 import game_framework
 import play_state
 import Battle
@@ -26,7 +28,8 @@ def handle_events():
                 if (Choose_Poketmon.CusorY != 6 and Choose_Poketmon.CusorY != Battle.Poket_Order):
                     if(play_state.hero.pList[Battle.Poket_Order].Hp != 0):
                         if ( play_state.hero.pList[Battle.Poket_Order].Hp >= 0):
-                            wild_Battle.Order, wild_Battle.Order_Que, wild_Battle.round = 1, [None], 0
+                            wild_Battle.Attacker, wild_Battle.Defenser = wild_Battle.Enermy_Poketmon, play_state.hero.pList[Choose_Poketmon.CusorY]
+                            wild_Battle.Order_Que1,wild_Battle.Order_Que2,wild_Battle.round = [None],[None],0
                     play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
                     Battle.Poket_Order = Choose_Poketmon.CusorY
                     play_state.hero.pList[Choose_Poketmon.CusorY].init_Change_ability()

@@ -39,7 +39,7 @@ def draw():
 
     Maping[19].map.clip_draw(Maping[19].Nowx, Maping[19].Nowy, 640, 576, 320, 288)
 
-    Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Front_Draw(320, 288, 224, 224)  # 내 포켓몬 그리기
+    play_state.hero.pList[wild_Battle.Battle.Poket_Order].Front_Draw(320, 288,56,56, 224, 224)  # 내 포켓몬 그리기
 
     if (frame >= 30 and frame < 32):
         Maping[18].map.clip_draw(Maping[18].Nowx, Maping[18].Nowy, 640, 576, 320, 288)
