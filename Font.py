@@ -20,7 +20,7 @@ def Draw_Al(Sentence,x,y,sizex,sizey):
 
 def Draw_question(count,x,y,sizex,sizey):
     for i in range(0,count):
-        play_state.Font_image.clip_draw(221,402,8,8,x + (i * sizex),y,sizex,sizey)
+        play_state.Font_image.clip_draw(221,402,8,7,x + (i * sizex),y,sizex,sizey)
 
 # Acount = 0
 #         for Alpha in Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].type[i]:  # 포켓몬 타입 출력

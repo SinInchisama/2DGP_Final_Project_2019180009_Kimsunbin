@@ -5,7 +5,7 @@ class PokeDex:
     Scene = 0
     Catch = 0
     def __init__(self):
-        self.list = [0 for i in range(0,27)]
+        self.list = [1 for i in range(0,27)]
         if PokeDex.image == None:
             PokeDex.image = load_image('./resource/image/PokeDex.png')
         pass
