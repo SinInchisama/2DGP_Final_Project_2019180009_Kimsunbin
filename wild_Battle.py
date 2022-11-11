@@ -218,7 +218,7 @@ def draw():
         delay(0.005)
     else:
         draw_world()
-        delay(0.05)
+        delay(0.03)
     update_canvas()
 
     pass
@@ -229,32 +229,34 @@ def draw_world():
     if(not (Order == 0 and (round == 3 or round == 5 or round == 7)) ):
         Enermy_Poketmon.Front_Draw(500, 450,56,56, 224, 224)  # 야생포켓몬 그리기
     if (not (Order == 1 and (round == 3 or round == 5 or round == 7))):
-        play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 200,48, 47, 224, 224)  # 내 포켓몬 그리기
+        play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 116,48, 47, 224, 224)  # 내 포켓몬 그리기
 
     if((Menu_Bool != True or Skill_Bool != True) and Order == None):
-        play_state.Board.clip_draw(0, 1, 83, 76, 440, 160, 380, 180)
-        Cursor_image.clip_draw(0, 0, 32, 32, 280 + (180 * (select_M % 2)), 200 - (80 * (select_M // 2)),16,16)
+        play_state.Board.clip_draw(0, 1, 83, 76, 440, 100, 380, 180)
+        Cursor_image.clip_draw(0, 0, 32, 32, 280 + (180 * (select_M % 2)), 140 - (80 * (select_M // 2)),16,16)
         if(Menu_Bool == False):
-            Font.Draw_Al('Skill', 300 , 200 , 16,16)
-            Font.Draw_Al('Poketmon', 480, 200, 16, 16)
-            Font.Draw_Al('Inven', 300, 120, 16, 16)
-            Font.Draw_Al('Run', 480, 120, 16, 16)
+            Font.Draw_Al('Skill', 300 , 140 , 16,16)
+            Font.Draw_Al('Poketmon', 480, 140, 16, 16)
+            Font.Draw_Al('Inven', 300, 60, 16, 16)
+            Font.Draw_Al('Run', 480, 60, 16, 16)
         elif(Menu_Bool == True):
             for i in range(0, len(play_state.hero.pList[Battle.Poket_Order].Skill_List)):  # 포켓몬 타입 출력
-                Font.Draw_Al(Skill_Data.Attack[play_state.hero.pList[Battle.Poket_Order].Skill_List[i]].name, 300 + (180 * (i % 2)), 200 - (80 * (i // 2)), 12,12)
+                Font.Draw_Al(Skill_Data.Attack[play_state.hero.pList[Battle.Poket_Order].Skill_List[i]].name, 300 + (180 * (i % 2)), 140 - (80 * (i // 2)), 12,12)
 
-    play_state.Font_image.clip_draw(275, 446, 8, 8, 470, 300, 16, 16)  # :
-    play_state.Font_image.clip_draw(266, 455, 8, 8, 490, 300, 16, 16)  # L
-    Font.Draw_Num( play_state.hero.pList[Battle.Poket_Order].level,540,300,16,16)
-    play_state.Hp_image.clip_draw(0, 0, 68, 6, 490, 275, 272, 20)
-    play_state.HPbar_image.clip_draw(0, 0, 2, 15, 419, 275, 383 * (play_state.hero.pList[Battle.Poket_Order].Hp / play_state.hero.pList[Battle.Poket_Order].MaxHp), 15)
-    exp_bar.clip_draw(0, 0, 2, 2, 419, 260, 383 * ( play_state.hero.pList[Battle.Poket_Order].Exp / (play_state.hero.pList[Battle.Poket_Order].level * 50)),10)
+    play_state.Font_image.clip_draw(275, 446, 8, 8, 430, 260, 16, 16)  # :
+    play_state.Font_image.clip_draw(266, 455, 8, 8, 450, 260, 16, 16)  # L
+    Font.Draw_Num( play_state.hero.pList[Battle.Poket_Order].level,500,260,16,16)
+    Font.Draw_Al(Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].name, 360,290, 24, 24)
+    play_state.Hp_image.clip_draw(0, 0, 68, 6, 450, 230, 272, 20)
+    play_state.HPbar_image.clip_draw(0, 0, 2, 15, 379, 230, 383 * (play_state.hero.pList[Battle.Poket_Order].Hp / play_state.hero.pList[Battle.Poket_Order].MaxHp), 15)
+    exp_bar.clip_draw(0, 0, 2, 2, 379, 215, 383 * ( play_state.hero.pList[Battle.Poket_Order].Exp / (play_state.hero.pList[Battle.Poket_Order].level * 50)),10)
 
-    play_state.Font_image.clip_draw(275, 446, 8, 8, 170, 550, 16, 16)  # :
-    play_state.Font_image.clip_draw(266, 455, 8, 8, 190, 550, 16, 16)  # L
-    Font.Draw_Num(Enermy_Poketmon.level, 240, 550, 16, 16)
-    play_state.Hp_image.clip_draw(0, 0, 68, 6, 190, 520, 272, 20)
-    play_state.HPbar_image.clip_draw(0, 0, 2, 15, 118, 520, 383 * (Enermy_Poketmon.Hp / Enermy_Poketmon.MaxHp), 15)
+    Font.Draw_Al(Poketmon.Poket_Data[Enermy_Poketmon.Num].name, 100, 540, 24, 24)
+    play_state.Font_image.clip_draw(275, 446, 8, 8, 170, 510, 16, 16)  # :
+    play_state.Font_image.clip_draw(266, 455, 8, 8, 190, 510, 16, 16)  # L
+    Font.Draw_Num(Enermy_Poketmon.level, 240, 510, 16, 16)
+    play_state.Hp_image.clip_draw(0, 0, 68, 6, 190, 480, 272, 20)
+    play_state.HPbar_image.clip_draw(0, 0, 2, 15, 118, 480, 383 * (Enermy_Poketmon.Hp / Enermy_Poketmon.MaxHp), 15)
 
 
 
