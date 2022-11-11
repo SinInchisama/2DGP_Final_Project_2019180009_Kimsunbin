@@ -21,12 +21,12 @@ def handle_events():
     for event in events:
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_DOWN:
-                CusorY = (CusorY + 1) % 8
+                CusorY = (CusorY + 1) % 4
 
             elif event.key == SDLK_UP:
                 CusorY = CusorY - 1
                 if CusorY == -1:
-                    CusorY = 7
+                    CusorY = 3
             elif event.key == SDLK_ESCAPE:
                 game_framework.pop_state()
 
@@ -39,7 +39,7 @@ def handle_events():
                     pass
                 elif CusorY == 2:
                     pass
-                elif CusorY == 7:
+                elif CusorY == 3:
                     game_framework.pop_state()
 
 def update():
