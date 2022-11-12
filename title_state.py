@@ -46,7 +46,7 @@ def draw():
     global frame
     clear_canvas()
     image1.clip_draw(0, 0, 640, 576, 320, 288)
-    Background_image.image.clip_draw(Background_image.nowx, Background_image.nowy - (336 * int(frame)), 320, 288, 320, 288)
+    Background_image.image.clip_draw(Background_image.nowx, Background_image.nowy - (336 * int(frame)), 320, 288, 320, 288,640,576)
     update_canvas()
     delay(0.02)
     pass

@@ -57,7 +57,7 @@ def update():
 def draw():
     clear_canvas()
     image1.clip_draw(0, 0, 640, 576, 320, 288)
-    Background_image[order].image.clip_draw(Background_image[order].nowx,Background_image[order].nowy,320,288,320,288)
+    Background_image[order].image.clip_draw(Background_image[order].nowx,Background_image[order].nowy,320,288,320,288,640,576)
     # image3.clip_draw(Poketmon.Poket_Data[2].Pngx, Poketmon.Poket_Data[2].Pngy, 56, 56, 320, 288, 224, 224)
     update_canvas()
     delay(0.05)
