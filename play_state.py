@@ -12,12 +12,12 @@ import Skill_Data
 import PokeDex
 
 round,mode,running,Map_change,speed =0,0,None,None,None
-Font_image,HPbar_image,Hp_image,Board,Pokedex = None,None,None,None,None
+Font_image,Font_Color,HPbar_image,Hp_image,Board,Pokedex = None,None,None,None,None,None
 hero = None
 
 def enter():
-    global round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board,Pokedex
-    round = 0  # 맵 변경에 사용하는 변수
+    global round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color
+    round = 5  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
@@ -27,6 +27,7 @@ def enter():
     #hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
     hero.character_image = pico2d.load_image('./resource/image/Character.png')
     Font_image = pico2d.load_image('./resource/image/Font.png')
+    Font_Color = pico2d.load_image('./resource/image/Font_Color.png')
     HPbar_image = pico2d.load_image('./resource/image/Hp_bar.png')
     Hp_image = pico2d.load_image('./resource/image/Hp.png')
     Board = pico2d.load_image('./resource/image/Board.png')
@@ -100,11 +101,11 @@ def Hero_working(mode):
             hero.pngx = 18 + (68 * hero.direct) + 34 * (i % 2)
         # if ((Maping[round].Nowx  == 0 and hero.movex<0)or(Maping[round].Nowx == Maping[round].Sizex - 640 and hero.movex>0 )or(Maping[round].Nowx + 640 >= Maping[round].Sizex and Maping[round].Nowx == 0)):
         # 캐릭터가 왼쪽벽에 부딪히거나 오른쪽벽에 부딪힐때, 그리고 맵크기가 weight가 640보다 클 때 맵이 움직임.
-            if ((hero.chx == 16 and hero.movex<0 and Maping[round].Nowx != 0) or(hero.chx == 624 and hero.movex>0 and Maping[round].Nowx != Maping[round].Sizex - 640) ):
+            if ((hero.chx == 48 and hero.movex<0 and Maping[round].Nowx != 0) or(hero.chx == 592 and hero.movex>0 and Maping[round].Nowx != Maping[round].Sizex - 640) ):
                 Maping[round].Minusx += hero.movex * 8
             elif(hero.movex != 0):
                 hero.chx += hero.movex * 8
-            elif ((hero.chy == 16 and hero.movey < 0 and Maping[round].Nowy != 0) or (hero.chy == 560 and hero.movey > 0 and Maping[round].Nowy != Maping[round].Sizey - 576)):
+            elif ((hero.chy == 48 and hero.movey < 0 and Maping[round].Nowy != 0) or (hero.chy == 528 and hero.movey > 0 and Maping[round].Nowy != Maping[round].Sizey - 576)):
                 Maping[round].Minusy += hero.movey * 8
             elif(hero.movey !=0 ):
                 hero.chy += hero.movey * 8
@@ -119,10 +120,10 @@ def Hero_working(mode):
     if(mode == 3):
         if(random.randint(0,100)<20):
             wild_Battle.Battle_type = 'Wild'
-            game_framework.push_state(wild_Battle)
-            hero.movey = 0
-            hero.movex = 0
-            hero.Movecheck = False
+            # game_framework.push_state(wild_Battle)
+            # hero.movey = 0
+            # hero.movex = 0
+            # hero.Movecheck = False
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 

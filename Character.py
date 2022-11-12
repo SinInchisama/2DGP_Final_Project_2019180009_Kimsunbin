@@ -33,8 +33,9 @@ class Hero(character):
         self.pList[0].Num = 3
         self.pList[0].level = 5
         self.pList[0].Set_ability()
+        self.pList[0].ailment = 'Paralysis'
         self.pList[0].Hp = 10
-        self.pList[0].Exp = 440
+        self.pList[0].Exp = 0
         self.pList[0].Skill_List = [8,40,1,0]
         self.pList[1].Set_ability()
 
@@ -118,7 +119,7 @@ class Hero(character):
                 return mapx, mapy, True, 6
 
             elif self.mapy // 32 + 1 == 15:
-                self.mapx, self.mapy, self.chx, self.chy = 336, 112, 336, 112
+                self.mapx, self.mapy, self.chx, self.chy = 336, 16, 336, 16
                 return mapx, mapy, True, 7
 
             elif self.mapy // 32 + 1 == 7:

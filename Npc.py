@@ -26,14 +26,14 @@ Maping[3].Npc = [Npc(154, 2261, 32, 32, 528, 80) for i in range(0, 1)]  #트레�
 Maping[3].Npc.append(Npc(290, 3044, 32, 32, 560, 240))
 
 Maping[6].Npccount = 1
-Maping[6].Npc = [Battle_Npc(51, 3111, 32, 32, 304, 240,2) for i in range(0, 1)]  # 어무니
+Maping[6].Npc = [Battle_Npc(51, 3111, 32, 32, 304, 208,2) for i in range(0, 1)]  # 어무니
 Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(1,10,10)),Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(4,10,10))
 
 
 Maping[7].Npccount = 3
-Maping[7].Npc = [Npc(52, 3213, 32, 32, 304, 400) for i in range(0, 1)]  #박사님
-Maping[7].Npc.append(Npc(290, 3044, 32, 32, 272, 112))                   #조교
-Maping[7].Npc.append(Npc(222, 3044, 32, 32, 464, 208))                   #조교
+Maping[7].Npc = [Npc(52, 3213, 32, 32, 304, 464) for i in range(0, 1)]  #박사님
+Maping[7].Npc.append(Npc(290, 3044, 32, 32, 272, 16))                   #조교
+Maping[7].Npc.append(Npc(222, 3044, 32, 32, 464, 176))                   #조교
 
 Maping[8].Npccount = 1
 Maping[8].Npc = [Npc(154, 2635, 32, 32, 432, 336) for i in range(0, 1)]  #할아버지
