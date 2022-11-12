@@ -44,7 +44,6 @@ def enter():
         Pcount = 0
         Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
         select_Poketmon = 0
-        print(Enermy_Poketmon.Num)
     Enermy_Poketmon.Set_ability()                                 # 야생 포켓몬 능력치 세팅
     Enermy_Poketmon.Set_Skill()                                   # 야생 포켓몬 스킬 분배
     Enermy_Poketmon.init_Change_ability()
@@ -139,9 +138,15 @@ def update():
         if(round == 0):
             if(Attacker_type == ' '):
                 gap = Defenser.Hp
-                Attacker_type = Attacker.Check_Use(select_M)
-                if(Attacker_type == 'Use'):
-                    Attacker.Use_Skill(Defenser, select_M)
+                if(Attacker == Enermy_Poketmon):
+                    Enermy_Poketmon.What_Use_Skill()
+                    Attacker_type = Attacker.Check_Use(Enermy_Poketmon.Use)
+                    if (Attacker_type == 'Use'):
+                        Attacker.Use_Skill(Defenser, Enermy_Poketmon.Use)
+                else:
+                    Attacker_type = Attacker.Check_Use(select_M)
+                    if (Attacker_type == 'Use'):
+                        Attacker.Use_Skill(Defenser, select_M)
                 Hp = Defenser.Hp
                 Defenser.Hp = gap
                 gap = Hp
@@ -178,18 +183,16 @@ def update():
         if(play_state.hero.pList[Battle.Poket_Order].MinusY >= 56):
             game_Continue = False
             for i in play_state.hero.pList:
-                print('Hp', i.Hp)
                 if i.Hp != 0:
                     game_Continue = True
 
             if game_Continue:
-                Order = None
+                Attacker = None
                 game_framework.push_state(Battle_Choose)
                 Push_type = 'Battle_Choose'
-                print(Order)
             else:
                 game_framework.pop_state()
-            My_Down = True
+            My_Down = False
     pass
 
 
@@ -251,7 +254,11 @@ def draw_world():
                                  300 + (180 * (i % 2)), 140 - (80 * (i // 2)), 12, 12)
         else:
             if (Attacker_type == 'Use'):
-                Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Use ' + Skill_Data.Attack[Attacker.Skill_List[select_M]].name,60, 100, 20, 20)
+                if(Attacker == Enermy_Poketmon):
+                    Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Use ' + Skill_Data.Attack[Attacker.Skill_List[Enermy_Poketmon.Use]].name,60, 100, 20, 20)
+                else:
+                    Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Use ' + Skill_Data.Attack[
+                        Attacker.Skill_List[select_M]].name, 60, 100, 20, 20)
             elif (Attacker_type == 'miss'):
                 Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Miss Skill', 60, 100, 20, 20)
             elif (Attacker_type == 'Paralysis'):
@@ -305,6 +312,7 @@ def resume():
         if(play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
             game_framework.pop_state()
             Push_type = None
+            My_Down = False
         else:
             My_Down = False
             Push_type = None

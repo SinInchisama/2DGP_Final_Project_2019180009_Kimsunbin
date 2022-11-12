@@ -150,6 +150,7 @@ class Poketmon:
 class Wild_Poketmon(Poketmon):      # 트레이너 포켓몬 클래스
     def __init__(self,Num,level,Hp):
         Poketmon.__init__(self,Num,level,Hp,[])
+        self.Use = 0
 
     def Set_Skill(self):
         i = self.level
@@ -159,13 +160,11 @@ class Wild_Poketmon(Poketmon):      # 트레이너 포켓몬 클래스
             i -= 1
 
         sorted(self.Skill_List)
-        print(Poket_Data[self.Num].name,self.level)
-        for i in self.Skill_List:
-            print(Skill_Data.Attack[i])
 
         self.Hp = self.MaxHp
     def What_Use_Skill(self):
-        random.randint(0,len(self.Skill_List))
+        self.Use  = random.randint(0,len(self.Skill_List) - 1)
+
 
 class Tr_Poketmon(Poketmon):
     def __init__(self, Num, level, Hp,Exp):

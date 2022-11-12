@@ -63,7 +63,7 @@ def draw():
     clear_canvas()
     Status_iamge[select].clip_draw(0,0,160,144,320,288,640,576)
     # Poketmon.Poket_Data.image.clip_draw(Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngx, Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Pngy, 56, 56, 120, 450, 224, 224)
-    Poketmon.Poket_Data[play_state.hero.pList[NowPc].Num].Front_Draw(120,450,224,224)
+    play_state.hero.pList[NowPc].Front_Draw(120,450,56,56,224,224)
 
     Font.Draw_Num(play_state.hero.pList[NowPc].Num + 1, 345, 555, 20, 20)  # Hp 출력
 

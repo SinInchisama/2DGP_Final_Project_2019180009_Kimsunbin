@@ -38,7 +38,6 @@ class body_blow(P_Skill):                 # 몸통박치기
         self.name = 'body blow'
 
     def Draw(self,check,My):
-        print('1111')
         for i in range(2,0,-1):
             clear_canvas()
 
@@ -93,7 +92,7 @@ class Razor_Leaf(S_Skill):               # 잎날가르기
         S_Skill.__init__(self, 55, 95, 25, 'Grass')
         self.name = 'Razor Leaf'
     def Draw(self, check,My):
-        for a in range(0,300,2):
+        for a in range(0,200,2):
             clear_canvas()
             i = a // 50
             draw_world()
@@ -105,12 +104,12 @@ class Razor_Leaf(S_Skill):               # 잎날가르기
                 Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 160+ a* 1.5, 120 + a, 32, 32)
                 Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 140+ a* 1.5, 130 + a, 32, 32)
             else:  # 아니면 상대
-                Skill_Data.clip_draw(131 + i * 14, 1932, 10, 10, 450 - a, 450 - a, 32, 32)
-                Skill_Data.clip_draw(131 + i * 14, 1932, 10, 10, 460 - a, 470 - a, 32, 32)
-                Skill_Data.clip_draw(131 + i * 14, 1932, 10, 10, 430 - a, 480 - a, 32, 32)
-                Skill_Data.clip_draw(131 + i * 14, 1932, 10, 10, 550 - a, 400 - a, 32, 32)
-                Skill_Data.clip_draw(131 + i * 14, 1932, 10, 10, 540 - a, 420 - a, 32, 32)
-                Skill_Data.clip_draw(131 + i * 14, 1932, 10, 10, 520 - a, 430 - a, 32, 32)
+                Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 450 - a, 450 - a, 32, 32)
+                Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 460 - a, 470 - a, 32, 32)
+                Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 430 - a, 480 - a, 32, 32)
+                Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 550 - a, 400 - a, 32, 32)
+                Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 540 - a, 420 - a, 32, 32)
+                Skill_Data.clip_draw(131 + i * 12, 1932, 10, 10, 520 - a, 430 - a, 32, 32)
             delay(0.01)
             update_canvas()
 

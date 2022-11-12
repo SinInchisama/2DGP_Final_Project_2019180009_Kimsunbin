@@ -2,10 +2,11 @@ from pico2d import *
 import random
 class PokeDex:
     image = None
-    Scene = 0
-    Catch = 0
+    Scene = 1
+    Catch = 1
     def __init__(self):
         self.list = [0 for i in range(0,27)]
+        self.list[3] = 2
         if PokeDex.image == None:
             PokeDex.image = load_image('./resource/image/PokeDex.png')
         pass

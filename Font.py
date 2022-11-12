@@ -2,7 +2,6 @@ import play_state
 
 def Draw_Num(Num,x,y,sizex,sizey):
     Acount, div = 0, 1
-    print(Num)
     while Num // div != 0:  # Hp 출력
         result = (Num// div) % 10
         play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, x - (Acount * sizex), y, sizex, sizey)
