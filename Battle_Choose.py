@@ -29,7 +29,7 @@ def handle_events():
                     if(play_state.hero.pList[Battle.Poket_Order].Hp != 0):
                         if ( play_state.hero.pList[Battle.Poket_Order].Hp >= 0):
                             wild_Battle.Attacker, wild_Battle.Defenser = wild_Battle.Enermy_Poketmon, play_state.hero.pList[Choose_Poketmon.CusorY]
-                            wild_Battle.Order_Que1,wild_Battle.Order_Que2,wild_Battle.round = [None],[None],0
+                            wild_Battle.Order_Que1,wild_Battle.Order_Que2,wild_Battle.round = [None],[None],-1
                     play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
                     Battle.Poket_Order = Choose_Poketmon.CusorY
                     play_state.hero.pList[Choose_Poketmon.CusorY].init_Change_ability()

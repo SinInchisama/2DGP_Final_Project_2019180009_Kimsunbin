@@ -21,10 +21,10 @@ rand = randint
 Cursor_image = None
 Order_Que1,Order_Que2,Attacker,Defenser,round,gap,Push_type,Ncount,Pcount = None,None,None,None,None,None,None,None,None
 exp_bar,DrawFrame = None,None
-Enermy_Down,My_Down,Now_Pcount = False,False,None
+Enermy_Down,My_Down,Now_Pcount ,Attacker_type= False,False,None,None
 
 def enter():
-    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que1,Order_Que2,Attacker,Defenser,exp_bar,round,Pcount,DrawFrame,Now_Pcount
+    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que1,Order_Que2,Attacker,Defenser,exp_bar,round,Pcount,DrawFrame,Now_Pcount,Attacker_type
     Cursor_image = load_image('./resource/image/Cursor.png')
     exp_bar = load_image('./resource/image/Exp_bar.png')
     Order_Que1,Order_Que2 = [],[]
@@ -58,10 +58,12 @@ def enter():
     del (select_Poketmon)                                       # 필요 없어진 배열 삭제.
     select_M = 0
     Menu_Bool, Skill_Bool = False,False
+    Attacker_type = ' '
     pass
 
 
 def exit():
+    global Push_type
     for i in play_state.hero.pList:
         i.MinusY = 0
     if(Battle_type != 'Wild'):
@@ -72,6 +74,7 @@ def exit():
     play_state.hero.pList[Battle.Poket_Order].del_Change_ability()
     del(select_M)
     del(Menu_Bool,Skill_Bool,Order_Que1,Order_Que2,round)
+    Push_type = None
     pass
 
 
@@ -80,7 +83,7 @@ def pause():
 
 
 def handle_events():
-    global Menu_Bool,Skill_Bool,select_M,Order_Que1,Order_Que2,Attacker,Defenser,round,Push_type
+    global Menu_Bool,Skill_Bool,select_M,Order_Que1,Order_Que2,Attacker,Defenser,round,Push_type,Attacker_type,gap
 
     events = get_events()
     for event in events:
@@ -112,8 +115,9 @@ def handle_events():
                         Push_type = 'Battle_Choose'
                         select_M = 0
                     elif(select_M == 2):
-                        game_framework.push_state(Throw_Ball)
-                        Push_type = 'Throw_Ball'
+                        if(Battle_type == 'Wild'):
+                            game_framework.push_state(Throw_Ball)
+                            Push_type = 'Throw_Ball'
                     elif(select_M == 3):
                         game_framework.pop_state()
                     pass
@@ -121,26 +125,27 @@ def handle_events():
                     Menu_Bool = False
                     Order_Que1,Order_Que2 = Battle.Speed_check(play_state.hero.pList[Battle.Poket_Order],Enermy_Poketmon)
                     Attacker,Defenser = Order_Que1.pop(0),Order_Que2.pop(0)
+                    if (Attacker.ailment_check()):
+                        gap = Defenser.Hp
+                        Attacker_type = Attacker.ailment
                     round = 0
                     pass
 
 
 
 def update():
-    global round,gap,Push_type,select_M,DrawFrame,Enermy_Down,My_Down,Attacker,Defenser,Order_Que1,Order_Que2
+    global round,gap,Push_type,select_M,DrawFrame,Enermy_Down,My_Down,Attacker,Defenser,Order_Que1,Order_Que2,Attacker_type
     if(Attacker != None):
-        if(Attacker.ailment_check()):
-            gap = Defenser.Hp
-            round  = 8
-
         if(round == 0):
-            gap = Defenser.Hp
-            print(Attacker, Defenser)
-            round = Attacker.Use_Skill(Defenser, select_M)
-            Hp = Defenser.Hp
-            Defenser.Hp = gap
-            gap = Hp
-        elif (Defenser.Hp != gap and round > 7):
+            if(Attacker_type == ' '):
+                gap = Defenser.Hp
+                Attacker_type = Attacker.Check_Use(select_M)
+                if(Attacker_type == 'Use'):
+                    Attacker.Use_Skill(Defenser, select_M)
+                Hp = Defenser.Hp
+                Defenser.Hp = gap
+                gap = Hp
+        elif (Defenser.Hp != gap and round > 13):
             Defenser.Hp -= 1
             select_M = 0
 
@@ -148,10 +153,15 @@ def update():
                 Enermy_Down, My_Down=Battle.Death_Check(Defenser)
                 Attacker,Defenser,Order_Que1,Order_Que2 = None,None,[],[]
 
-        elif (round > 7):
+        elif (round > 13):
             Attacker = Order_Que1.pop(0)
             Defenser = Order_Que2.pop(0)
-            round = -2
+            Attacker_type = ' '
+            if(Attacker != None):
+                if (Attacker.ailment_check()):
+                    gap = Defenser.Hp
+                    Attacker_type = Attacker.ailment
+            round = -1
             select_M = 0
         round += 1
 
@@ -162,7 +172,7 @@ def update():
         if(Enermy_Poketmon.MinusY >=56):
             game_framework.push_state(Exp_state)
             Push_type = 'Exp_state'
-            Enermy_Down= False
+
     elif(My_Down):
         play_state.hero.pList[Battle.Poket_Order].MinusY += 3
         if(play_state.hero.pList[Battle.Poket_Order].MinusY >= 56):
@@ -179,7 +189,7 @@ def update():
                 print(Order)
             else:
                 game_framework.pop_state()
-            My_Down = False
+            My_Down = True
     pass
 
 
@@ -202,14 +212,29 @@ def draw():
 def draw_world():
     play_state.Maping[19].map.clip_draw(0, 0, 640, 576, 320, 288)  # 흰배경
 
-    if(not (Defenser == Enermy_Poketmon and (round == 3 or round == 5 or round == 7)) ):
-        Enermy_Poketmon.Front_Draw(500, 450,56,56, 224, 224)  # 야생포켓몬 그리기
-    if (not (Defenser == play_state.hero.pList[Battle.Poket_Order] and (round == 3 or round == 5 or round == 7))):
-        play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 240,48, 47, 224, 224)  # 내 포켓몬 그리기
+    if(Attacker_type == ' '):
+        Enermy_Poketmon.Front_Draw(500, 450, 56, 56, 224, 224)  # 야생포켓몬 그리기
+        play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 240, 48, 47, 224, 224)  # 내 포켓몬 그리기
+    elif(Attacker_type == 'Use'):
+        if(not (Defenser == Enermy_Poketmon and (round == 3 or round == 5 or round == 7)) ):
+            Enermy_Poketmon.Front_Draw(500, 450,56,56, 224, 224)  # 야생포켓몬 그리기
+        if (not (Defenser == play_state.hero.pList[Battle.Poket_Order] and (round == 3 or round == 5 or round == 7))):
+            play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 240,48, 47, 224, 224)  # 내 포켓몬 그리기
+    elif(Attacker_type == 'miss'):
+        Enermy_Poketmon.Front_Draw(500, 450, 56, 56, 224, 224)  # 야생포켓몬 그리기
+        play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 240, 48, 47, 224, 224)  # 내 포켓몬 그리기
+    elif (Attacker_type == 'Paralysis'):
+        if(round < 30):
+            if(Attacker == Enermy_Poketmon):
+                Enermy_Poketmon.Front_Draw(500, 447 + (round % 2) * 6, 56, 56, 224, 224)  # 야생포켓몬 그리기
+                play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 240, 48, 47, 224, 224)  # 내 포켓몬 그리기
+            else:
+                Enermy_Poketmon.Front_Draw(500, 450, 56, 56, 224, 224)  # 야생포켓몬 그리기
+                play_state.hero.pList[Battle.Poket_Order].Back_Draw(120, 237 + (round % 2) * 6, 48, 47, 224, 224)  # 내 포켓몬 그리기
+
+
 
     play_state.Board.clip_draw(0, 1, 83, 76, 320, 75, 644, 140)
-    # if(Order !=None):
-    #     Font.Draw_Al( + Skill_Data.Attack[play_state.hero.pList[Battle.Poket_Order].Skill_List[i]].name,300 + (180 * (i % 2)), 140 - (80 * (i // 2)), 12, 12)
 
     if(Enermy_Down != True and My_Down != True):
         if((Menu_Bool != True or Skill_Bool != True) and Attacker == None):
@@ -225,12 +250,17 @@ def draw_world():
                     Font.Draw_Al(Skill_Data.Attack[play_state.hero.pList[Battle.Poket_Order].Skill_List[i]].name,
                                  300 + (180 * (i % 2)), 140 - (80 * (i // 2)), 12, 12)
         else:
-            Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Use ' + Skill_Data.Attack[
-                Attacker.Skill_List[select_M]].name,
-                            60, 100, 20, 20)
+            if (Attacker_type == 'Use'):
+                Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Use ' + Skill_Data.Attack[Attacker.Skill_List[select_M]].name,60, 100, 20, 20)
+            elif (Attacker_type == 'miss'):
+                Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' Miss Skill', 60, 100, 20, 20)
+            elif (Attacker_type == 'Paralysis'):
+                Font.Draw_Al(Poketmon.Poket_Data[Attacker.Num].name + ' is Paralysis', 60, 100, 20, 20)
 
     play_state.Font_image.clip_draw(275, 446, 8, 8, 430, 260, 16, 16)  # :
     play_state.Font_image.clip_draw(266, 455, 8, 8, 450, 260, 16, 16)  # L
+    if(play_state.hero.pList[Battle.Poket_Order].ailment != None):
+        Font.Draw_Al(play_state.hero.pList[Battle.Poket_Order].ailment, 520, 256, 8, 8)
     Font.Draw_Num( play_state.hero.pList[Battle.Poket_Order].level,500,260,16,16)
     Font.Draw_Al(Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].name, 360,290, 24, 24)
     play_state.Hp_image.clip_draw(0, 0, 68, 6, 450, 230, 272, 20)
@@ -247,7 +277,7 @@ def draw_world():
 
 
 def resume():
-    global Push_type,Enermy_Poketmon,Pcount,DrawFrame
+    global Push_type,Enermy_Poketmon,Pcount,DrawFrame,Enermy_Down,My_Down
 
     # if(Battle_type == 'Wild' or Pcount + 1 >=len(Maping[play_state.round].Npc[Ncount].Poket)):
     #     elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
@@ -256,7 +286,6 @@ def resume():
     #     else:
     #         Push_type = None
     if(Push_type == 'Exp_state'):
-        print(Battle_type != 'Wild',Pcount)
         if(Battle_type != 'Wild' and Pcount + 1 < len(Maping[play_state.round].Npc[Ncount].Poket)):
             Pcount += 1
             Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
@@ -266,18 +295,18 @@ def resume():
             DrawFrame = 29
             play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
         else:
-            print(';2222222222')
             if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <=
                     play_state.hero.pList[Battle.Poket_Order].level):
                 game_framework.push_state(Evolution_state)
             else:
                 game_framework.pop_state()
+        Enermy_Down = False
     elif(Push_type == 'Battle_Choose'):
         if(play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
-            print(play_state.hero.pList[Battle.Poket_Order].Hp,Battle.Poket_Order)
             game_framework.pop_state()
             Push_type = None
         else:
+            My_Down = False
             Push_type = None
 
     elif(Push_type == 'Throw_Ball'):

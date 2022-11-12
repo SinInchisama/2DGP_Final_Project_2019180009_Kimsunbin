@@ -126,12 +126,14 @@ class Poketmon:
         check = True
         if(enermy == play_state.hero.pList[Battle.Poket_Order]):
             check = False
+        Skill_Data.Attack[self.Skill_List[num]].Draw(check,enermy)
+        Skill_Data.Attack[self.Skill_List[num]].Use(enermy,self)
+
+    def Check_Use(self,num):
         if (random.randint(0, 100) <= Skill_Data.Attack[self.Skill_List[num]].Daccur):
-            Skill_Data.Attack[self.Skill_List[num]].Draw(check,enermy)
-            Skill_Data.Attack[self.Skill_List[num]].Use(enermy,self)
-            return 0
+            return 'Use'
         else:
-            return 8
+            return 'miss'
 
     def Front_Draw(self,x,y,sizex,sizey,width,height):
         Data.image.clip_draw(Poket_Data[self.Num].Pngx,Poket_Data[self.Num].Pngy+ self.MinusY, sizex, sizey - self.MinusY, x,y - self.MinusY, width, height- self.MinusY*4)
@@ -162,6 +164,8 @@ class Wild_Poketmon(Poketmon):      # 트레이너 포켓몬 클래스
             print(Skill_Data.Attack[i])
 
         self.Hp = self.MaxHp
+    def What_Use_Skill(self):
+        random.randint(0,len(self.Skill_List))
 
 class Tr_Poketmon(Poketmon):
     def __init__(self, Num, level, Hp,Exp):
