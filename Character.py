@@ -6,6 +6,7 @@ import play_state
 import wild_Battle
 import game_framework
 import Heal_state
+import Item
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -26,6 +27,8 @@ class Hero(character):
         self.movey = movey
         self.Movecheck = False
         self.dircet = 0
+        self.inventory = Item.inventory()
+        self.Speed = 0.07
 
     def init_pList(self):
         self.Pcount = 1
@@ -37,6 +40,15 @@ class Hero(character):
         self.pList[0].Set_ability()
         self.pList[0].Exp = 440
         self.pList[0].Skill_List = [8,1,2,3]
+
+    def Can_riding(self):
+        if(self.inventory.Riding):
+            if(self.Speed == 0.07):
+                self.pngy = 3315
+                self.speed = 0.04
+            else:
+                self.pngy = 3350
+                self.speed = 0.07
 
 
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정

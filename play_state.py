@@ -11,17 +11,16 @@ import wild_Battle
 import Skill_Data
 import PokeDex
 
-round,mode,running,Map_change,speed =0,0,None,None,None
+round,mode,running,Map_change =0,0,None,None
 Font_image,Font_Color,HPbar_image,Hp_image,Board,Pokedex = None,None,None,None,None,None
 hero = None
 
 def enter():
-    global round,mode,running,Map_change,hero,speed,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color
+    global round,mode,running,Map_change,hero,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color
     round = 5  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
-    speed = 0.07
     init_map()
     hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
     #hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
@@ -41,7 +40,7 @@ def enter():
 def handle_events():
     global hero
     global mode
-    global round,speed
+    global round
     events = get_events()
     for event in events:
 
@@ -65,12 +64,7 @@ def handle_events():
                 hero.Movecheck = True
 
             elif event.key == SDLK_x:  # 윗 버튼 눌리면
-                if speed == 0.07:
-                    hero.pngy = 3315
-                    speed = 0.04
-                else:
-                    hero.pngy = 3350
-                    speed = 0.07
+                hero.Can_riding()
             elif event.key == SDLK_a:
                 hero.A_check()
 
@@ -110,7 +104,7 @@ def Hero_working(mode):
             elif(hero.movey !=0 ):
                 hero.chy += hero.movey * 8
             draw()
-            delay(speed)
+            delay(hero.Speed)
         if(Maping[round].Minusx == 32 or Maping[round].Minusx == -32):
             Maping[round].Nowx += hero.movex * 32
             Maping[round].Minusx = 0

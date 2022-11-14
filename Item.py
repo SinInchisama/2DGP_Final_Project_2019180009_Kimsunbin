@@ -1,12 +1,5 @@
 import random
 
-class inventory:            # 플레이어 인벤토리
-    def __init__(self):
-        self.Ball = []
-        self.Heal = []
-        self.Skill_machine = []
-        self.Riding = False
-
 class item:                 # 아이템 기본 클래스
     def __init__(self,type,Sell):
         self.type = type
@@ -91,3 +84,10 @@ class skill_machine(item):
 
     def Use_daily(self):
         return self.Heal
+
+class inventory:            # 플레이어 인벤토리
+    def __init__(self):
+        self.Ball = {'Monster_Ball' : 0,'Super_Ball':0,'Hiper_Ball' : 0,'Master_Ball':0}
+        self.Heal = dict()
+        self.Skill_machine = dict()
+        self.Riding = False
