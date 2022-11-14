@@ -56,6 +56,29 @@ class heal(item):                       # 피 채워지는 애니메이션을 �
     def Use_daily(self):
         return self.Heal
 
+class Potion(heal):                   # 상처약
+    def __init__(self):
+        heal.__init__('heal',20,50)
+
+class Super_Potion(heal):
+    def __init__(self):
+        heal.__init__('heal',60,150) # 좋은 상처약
+
+class Hyper_Potion(heal):
+    def __init__(self):
+        heal.__init__('heal',120,500) # 고급 상처약
+
+
+class  Full_Heal(item):
+    def __init__(self):
+        item.__init__('heal',200)
+    def Use_battle(self,Poke):
+        if(Poke.ailment != None):
+            Poke.ailment = None
+
+    def Use_daily(self,Poke):
+        if(Poke.ailment != None):
+            Poke.ailment = None
 
 class skill_machine(item):
     def __init__(self,type,Skill_Num,Sell):
