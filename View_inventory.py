@@ -1,13 +1,16 @@
 from pico2d import *
 import game_framework
 import play_state
+import Choose_Poketmon
 
 Cursory = None
 Cursoyx = None
 Minusx,Minusy = 0,0
+Cursor_image = None
 
 def enter():
-    global Cursoyx,Cursory
+    global Cursoyx,Cursory,Cursor_image
+    Cursor_image = load_image('./resource/image/Cursor.png')
     Cursoyx, Cursory = 0,0
     pass
 
@@ -24,12 +27,18 @@ def handle_events():
                     Cursoyx = 3
             elif event.key == SDLK_RIGHT:
                 Cursoyx = (Cursoyx + 1) %4
-            elif event.key == SDLK_LEFT:
+            elif event.key == SDLK_UP:
+                Cursory -= 1
+                if(Cursory == -1):
+                    Cursory = 3
                 pass
-            elif event.key == SDLK_RIGHT:
+            elif event.key == SDLK_DOWN:
+                Cursory = (Cursory+1)%4
                 pass
             elif event.key == SDLK_a:
-                print(play_state.hero.inventory.x,play_state.hero.inventory.y)
+                if(Cursoyx == 0):
+                    game_framework.change_state(Choose_Poketmon)
+                pass
     pass
 
 def update():
@@ -38,6 +47,7 @@ def update():
 def draw():
     clear_canvas()
     play_state.hero.inventory.Draw(Cursoyx)
+    Cursor_image.clip_draw(0,0,32,32,170,500 - (Cursory*70),16,16)
     delay(0.02)
     update_canvas()
     pass
@@ -49,4 +59,5 @@ def pause():
     pass
 
 def exit():
+    play_state.hero.inventory.Use_type = ''
     pass

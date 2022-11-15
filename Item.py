@@ -101,8 +101,8 @@ class inventory:            # 플레이어 인벤토리
         self.Skill_machine = dict()
         self.Riding = False                 # 라이딩에 사용할 함수.
         self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
-        self.x = 0
-        self.y = 0
+        self.Nowtype = 0
+        self.Nowitem = 0
         if(inventory.image == None):
             inventory.image = load_image('./resource/image/inventory.png')
 
