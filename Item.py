@@ -1,4 +1,5 @@
 import random
+from pico2d import *
 
 class item:                 # 아이템 기본 클래스
     def __init__(self,type,Sell):
@@ -86,8 +87,26 @@ class skill_machine(item):
         return self.Heal
 
 class inventory:            # 플레이어 인벤토리
+    image = None
     def __init__(self):
         self.Ball = {'Monster_Ball' : 0,'Super_Ball':0,'Hiper_Ball' : 0,'Master_Ball':0}
         self.Heal = dict()
         self.Skill_machine = dict()
         self.Riding = False
+        self.Use_type = ''
+        if(inventory.image == None):
+            inventory.image = load_image('./resource/image/inventory.png')
+
+    def Draw(self,type):
+        inventory.image.clip_draw(176,653,160,144,320,288,640,576)
+        if(type == 0):
+            pass
+        elif(type == 1):
+            pass
+        elif (type == 2):
+            pass
+        elif(type == 3):
+            pass
+
+
+

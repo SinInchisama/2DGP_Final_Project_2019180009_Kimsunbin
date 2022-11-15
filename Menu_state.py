@@ -3,6 +3,7 @@ import game_framework
 import play_state
 import Choose_Poketmon
 import View_PokeDex_state
+import View_inventory
 
 Menu_image = None
 Cursor_image = None
@@ -38,6 +39,7 @@ def handle_events():
                     game_framework.push_state(Choose_Poketmon)
                     pass
                 elif CusorY == 2:
+                    game_framework.push_state(View_inventory)
                     pass
                 elif CusorY == 3:
                     game_framework.pop_state()
