@@ -92,20 +92,30 @@ class inventory:            # 플레이어 인벤토리
         self.Ball = {'Monster_Ball' : 0,'Super_Ball':0,'Hiper_Ball' : 0,'Master_Ball':0}
         self.Heal = dict()
         self.Skill_machine = dict()
-        self.Riding = False
-        self.Use_type = ''
+        self.Riding = False                 # 라이딩에 사용할 함수.
+        self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
+        self.x = 0
+        self.y = 0
         if(inventory.image == None):
             inventory.image = load_image('./resource/image/inventory.png')
 
     def Draw(self,type):
         inventory.image.clip_draw(176,653,160,144,320,288,640,576)
         if(type == 0):
+            inventory.image.clip_draw(344, 773, 40, 24, 80, 428, 160, 96)
+            inventory.image.clip_draw(344, 773, 40, 24, 80, 300, 160, 96)
             pass
         elif(type == 1):
+            inventory.image.clip_draw(344, 747, 40, 24, 80, 428, 160, 96)
+            inventory.image.clip_draw(344, 747, 40, 24, 80, 300, 160, 96)
             pass
         elif (type == 2):
+            inventory.image.clip_draw(344, 721, 40, 24, 80, 428, 160, 96)
+            inventory.image.clip_draw(344, 721, 40, 24, 80, 300, 160, 96)
             pass
         elif(type == 3):
+            inventory.image.clip_draw(344, 695, 40, 24, 80, 428, 160, 96)
+            inventory.image.clip_draw(344, 695, 40, 24, 80, 300, 160, 96)
             pass
 
 
