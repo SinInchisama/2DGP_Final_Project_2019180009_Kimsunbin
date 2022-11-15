@@ -11,6 +11,7 @@ import Evolution_state
 import Font
 from Map import Maping
 import Sub_Draw
+import View_inventory
 import Throw_Ball
 
 Battle_type = None
@@ -114,9 +115,12 @@ def handle_events():
                         Push_type = 'Battle_Choose'
                         select_M = 0
                     elif(select_M == 2):
-                        if(Battle_type == 'Wild'):
-                            game_framework.push_state(Throw_Ball)
-                            Push_type = 'Throw_Ball'
+
+                        play_state.hero.inventory.Use_type = 'Use_battle'
+                        Push_type = 'View_inventory'
+                        game_framework.push_state(View_inventory)
+                            # game_framework.push_state(Throw_Ball)
+                            # Push_type = 'Throw_Ball'
                     elif(select_M == 3):
                         game_framework.pop_state()
                     pass
@@ -322,6 +326,8 @@ def resume():
             game_framework.pop_state()
         else:
             Push_type = None
+    elif(Push_type == 'View_inventory'):
+        Push_type = None
 
 
 def pause():

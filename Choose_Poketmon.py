@@ -4,6 +4,8 @@ import Status_state
 import play_state
 import Poketmon
 import Font
+import wild_Battle
+import Battle
 
 Choose_image = None
 Cursor_image = None
@@ -43,6 +45,9 @@ def handle_events():
                                                             play_state.hero.inventory.Heal[play_state.hero.inventory.Nowitem][0].Use_daily())
                         if(play_state.hero.pList[CusorY].Hp > play_state.hero.pList[CusorY].MaxHp):
                             play_state.hero.pList[CusorY].Hp = play_state.hero.pList[CusorY].MaxHp
+                        if(play_state.hero.inventory.Use_type == 'Use_battle'):
+                            wild_Battle.Attacker, wild_Battle.Defenser = wild_Battle.Enermy_Poketmon, play_state.hero.pList[Battle.Poket_Order]
+                            wild_Battle.Order_Que1, wild_Battle.Order_Que2, wild_Battle.round = [None], [None], 0
                         game_framework.pop_state()
                     else:
                         game_framework.push_state(Status_state)
@@ -86,6 +91,7 @@ def update():
 
 def exit():
     play_state.hero.inventory.Nowitem = -1
+    play_state.hero.inventory.Use_type = ''
     pass
 
 def pause():

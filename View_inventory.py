@@ -6,7 +6,7 @@ import Choose_Poketmon
 Cursory = None
 Cursoyx = None
 Minusx,Minusy = 0,0
-Cursor_image = None
+Cursor_image,Escape = None,None
 
 def enter():
     global Cursoyx,Cursory,Cursor_image
@@ -15,12 +15,13 @@ def enter():
     pass
 
 def handle_events():
-    global Cursory,Cursoyx
+    global Cursory,Cursoyx,Escape
     events = get_events()
     for event in events:
         if event.type == SDL_KEYDOWN:
             if event.key ==SDLK_ESCAPE:
                 game_framework.pop_state()
+                Escape = 'Escape'
             elif event.key == SDLK_LEFT:
                 Cursoyx -=1
                 if(Cursoyx == -1):
@@ -62,5 +63,6 @@ def pause():
     pass
 
 def exit():
-    play_state.hero.inventory.Use_type = ''
+    if(Escape != None):
+        play_state.hero.inventory.Use_type = ''
     pass
