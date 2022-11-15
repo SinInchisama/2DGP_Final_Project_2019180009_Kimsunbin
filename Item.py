@@ -91,6 +91,7 @@ class skill_machine(item):
         pass
 
     def Use_daily(self):
+        print(self.Heal)
         return self.Heal
 
 class inventory:            # 플레이어 인벤토리
@@ -101,8 +102,8 @@ class inventory:            # 플레이어 인벤토리
         self.Skill_machine = dict()
         self.Riding = False                 # 라이딩에 사용할 함수.
         self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
-        self.Nowtype = None
-        self.Nowitem = None
+        self.Nowtype = -1
+        self.Nowitem = -1
         if(inventory.image == None):
             inventory.image = load_image('./resource/image/inventory.png')
 

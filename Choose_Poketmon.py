@@ -38,7 +38,14 @@ def handle_events():
                     CusorY-= 1
             elif event.key == SDLK_a:
                 if (CusorY != 6):
-                    game_framework.push_state(Status_state)
+                    if(play_state.hero.inventory.Nowitem != -1):
+                        play_state.hero.pList[CusorY].Hp = (play_state.hero.pList[CusorY].Hp +
+                                                            play_state.hero.inventory.Heal[play_state.hero.inventory.Nowitem][0].Use_daily())
+                        if(play_state.hero.pList[CusorY].Hp > play_state.hero.pList[CusorY].MaxHp):
+                            play_state.hero.pList[CusorY].Hp = play_state.hero.pList[CusorY].MaxHp
+                        game_framework.pop_state()
+                    else:
+                        game_framework.push_state(Status_state)
                     # frame = 645       # 포켓몬 선택하고 무슨 행동할지 선택하는 창
                 elif(CusorY == 6):
                     game_framework.pop_state()
@@ -78,6 +85,7 @@ def update():
     pass
 
 def exit():
+    play_state.hero.inventory.Nowitem = -1
     pass
 
 def pause():
