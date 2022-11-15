@@ -37,7 +37,10 @@ def handle_events():
                 pass
             elif event.key == SDLK_a:
                 if(Cursoyx == 0):
-                    game_framework.change_state(Choose_Poketmon)
+                    if(play_state.hero.inventory.Heal[Cursory][1] != 0):
+                        play_state.hero.inventory.Nowtype = 0
+                        play_state.hero.inventory.Nowitem = Cursory
+                        game_framework.change_state(Choose_Poketmon)
                 pass
     pass
 

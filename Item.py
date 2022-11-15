@@ -97,12 +97,12 @@ class inventory:            # 플레이어 인벤토리
     image = None
     def __init__(self):
         self.Ball = [[Monster_Ball(),90],[Super_Ball(),0],[Hiper_Ball(),0],[Master_Ball(),0]]
-        self.Heal = [[Potion(),0],[Super_Potion(),0],[Hyper_Potion(),0],[Full_Heal(),0]]
+        self.Heal = [[Potion(),1],[Super_Potion(),0],[Hyper_Potion(),0],[Full_Heal(),0]]
         self.Skill_machine = dict()
         self.Riding = False                 # 라이딩에 사용할 함수.
         self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
-        self.Nowtype = 0
-        self.Nowitem = 0
+        self.Nowtype = None
+        self.Nowitem = None
         if(inventory.image == None):
             inventory.image = load_image('./resource/image/inventory.png')
 
