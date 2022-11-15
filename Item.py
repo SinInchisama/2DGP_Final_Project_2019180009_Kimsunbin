@@ -1,6 +1,6 @@
 import random
 from pico2d import *
-
+import Font
 class item:                 # 아이템 기본 클래스
     def __init__(self,type,Sell):
         self.type = type
@@ -9,8 +9,8 @@ class item:                 # 아이템 기본 클래스
 
 
 class ball(item):           # 몬스터볼 기본 클래스
-    def __init__(self,type,daccur,Sell):
-        item.__init__(type,Sell)
+    def __init__(self,type,Sell,daccur):
+        item.__init__(self,type,Sell)
         self.daccur = daccur
 
     def Use_battle(self):
@@ -24,19 +24,23 @@ class ball(item):           # 몬스터볼 기본 클래스
 
 class Monster_Ball(ball):               # 몬스터볼
     def __init__(self):
-        ball.__init__('Ball',50,100)
+        ball.__init__(self,'Ball',100,50)
+        self.name = 'MonsterBall'
 
 class Super_Ball(ball):                 # 슈퍼볼
     def __init__(self):
-        ball.__init__('Ball',70,200)
+        ball.__init__(self,'Ball',200,70)
+        self.name = 'SuperBall'
 
 class Hiper_Ball(ball):                 # 하이퍼볼
     def __init__(self):
-        ball.__init__('Ball',80,300)
+        ball.__init__(self,'Ball',300,80)
+        self.name = 'HiperBall'
 
 class Master_Ball(ball):  # 마스터볼
     def __init__(self):
-        ball.__init__('Ball', 100, 10000)
+        ball.__init__(self,'Ball', 10000, 100)
+        self.name = 'MasterBall'
 
                                         # 회복약
 class heal(item):                       # 피 채워지는 애니메이션을 위해 Heal 리턴하고 애니메이션 출력예정.
@@ -89,7 +93,7 @@ class skill_machine(item):
 class inventory:            # 플레이어 인벤토리
     image = None
     def __init__(self):
-        self.Ball = {'Monster_Ball' : 0,'Super_Ball':0,'Hiper_Ball' : 0,'Master_Ball':0}
+        self.Ball = [[Monster_Ball(),90],[Super_Ball(),0],[Hiper_Ball(),0],[Master_Ball(),0]]
         self.Heal = dict()
         self.Skill_machine = dict()
         self.Riding = False                 # 라이딩에 사용할 함수.
@@ -103,19 +107,26 @@ class inventory:            # 플레이어 인벤토리
         inventory.image.clip_draw(176,653,160,144,320,288,640,576)
         if(type == 0):
             inventory.image.clip_draw(344, 773, 40, 24, 80, 428, 160, 96)
-            inventory.image.clip_draw(344, 773, 40, 24, 80, 300, 160, 96)
+            inventory.image.clip_draw(344, 663, 40, 24, 80, 300, 160, 96)
             pass
         elif(type == 1):
             inventory.image.clip_draw(344, 747, 40, 24, 80, 428, 160, 96)
-            inventory.image.clip_draw(344, 747, 40, 24, 80, 300, 160, 96)
+            inventory.image.clip_draw(344, 637, 40, 24, 80, 300, 160, 96)
+
+            y = 0
+            for i in self.Ball:
+                Font.Draw_Al(i[0].name,200,500 - (y*70),24,24)
+                Font.Draw_Al('X', 550, 480 - (y * 70), 24, 24)
+                Font.Draw_Num(i[1], 610, 480 - (y * 70), 24, 24)
+                y+= 1
             pass
         elif (type == 2):
             inventory.image.clip_draw(344, 721, 40, 24, 80, 428, 160, 96)
-            inventory.image.clip_draw(344, 721, 40, 24, 80, 300, 160, 96)
+            inventory.image.clip_draw(344, 611, 40, 24, 80, 300, 160, 96)
             pass
         elif(type == 3):
             inventory.image.clip_draw(344, 695, 40, 24, 80, 428, 160, 96)
-            inventory.image.clip_draw(344, 695, 40, 24, 80, 300, 160, 96)
+            inventory.image.clip_draw(344, 585, 40, 24, 80, 300, 160, 96)
             pass
 
 

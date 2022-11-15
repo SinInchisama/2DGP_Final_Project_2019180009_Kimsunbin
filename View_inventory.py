@@ -12,18 +12,18 @@ def enter():
     pass
 
 def handle_events():
-    global Cursory,Cursorx
+    global Cursory,Cursoyx
     events = get_events()
     for event in events:
         if event.type == SDL_KEYDOWN:
             if event.key ==SDLK_ESCAPE:
                 game_framework.pop_state()
             elif event.key == SDLK_LEFT:
-                Cursorx -=1
-                if(Cursorx == -1):
-                    Cursorx = 3
+                Cursoyx -=1
+                if(Cursoyx == -1):
+                    Cursoyx = 3
             elif event.key == SDLK_RIGHT:
-                Cursorx = (Cursorx + 1) %4
+                Cursoyx = (Cursoyx + 1) %4
             elif event.key == SDLK_LEFT:
                 pass
             elif event.key == SDLK_RIGHT:
@@ -37,7 +37,7 @@ def update():
 
 def draw():
     clear_canvas()
-    play_state.hero.inventory.Draw(Cursory)
+    play_state.hero.inventory.Draw(Cursoyx)
     delay(0.02)
     update_canvas()
     pass
