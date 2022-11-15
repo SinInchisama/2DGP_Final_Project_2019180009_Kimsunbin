@@ -7,6 +7,8 @@ def Draw_Num(Num,x,y,sizex,sizey):
         play_state.Font_image.clip_draw(221 + result * 9, 392, 8, 8, x - (Acount * sizex), y, sizex, sizey)
         Acount += 1
         div *= 10
+    if(div == 1):
+        play_state.Font_image.clip_draw(221, 392, 8, 8, x - (Acount * sizex), y, sizex, sizey)
 
 def Draw_Al(Sentence,x,y,sizex,sizey):
     Acount = 0
