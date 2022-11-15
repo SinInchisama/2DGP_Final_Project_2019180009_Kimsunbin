@@ -2,6 +2,7 @@ from pico2d import *
 import game_framework
 import play_state
 import Choose_Poketmon
+import Throw_Ball
 
 Cursory = None
 Cursoyx = None
@@ -42,6 +43,10 @@ def handle_events():
                         play_state.hero.inventory.Nowtype = 0
                         play_state.hero.inventory.Nowitem = Cursory
                         game_framework.change_state(Choose_Poketmon)
+                if (Cursoyx == 1):
+                    if(play_state.hero.inventory.Use_type == 'Use_Battle'):
+                        play_state.hero.inventory.Nowitem = Cursory
+                        game_framework.change_state(Throw_Ball)
                 pass
     pass
 
