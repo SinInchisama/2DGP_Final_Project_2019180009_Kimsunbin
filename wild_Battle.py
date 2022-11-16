@@ -148,7 +148,6 @@ def update():
                     if (Attacker_type == 'Use'):
                         Attacker.Use_Skill(Defenser, Enermy_Poketmon.Use)
                 else:
-                    print('select_M ='+str(select_M))
                     Attacker_type = Attacker.Check_Use(select_M)
                     if (Attacker_type == 'Use'):
                         Attacker.Use_Skill(Defenser, select_M)
@@ -164,7 +163,6 @@ def update():
 
         elif (round > 13):
             if (Attacker != Enermy_Poketmon):  # 내 포켓몬이 공격했으면 select_M을 초기화
-                print(select_M)
                 select_M = 0
             Attacker = Order_Que1.pop(0)
             Defenser = Order_Que2.pop(0)
@@ -199,7 +197,7 @@ def update():
             else:
                 game_framework.pop_state()
             My_Down = False
-        Attacker_type == ' '
+
     pass
 
 
@@ -325,9 +323,10 @@ def resume():
         else:
             My_Down = False
             Push_type = None
+        Attacker_type = ' '
+        round = 0
 
     elif(Push_type == 'Throw_Ball'):
-        print(Now_Pcount)
         if(Now_Pcount!=play_state.hero.Pcount):
             game_framework.pop_state()
         else:
