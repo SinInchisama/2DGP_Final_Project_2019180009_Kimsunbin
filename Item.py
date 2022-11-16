@@ -9,9 +9,12 @@ class item:                 # 아이템 기본 클래스
 
 
 class ball(item):           # 몬스터볼 기본 클래스
+    image = None
     def __init__(self,type,Sell,daccur):
         item.__init__(self,type,Sell)
         self.daccur = daccur
+        if ball.image == None:
+            ball.image = load_image('./resource/image/Ball.png')
 
     def Use_battle(self):
         if(random.randint(0,100)<self.daccur):
@@ -97,10 +100,10 @@ class skill_machine(item):
 class inventory:            # 플레이어 인벤토리
     image = None
     def __init__(self):
-        self.Ball = [[Monster_Ball(),90],[Super_Ball(),0],[Hiper_Ball(),0],[Master_Ball(),0]]
+        self.Ball = [[Monster_Ball(),90],[Super_Ball(),0],[Hiper_Ball(),0],[Master_Ball(),1]]
         self.Heal = [[Potion(),1],[Super_Potion(),0],[Hyper_Potion(),0],[Full_Heal(),0]]
         self.Skill_machine = dict()
-        self.Riding = False                 # 라이딩에 사용할 함수.
+        self.Riding = True                 # 라이딩에 사용할 함수.
         self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
         self.Nowtype = -1
         self.Nowitem = -1
