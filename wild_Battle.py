@@ -314,6 +314,7 @@ def resume():
                 game_framework.push_state(Evolution_state)
             else:
                 game_framework.pop_state()
+            play_state.hero.Gold += 100
         Enermy_Down = False
     elif(Push_type == 'Battle_Choose'):
         if(play_state.hero.pList[Battle.Poket_Order].Hp <= 0):

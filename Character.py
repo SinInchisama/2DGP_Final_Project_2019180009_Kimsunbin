@@ -28,7 +28,8 @@ class Hero(character):
         self.Movecheck = False
         self.dircet = 0
         self.inventory = Item.inventory()
-        self.Speed = 0.07
+        self.Speed = 0.05
+        self.Gold = 0
 
     def init_pList(self):
         self.Pcount = 1
@@ -43,12 +44,12 @@ class Hero(character):
 
     def Can_riding(self):
         if(self.inventory.Riding):
-            if(self.Speed == 0.07):
+            if(self.Speed == 0.05):
                 self.pngy = 3315
-                self.speed = 0.001
+                self.Speed = 0.03
             else:
                 self.pngy = 3350
-                self.speed = 0.07
+                self.Speed = 0.05
 
 
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정

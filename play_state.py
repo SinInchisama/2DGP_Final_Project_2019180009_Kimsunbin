@@ -106,6 +106,7 @@ def Hero_working(mode):
             elif(hero.movey !=0 ):
                 hero.chy += hero.movey * 8
             draw()
+            print(hero.Speed)
             delay(hero.Speed)
         if(Maping[round].Minusx == 32 or Maping[round].Minusx == -32):
             Maping[round].Nowx += hero.movex * 32

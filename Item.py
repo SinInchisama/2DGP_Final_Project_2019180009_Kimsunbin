@@ -111,8 +111,9 @@ class inventory:            # 플레이어 인벤토리
             inventory.image = load_image('./resource/image/inventory.png')
 
     def Draw(self,type):
+        from play_state import hero
         inventory.image.clip_draw(176,653,160,144,320,288,640,576)
-
+        Font.Draw_Num(hero.Gold,620,554,16,16)
 
         if(type == 0):              # 포션
             inventory.image.clip_draw(344, 773, 40, 24, 80, 428, 160, 96)
