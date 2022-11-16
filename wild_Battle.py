@@ -115,7 +115,6 @@ def handle_events():
                         Push_type = 'Battle_Choose'
                         select_M = 0
                     elif(select_M == 2):
-
                         play_state.hero.inventory.Use_type = 'Use_battle'
                         Push_type = 'View_inventory'
                         game_framework.push_state(View_inventory)
@@ -142,6 +141,7 @@ def update():
         if(round == 0):
             if(Attacker_type == ' '):
                 gap = Defenser.Hp
+                print(gap)
                 if(Attacker == Enermy_Poketmon):
                     Enermy_Poketmon.What_Use_Skill()
                     Attacker_type = Attacker.Check_Use(Enermy_Poketmon.Use)
@@ -305,6 +305,7 @@ def resume():
             Enermy_Poketmon.init_Change_ability()
             DrawFrame = 29
             play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
+            Attacker_type == ' '
         else:
             if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <=
                     play_state.hero.pList[Battle.Poket_Order].level):
@@ -322,6 +323,7 @@ def resume():
             Push_type = None
 
     elif(Push_type == 'Throw_Ball'):
+        print(Now_Pcount)
         if(Now_Pcount!=play_state.hero.Pcount):
             game_framework.pop_state()
         else:

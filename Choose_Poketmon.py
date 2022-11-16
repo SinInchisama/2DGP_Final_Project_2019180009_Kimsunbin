@@ -48,6 +48,7 @@ def handle_events():
                         if(play_state.hero.inventory.Use_type == 'Use_battle'):
                             wild_Battle.Attacker, wild_Battle.Defenser = wild_Battle.Enermy_Poketmon, play_state.hero.pList[Battle.Poket_Order]
                             wild_Battle.Order_Que1, wild_Battle.Order_Que2, wild_Battle.round = [None], [None], 0
+                        play_state.hero.inventory.Heal[play_state.hero.inventory.Nowitem][1] -= 1
                         game_framework.pop_state()
                     else:
                         game_framework.push_state(Status_state)

@@ -24,7 +24,7 @@ def update():
             frame = 0
     else:
         if(frame == 9):
-            if(random.randint(0,100) <100):
+            if(play_state.hero.inventory.Ball[play_state.hero.inventory.Nowitem][0].Use_battle()):
                 CatchCount += 1
                 frame = 1
                 if(CatchCount == 4):
@@ -63,7 +63,7 @@ def draw():
 
     if (CatchCount == 0):
         wild_Battle.Enermy_Poketmon.Front_Draw(500, 450, 56, 56, 224, 224)
-        Ball.clip_draw(0, 0, 16, 16, 240 + frame * 3, 300 + frame * 1, 32, 32)
+        play_state.hero.inventory.Ball[play_state.hero.inventory.Nowitem][0].image.clip_draw(0, 0, 16, 16, 240 + frame * 3, 300 + frame * 1, 32, 32)
         delay(0.005)
         pass
     else:
@@ -104,10 +104,14 @@ def exit():
     if(CatchCount == 4):
         play_state.hero.pList.append(Poketmon.Change_to_Wild_from_TR(wild_Battle.Enermy_Poketmon))
         play_state.hero.Pcount += 1
+        print( play_state.hero.Pcount)
         if( play_state.Pokedex.list[play_state.hero.pList[play_state.hero.Pcount - 1].Num] != 2):
             play_state.Pokedex.list[play_state.hero.pList[play_state.hero.Pcount - 1].Num] = 2
             play_state.Pokedex.Catch += 1
     else:
         wild_Battle.Attacker, wild_Battle.Defenser = wild_Battle.Enermy_Poketmon, play_state.hero.pList[Battle.Poket_Order]
         wild_Battle.Order_Que1, wild_Battle.Order_Que2, wild_Battle.round = [None], [None], 0
+
+    play_state.hero.inventory.Use_type = ''
+    play_state.hero.inventory.Nowitem = -1
     pass
