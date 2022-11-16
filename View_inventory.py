@@ -45,8 +45,8 @@ def handle_events():
                         play_state.hero.inventory.Nowitem = Cursory
                         game_framework.change_state(Choose_Poketmon)
                 if (Cursoyx == 1):
-                    if(play_state.hero.inventory.Use_type == 'Use_battle'):
-                        if (play_state.hero.inventory.Heal[Cursory][1] != 0):
+                    if(play_state.hero.inventory.Use_type == 'Use_battle' and wild_Battle.Battle_type == 'Wild'):
+                        if (play_state.hero.inventory.Ball[Cursory][1] != 0):
                             play_state.hero.inventory.Nowitem = Cursory
                             play_state.hero.inventory.Ball[play_state.hero.inventory.Nowitem][1] -= 1
                             game_framework.change_state(Throw_Ball)

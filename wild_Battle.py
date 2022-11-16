@@ -141,13 +141,14 @@ def update():
         if(round == 0):
             if(Attacker_type == ' '):
                 gap = Defenser.Hp
-                print(gap)
+                print('my Hp' + str(gap))
                 if(Attacker == Enermy_Poketmon):
                     Enermy_Poketmon.What_Use_Skill()
                     Attacker_type = Attacker.Check_Use(Enermy_Poketmon.Use)
                     if (Attacker_type == 'Use'):
                         Attacker.Use_Skill(Defenser, Enermy_Poketmon.Use)
                 else:
+                    print('select_M ='+str(select_M))
                     Attacker_type = Attacker.Check_Use(select_M)
                     if (Attacker_type == 'Use'):
                         Attacker.Use_Skill(Defenser, select_M)
@@ -156,13 +157,15 @@ def update():
                 gap = Hp
         elif (Defenser.Hp != gap and round > 13):
             Defenser.Hp -= 1
-            select_M = 0
 
             if (Defenser.Hp <= 0):
                 Enermy_Down, My_Down=Battle.Death_Check(Defenser)
                 Attacker,Defenser,Order_Que1,Order_Que2 = None,None,[],[]
 
         elif (round > 13):
+            if (Attacker != Enermy_Poketmon):  # 내 포켓몬이 공격했으면 select_M을 초기화
+                print(select_M)
+                select_M = 0
             Attacker = Order_Que1.pop(0)
             Defenser = Order_Que2.pop(0)
             Attacker_type = ' '
@@ -171,7 +174,6 @@ def update():
                     gap = Defenser.Hp
                     Attacker_type = Attacker.ailment
             round = -1
-            select_M = 0
         round += 1
 
     DrawFrame +=1
@@ -197,6 +199,7 @@ def update():
             else:
                 game_framework.pop_state()
             My_Down = False
+        Attacker_type == ' '
     pass
 
 
@@ -288,7 +291,7 @@ def draw_world():
 
 
 def resume():
-    global Push_type,Enermy_Poketmon,Pcount,DrawFrame,Enermy_Down,My_Down
+    global Push_type,Enermy_Poketmon,Pcount,DrawFrame,Enermy_Down,My_Down,round,Attacker_type
 
     # if(Battle_type == 'Wild' or Pcount + 1 >=len(Maping[play_state.round].Npc[Ncount].Poket)):
     #     elif (Push_type == 'Battle_Choose' and play_state.hero.pList[Battle.Poket_Order].Hp <= 0):
@@ -305,7 +308,8 @@ def resume():
             Enermy_Poketmon.init_Change_ability()
             DrawFrame = 29
             play_state.Pokedex.PokeDex_View_check(Enermy_Poketmon.Num)
-            Attacker_type == ' '
+            Attacker_type = ' '
+            round = 0
         else:
             if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <=
                     play_state.hero.pList[Battle.Poket_Order].level):

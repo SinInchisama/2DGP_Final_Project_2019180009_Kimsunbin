@@ -45,7 +45,7 @@ class Hero(character):
         if(self.inventory.Riding):
             if(self.Speed == 0.07):
                 self.pngy = 3315
-                self.speed = 0.04
+                self.speed = 0.001
             else:
                 self.pngy = 3350
                 self.speed = 0.07

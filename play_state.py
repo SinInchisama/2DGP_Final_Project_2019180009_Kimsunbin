@@ -70,7 +70,9 @@ def handle_events():
 
             elif event.key == SDLK_c:
                 game_framework.push_state(Menu_state)
-
+            elif event.key == SDLK_h:
+                for i in hero.pList:
+                    i.Hp = i.MaxHp
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면
                 hero.movex = 0
