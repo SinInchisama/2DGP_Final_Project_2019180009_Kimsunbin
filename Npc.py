@@ -12,6 +12,10 @@ class Battle_Npc(Npc):
         self.Pcount = Pcount
         self.Poket = []
 
+class Salesman(Npc):
+    def _init__(self,pngx,pngy,height,weight,mapx,mapy):
+        Npc._init__(self,pngx,pngy,height,weight,mapx,mapy)
+
 class Healer(Npc):
     def _init__(self,pngx,pngy,height,weight,mapx,mapy):
         Npc._init__(self,pngx,pngy,height,weight,mapx,mapy)
@@ -55,7 +59,7 @@ Maping[13].Npccount = 1
 Maping[13].Npc = [Healer(18, 2908, 32, 32, 80, 464) for i in range(0, 1)]  #간호순
 
 Maping[14].Npccount = 1
-Maping[14].Npc = [Npc(290, 2839, 32, 32, 80, 304) for i in range(0, 1)]  #마트 판매원
+Maping[14].Npc = [Salesman(290, 2839, 32, 32, 144, 304) for i in range(0, 1)]  #마트 판매원
 
 Maping[20].Npccount = 1
 Maping[20].Npc = [Npc(18, 2908, 32, 32, 272, 368) for i in range(0, 1)]  #마트판매원
