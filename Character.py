@@ -7,6 +7,7 @@ import wild_Battle
 import game_framework
 import Heal_state
 import Item
+import View_Shop
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -29,7 +30,8 @@ class Hero(character):
         self.dircet = 0
         self.inventory = Item.inventory()
         self.Speed = 0.05
-        self.Gold = 0
+        self.Gold = 500
+        self.invin = False
 
     def init_pList(self):
         self.Pcount = 1
@@ -110,6 +112,10 @@ class Hero(character):
                     if self.direct == 1:  # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 64):
                             game_framework.push_state(Heal_state)
+                elif type(Npc).__name__ == 'Salesman':
+                    if self.direct == 2:
+                        if (Npc.mapx == self.mapx - 64 and Npc.mapy == self.mapy):
+                            game_framework.push_state(View_Shop)
         if(169 <= Map.Maping[play_state.round].array[self.mapy//32 + 3][self.mapx//32 + 1] <= 170):
             game_framework.push_state(Heal_state)
 

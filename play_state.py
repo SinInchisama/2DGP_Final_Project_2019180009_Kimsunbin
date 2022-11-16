@@ -11,6 +11,7 @@ import wild_Battle
 import Skill_Data
 import PokeDex
 
+
 round,mode,running,Map_change =0,0,None,None
 Font_image,Font_Color,HPbar_image,Hp_image,Board,Pokedex = None,None,None,None,None,None
 hero = None
@@ -70,6 +71,7 @@ def handle_events():
 
             elif event.key == SDLK_c:
                 game_framework.push_state(Menu_state)
+
             elif event.key == SDLK_h:
                 for i in hero.pList:
                     i.Hp = i.MaxHp
@@ -115,12 +117,13 @@ def Hero_working(mode):
             Maping[round].Nowy += hero.movey * 32
             Maping[round].Minusy = 0
     if(mode == 3):
-        if(random.randint(0,100)<20):
-            wild_Battle.Battle_type = 'Wild'
-            game_framework.push_state(wild_Battle)
-            hero.movey = 0
-            hero.movex = 0
-            hero.Movecheck = False
+        if(hero.invin):
+            if(random.randint(0,100)<20):
+                wild_Battle.Battle_type = 'Wild'
+                game_framework.push_state(wild_Battle)
+                hero.movey = 0
+                hero.movex = 0
+                hero.Movecheck = False
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 
