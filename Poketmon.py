@@ -113,7 +113,7 @@ class Poketmon:
         return sum
     def init_Change_ability(self):                  # 전투시 능력치 변화 생성 함수
         self.ChangePa,self.ChangeSa,self.ChangePd,self.ChangeSd,self.ChangeSp = 0,0,0,0,0
-        print('init_change')
+        self.MinusY = 0
 
     def del_Change_ability(self):                   # 전투 종료 또는 교체시 발동되는 능력치 변화 제거 함수
         del(self.ChangePa)
