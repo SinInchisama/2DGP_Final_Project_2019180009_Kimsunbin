@@ -37,6 +37,7 @@ def handle_events():
                     pass
                 elif CusorY == 1:
                     game_framework.push_state(Choose_Poketmon)
+                    play_state.hero.type = 'Daily'
                     pass
                 elif CusorY == 2:
                     play_state.hero.inventory.Use_type = 'Use_daily'

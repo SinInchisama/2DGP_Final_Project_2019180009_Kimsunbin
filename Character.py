@@ -32,6 +32,7 @@ class Hero(character):
         self.Speed = 0.05
         self.Gold = 500
         self.invin = False
+        self.type = None
 
     def init_pList(self):
         self.Pcount = 1
