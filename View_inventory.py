@@ -66,7 +66,7 @@ def update():
 
 def draw():
     clear_canvas()
-    play_state.hero.inventory.Draw(Cursoyx)
+    play_state.hero.inventory.Draw(Cursoyx,Cursory)
     Cursor_image.clip_draw(0,0,32,32,170,500 - (Cursory*70),16,16)
     delay(0.02)
     update_canvas()

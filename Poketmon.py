@@ -32,6 +32,7 @@ class Poketmon:
         self.Skill_List = Skill_List
         self.ailment = None
         self.MinusY = 0
+        self.PP_list = []
 
     def Set_ability(self):
         self.MaxHp =  (Poket_Data[self.Num].Hp * 2 + 31 + 100) * self.level // 100 + 10# [ { (종족값a x 2) + 개체값b + 100 } x 레벨Lv/100 ] + 10

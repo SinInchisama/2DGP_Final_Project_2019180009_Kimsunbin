@@ -105,6 +105,8 @@ def Select_0():
     pass
 
 def Select_1():
+    for i in range(0,len(play_state.hero.pList[NowPc].Skill_List)):
+        Font.Draw_Num(play_state.hero.pList[NowPc].PP_list[i], 540, 210 - (65 * i), 25, 25)
     for i in range(0, len(play_state.hero.pList[NowPc].Skill_List)):  # 포켓몬 타입 출력
         Font.Draw_Al( Skill_Data.Attack[play_state.hero.pList[NowPc].Skill_List[i]].name, 180, 240 - (65 * i), 25, 25)
         Font.Draw_Num(Skill_Data.Attack[play_state.hero.pList[NowPc].Skill_List[i]].Maxpp, 620, 210 - (65 * i), 25, 25)

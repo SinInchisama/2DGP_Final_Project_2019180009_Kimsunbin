@@ -45,6 +45,7 @@ class Hero(character):
         self.pList[0].Set_ability()
         self.pList[0].Exp = 440
         self.pList[0].Skill_List = [8,1,2,3]
+        self.pList[0].PP_list = [25,35,25,25]
 
     def Can_riding(self):
         if(self.inventory.Riding):

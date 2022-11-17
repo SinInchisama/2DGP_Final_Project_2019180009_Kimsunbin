@@ -941,6 +941,14 @@ class Submission(P_Skill):       # 지옥의 바퀴
         P_Skill.__init__(self, 80, 80, 25, 'Fight')
         self.name = 'Submission'
 
+class Flamethrower(S_Skill):
+    def __init__(self):
+        S_Skill.__init__(self,90,100,15,'Fire')
+        self.name = Flamethrower
+
+    def Draw(self, check, My):
+        pass
+
 
 def init_skill():
     global Skill_Data
