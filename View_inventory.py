@@ -51,6 +51,13 @@ def handle_events():
                             play_state.hero.inventory.Ball[play_state.hero.inventory.Nowitem][1] -= 1
                             game_framework.change_state(Throw_Ball)
                             wild_Battle.Push_type = 'Throw_Ball'
+                if (Cursoyx == 2):
+                    if play_state.hero.inventory.Use_type != 'Use_battle':
+                        if play_state.hero.inventory.Spray[Cursory][1] != 0:
+                            play_state.hero.step += play_state.hero.inventory.Spray[Cursory][0].Use_daily()
+                            play_state.hero.inventory.Spray[Cursory][1] -= 1
+                            game_framework.pop_state()
+                    pass
                 pass
     pass
 

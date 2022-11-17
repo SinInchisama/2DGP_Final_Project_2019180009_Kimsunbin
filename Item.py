@@ -86,7 +86,7 @@ class  Full_Heal(item):
 
 class skill_machine(item):
     def __init__(self,type,Skill_Num,Sell):
-        item.__init__(type,Sell)
+        item.__init__(self,type,Sell)
         self.Skill_Num = Skill_Num
         self.Can_P = []
 
@@ -94,8 +94,26 @@ class skill_machine(item):
         pass
 
     def Use_daily(self):
-        print(self.Heal)
         return self.Heal
+
+class Spray(item):
+    def __init__(self,type,Sell,step,name):
+        item.__init__(self,type,Sell)
+        self.step = step
+        self.name = name
+    def Use_battle(self):
+        pass
+    def Use_daily(self):
+        return self.step
+
+class Repel(Spray):
+    def __init__(self):
+        Spray.__init__(self,'Spray',100,100,'Repel')
+
+class Super_Repel(Spray):
+    def __init__(self):
+        Spray.__init__(self,'Spray',150,200,'Super Repel')
+
 
 class inventory:            # 플레이어 인벤토리
     image = None
@@ -103,6 +121,7 @@ class inventory:            # 플레이어 인벤토리
         self.Ball = [[Monster_Ball(),90],[Super_Ball(),0],[Hiper_Ball(),0],[Master_Ball(),1]]
         self.Heal = [[Potion(),1],[Super_Potion(),0],[Hyper_Potion(),0],[Full_Heal(),0]]
         self.Skill_machine = dict()
+        self.Spray = [[Repel(),90],[Super_Repel(),0]]
         self.Riding = True                 # 라이딩에 사용할 함수.
         self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
         self.Nowtype = -1
@@ -141,8 +160,12 @@ class inventory:            # 플레이어 인벤토리
             inventory.image.clip_draw(344, 721, 40, 24, 80, 428, 160, 96)
             inventory.image.clip_draw(344, 611, 40, 24, 80, 300, 160, 96)
 
-            if(self.Riding):
-                Font.Draw_Al('Bicycle', 200, 500, 24, 24)
+            y = 0
+            for i in self.Spray:
+                Font.Draw_Al(i[0].name, 200, 500 - (y * 70), 24, 24)
+                Font.Draw_Al('X', 550, 480 - (y * 70), 24, 24)
+                Font.Draw_Num(i[1], 610, 480 - (y * 70), 24, 24)
+                y += 1
             pass
         elif(type == 3):
             inventory.image.clip_draw(344, 695, 40, 24, 80, 428, 160, 96)
