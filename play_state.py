@@ -108,7 +108,6 @@ def Hero_working(mode):
             elif(hero.movey !=0 ):
                 hero.chy += hero.movey * 8
             draw()
-            print(hero.Speed)
             delay(hero.Speed)
         if(Maping[round].Minusx == 32 or Maping[round].Minusx == -32):
             Maping[round].Nowx += hero.movex * 32
@@ -116,14 +115,15 @@ def Hero_working(mode):
         elif(Maping[round].Minusy == 32 or Maping[round].Minusy == -32):
             Maping[round].Nowy += hero.movey * 32
             Maping[round].Minusy = 0
-    if(mode == 3):
-        if(hero.invin):
-            if(random.randint(0,100)<20):
-                wild_Battle.Battle_type = 'Wild'
-                game_framework.push_state(wild_Battle)
-                hero.movey = 0
-                hero.movex = 0
-                hero.Movecheck = False
+        if(mode == 3):
+            if(not(hero.step)):
+                if(random.randint(0,100)<20):
+                    wild_Battle.Battle_type = 'Wild'
+                    game_framework.push_state(wild_Battle)
+                    hero.movey = 0
+                    hero.movex = 0
+                    hero.Movecheck = False
+
         # print(hero.mapx, hero.mapy, hero.chx, hero.chy,Maping[round].Nowx, Maping[round].Nowy,hero.movex, hero.movey,)
 
 

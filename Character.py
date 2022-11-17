@@ -33,6 +33,7 @@ class Hero(character):
         self.Gold = 500
         self.invin = False
         self.type = None
+        self.step = 0
 
     def init_pList(self):
         self.Pcount = 1
@@ -70,14 +71,20 @@ class Hero(character):
         # print(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1],self.mapy // 32 + 1,self.mapx // 32 + 1)
         check_num = map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]
         if(check_num  == 89 or check_num  == 45 or check_num  == 32):
+            if (self.step != 0):
+                self.step -= 1
             return 2
         elif (check_num==149):
+            if (self.step != 0):
+                self.step -= 1
             return 3
         elif(check_num <=144):
             self.mapx -= (self.movex * 32)
             self.mapy -= (self.movey * 32)
             return 0
         else:
+            if (self.step != 0):
+                self.step -= 1
             return 1
 
     def A_check(self):
