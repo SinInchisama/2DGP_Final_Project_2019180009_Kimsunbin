@@ -161,7 +161,7 @@ def update():
                 Enermy_Down, My_Down=Battle.Death_Check(Defenser)
                 Attacker,Defenser,Order_Que1,Order_Que2 = None,None,[],[]
 
-        elif (round > 13):
+        elif (round > 20):
             if (Attacker != Enermy_Poketmon):  # 내 포켓몬이 공격했으면 select_M을 초기화
                 select_M = 0
             Attacker = Order_Que1.pop(0)
