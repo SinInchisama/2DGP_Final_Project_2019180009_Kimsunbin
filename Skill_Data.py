@@ -210,7 +210,7 @@ class Quick_Attack(P_Skill):         # 전광석화
 
 class Flame_Wheel(P_Skill):          # 화염자동차
     def __init__(self):
-        P_Skill.__init__(self, 60, 10, 25, 'Fire')
+        P_Skill.__init__(self, 60, 90, 25, 'Fire')
         self.name = 'Flame Wheel'
     def Use(self,My,Enermy):
         My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1 / 4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1 / 4 * My.ChangePd) / 50 + 2) * My.Type_check(self.type))

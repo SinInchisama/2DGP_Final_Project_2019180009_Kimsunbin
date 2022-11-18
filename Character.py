@@ -29,11 +29,10 @@ class Hero(character):
         self.Movecheck = False
         self.dircet = 0
         self.inventory = Item.inventory()
-        self.Speed = 0.05
-        self.Gold = 500
-        self.invin = False
+        self.Speed = 0.05           # 이동 딜레이
+        self.Gold = 500             # 현재 가진 골드
         self.type = None
-        self.step = 0
+        self.step = 0               # 스프레이 사용시 포켓몬이 안나오는 걸음수
 
     def init_pList(self):
         self.Pcount = 1
