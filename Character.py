@@ -39,7 +39,7 @@ class Hero(character):
         self.pList = [Poketmon.Tr_Poketmon(0,100,30,200)]
         self.pList[0].Num = 3
         self.pList[0].level = 14
-        self.pList[0].ailment = None
+        self.pList[0].ailment = 'Paralysis'
         self.pList[0].Hp = 28
         self.pList[0].Set_ability()
         self.pList[0].Exp = 440

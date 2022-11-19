@@ -44,7 +44,7 @@ class Poketmon:
 
     def ailment_check(self):
         if(self.ailment == 'Paralysis'):
-            if(random.randint(0,100)<50):
+            if(random.randint(0,100)<30):
                 return 0
             else:
                 return 1

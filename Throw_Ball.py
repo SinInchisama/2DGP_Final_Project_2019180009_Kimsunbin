@@ -63,14 +63,14 @@ def draw():
 
     if (CatchCount == 0):
         wild_Battle.Enermy_Poketmon.Front_Draw(500, 450, 56, 56, 224, 224)
-        play_state.hero.inventory.Ball[play_state.hero.inventory.Nowitem][0].image.clip_draw(0, 0, 16, 16, 240 + frame * 3, 300 + frame * 1, 32, 32)
+        Ball.clip_draw(16 * play_state.hero.inventory.Nowitem, 0, 16, 16, 240 + frame * 3, 300 + frame * 1, 32, 32)
         delay(0.005)
         pass
     else:
         if (frame < 4):
-             Ball.clip_composite_draw(0, 0, 16, 16, 3.141592 / (1+ 0.2*frame), 'hv', 500, 400, 32, 32)
+             Ball.clip_composite_draw(16 * play_state.hero.inventory.Nowitem, 0, 16, 16, 3.141592 / (1+ 0.2*frame), 'hv', 500, 400, 32, 32)
         else:
-            Ball.clip_composite_draw(0, 0, 16, 16, 3.141592 / (1.8 + 0.2 * (4-frame)), 'hv', 500, 400, 32, 32)
+            Ball.clip_composite_draw(16 * play_state.hero.inventory.Nowitem, 0, 16, 16, 3.141592 / (1.8 + 0.2 * (4-frame)), 'hv', 500, 400, 32, 32)
             delay(0.1)
         # if(CatchCount% 2):
         #     if(frame < 4):
