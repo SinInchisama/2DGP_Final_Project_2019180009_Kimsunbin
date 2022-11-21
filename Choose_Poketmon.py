@@ -60,7 +60,7 @@ def handle_events():
             elif event.key == SDLK_a:
                 if(Round == 0):
                     if (CusorY != 6):
-                        if(play_state.hero.inventory.Nowitem != -1):
+                        if(play_state.hero.inventory.Nowitem != -1):                         # 아이템 사용
                             play_state.hero.pList[CusorY].Hp = (play_state.hero.pList[CusorY].Hp +
                                                                 play_state.hero.inventory.Heal[play_state.hero.inventory.Nowitem][0].Use_daily())
                             if(play_state.hero.pList[CusorY].Hp > play_state.hero.pList[CusorY].MaxHp):
@@ -70,6 +70,7 @@ def handle_events():
                                 wild_Battle.Order_Que1, wild_Battle.Order_Que2, wild_Battle.round = [None], [None], 0
                             play_state.hero.inventory.Heal[play_state.hero.inventory.Nowitem][1] -= 1
                             game_framework.pop_state()
+
                         else:
                            Round = 1
                            Now_Select = CusorY

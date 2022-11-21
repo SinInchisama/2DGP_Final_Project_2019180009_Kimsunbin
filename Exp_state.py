@@ -26,11 +26,11 @@ def update():
     if(play_state.hero.pList[wild_Battle.Battle.Poket_Order].Exp == play_state.hero.pList[wild_Battle.Battle.Poket_Order].level * 50 ):
         play_state.hero.pList[wild_Battle.Battle.Poket_Order].level += 1
         play_state.hero.pList[wild_Battle.Battle.Poket_Order].Exp = 0
-        print(play_state.hero.pList[wild_Battle.Battle.Poket_Order].level)
+
         if(Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Skill.get(play_state.hero.pList[wild_Battle.Battle.Poket_Order].level)):
             if(len(play_state.hero.pList[wild_Battle.Battle.Poket_Order].Skill_List)<4):
                 play_state.hero.pList[wild_Battle.Battle.Poket_Order].Skill_List.append(Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Skill[play_state.hero.pList[wild_Battle.Battle.Poket_Order].level])
-                print(Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Skill[play_state.hero.pList[wild_Battle.Battle.Poket_Order].level])
+
             else:
                 game_framework.push_state(Change_Skill)
 

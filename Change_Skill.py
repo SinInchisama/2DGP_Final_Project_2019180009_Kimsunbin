@@ -29,7 +29,7 @@ def handle_events():
                     Cursory -= 1
                 pass
             elif event.key == SDLK_a:
-                play_state.hero.pList[Battle.Poket_Order].Skill_List[Cursory] = Poketmon.Poket_Data[play_state.hero.pList[wild_Battle.Battle.Poket_Order].Num].Skill[play_state.hero.pList[wild_Battle.Battle.Poket_Order].level]
+                play_state.hero.pList[Battle.Poket_Order].Change_Skill(Cursory)
                 game_framework.pop_state()
 
                 pass

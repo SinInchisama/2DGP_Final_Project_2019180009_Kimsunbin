@@ -172,6 +172,9 @@ class Tr_Poketmon(Poketmon):
         Poketmon.__init__(self, Num, level, Hp, [])
         self.Exp = Exp
 
+    def Change_Skill(self,Skill_Num):
+        self.Skill_List[Skill_Num] = Poket_Data[self.Num].Skill[self.level]
+
 
 def init_Poketmon():
     global  Poket_Data
