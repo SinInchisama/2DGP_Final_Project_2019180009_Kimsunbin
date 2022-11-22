@@ -8,6 +8,7 @@ import game_framework
 import Heal_state
 import Item
 import View_Shop
+import Dialog_state
 
 class character:
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):       # battle npc,hero, give Npc 상속 위한 기본 클래스
@@ -33,12 +34,13 @@ class Hero(character):
         self.Gold = 500             # 현재 가진 골드
         self.type = None
         self.step = 0               # 스프레이 사용시 포켓몬이 안나오는 걸음수
+        self.Meet_Npc = None
 
     def init_pList(self):
         self.Pcount = 1
         self.pList = [Poketmon.Tr_Poketmon(0,100,30,200)]
         self.pList[0].Num = 3
-        self.pList[0].level = 9
+        self.pList[0].level = 15
         self.pList[0].ailment = ''
         self.pList[0].Hp = 28
         self.pList[0].Set_ability()
@@ -95,27 +97,27 @@ class Hero(character):
                     if self.direct == 0:     # 아래버튼
                         if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
                             wild_Battle.Battle_type = 'Trainer'
-                            wild_Battle.Ncount = i
+                            self.Meet_Npc = i
                             game_framework.push_state(wild_Battle)
-                            pass
+
                     elif self.direct == 1:   # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
                             wild_Battle.Battle_type = 'Trainer'
-                            wild_Battle.Ncount = i
+                            self.Meet_Npc = i
                             game_framework.push_state(wild_Battle)
-                            pass
+
                     elif self.direct == 2:   # 왼버튼
                         if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
                             wild_Battle.Battle_type = 'Trainer'
-                            wild_Battle.Ncount = i
+                            self.Meet_Npc = i
                             game_framework.push_state(wild_Battle)
-                            pass
+
                     elif self.direct == 3:   # 오른버튼
                         if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
                             wild_Battle.Battle_type = 'Trainer'
-                            wild_Battle.Ncount = i
+                            self.Meet_Npc = i
                             game_framework.push_state(wild_Battle)
-                            pass
+
                 elif type(Npc).__name__ == 'Healer':
                     if self.direct == 1:  # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 64):
@@ -124,6 +126,28 @@ class Hero(character):
                     if self.direct == 2:
                         if (Npc.mapx == self.mapx - 64 and Npc.mapy == self.mapy):
                             game_framework.push_state(View_Shop)
+
+                elif type(Npc).__name__ == 'Npc':
+                    if self.direct == 0:     # 아래버튼
+                        if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
+                            self.Meet_Npc = i
+
+
+                    elif self.direct == 1:   # 위버튼
+                        if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
+                            self.Meet_Npc = i
+                            game_framework.push_state(Dialog_state)
+
+
+                    elif self.direct == 2:   # 왼버튼
+                        if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
+                            self.Meet_Npc = i
+
+
+                    elif self.direct == 3:   # 오른버튼
+                        if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
+                            self.Meet_Npc = i
+
         if(169 <= Map.Maping[play_state.round].array[self.mapy//32 + 3][self.mapx//32 + 1] <= 170):
             game_framework.push_state(Heal_state)
 

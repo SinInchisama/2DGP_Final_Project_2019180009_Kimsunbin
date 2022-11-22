@@ -20,7 +20,7 @@ select_M = None                             # 현재 커서 위치(메뉴선택�
 Menu_Bool,Skill_Bool = None,None            # 메뉴선택, 스킬선택
 rand = randint
 Cursor_image = None
-Order_Que1,Order_Que2,Attacker,Defenser,round,gap,Push_type,Ncount,Pcount = None,None,None,None,None,None,None,None,None
+Order_Que1,Order_Que2,Attacker,Defenser,round,gap,Push_type,Pcount = None,None,None,None,None,None,None,None
 exp_bar,DrawFrame = None,None
 Enermy_Down,My_Down,Now_Pcount ,Attacker_type= False,False,None,None
 
@@ -43,7 +43,7 @@ def enter():
             pass
     elif(Battle_type == 'Trainer'):
         Pcount = 0
-        Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
+        Enermy_Poketmon = Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Poket[Pcount]
         select_Poketmon = 0
     Enermy_Poketmon.Set_ability()                                 # 야생 포켓몬 능력치 세팅
     Enermy_Poketmon.Set_Skill()                                   # 야생 포켓몬 스킬 분배
@@ -67,7 +67,7 @@ def exit():
     for i in play_state.hero.pList:
         i.MinusY = 0
     if(Battle_type != 'Wild'):
-        for i in Maping[play_state.round].Npc[Ncount].Poket:
+        for i in Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Poket:
             i.MinusY = 0
     global Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Order_Que1,Order_Que2,round
     del(Enermy_Poketmon)
@@ -298,9 +298,9 @@ def resume():
     #     else:
     #         Push_type = None
     if(Push_type == 'Exp_state'):
-        if(Battle_type != 'Wild' and Pcount + 1 < len(Maping[play_state.round].Npc[Ncount].Poket)):
+        if(Battle_type != 'Wild' and Pcount + 1 < len(Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Poket)):
             Pcount += 1
-            Enermy_Poketmon = Maping[play_state.round].Npc[Ncount].Poket[Pcount]
+            Enermy_Poketmon = Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Poket[Pcount]
             Enermy_Poketmon.Set_ability()  # 야생 포켓몬 능력치 세팅
             Enermy_Poketmon.Set_Skill()  # 야생 포켓몬 스킬 분배
             Enermy_Poketmon.init_Change_ability()
@@ -311,9 +311,10 @@ def resume():
         else:
             if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <=
                     play_state.hero.pList[Battle.Poket_Order].level):
-                game_framework.push_state(Evolution_state)
+                game_framework.change_state(Evolution_state)
             else:
                 game_framework.pop_state()
+                play_state.hero.Meet_Npc = None
             play_state.hero.Gold += 100
         Enermy_Down = False
     elif(Push_type == 'Battle_Choose'):
@@ -330,6 +331,7 @@ def resume():
     elif(Push_type == 'Throw_Ball'):
         if(Now_Pcount!=play_state.hero.Pcount):
             game_framework.pop_state()
+            play_state.hero.Meet_Npc = None
         else:
             Push_type = None
     elif(Push_type == 'View_inventory'):
