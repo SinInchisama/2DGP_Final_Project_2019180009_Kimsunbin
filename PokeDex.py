@@ -1,5 +1,5 @@
 from pico2d import *
-import random
+
 class PokeDex:
     image = None
     Scene = 1
