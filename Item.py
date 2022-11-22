@@ -133,7 +133,7 @@ class inventory:            # 플레이어 인벤토리
         self.Heal = [[Potion(),1],[Super_Potion(),0],[Hyper_Potion(),0],[Full_Heal(),0]]
         self.Skill_machine = dict()
         self.Spray = [[Repel(),90],[Super_Repel(),0]]
-        self.Riding = True                 # 라이딩에 사용할 함수.
+        self.Riding = False                 # 라이딩에 사용할 함수.
         self.Use_type = ''                  # battle 사용이냐 평소 사용이냐
         self.Nowtype = -1
         self.Nowitem = -1

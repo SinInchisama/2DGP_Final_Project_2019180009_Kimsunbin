@@ -147,6 +147,11 @@ class Hero(character):
                     elif self.direct == 3:   # 오른버튼
                         if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
                             self.Meet_Npc = i
+                elif type(Npc).__name__ == 'Given_Npc':
+                    if self.direct == 1:   # 위버튼
+                        if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
+                            self.Meet_Npc = i
+                            game_framework.push_state(Dialog_state)
 
         if(169 <= Map.Maping[play_state.round].array[self.mapy//32 + 3][self.mapx//32 + 1] <= 170):
             game_framework.push_state(Heal_state)

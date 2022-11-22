@@ -29,7 +29,7 @@ def draw():
     play_state.draw_world()
     play_state.Board.clip_draw(0, 1, 83, 76, 320, 75, 644, 140)
 
-    Font.Draw_Al(*Diag_log,60,75,16,16)
+    Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Draw()
     update_canvas()
 
     pass
