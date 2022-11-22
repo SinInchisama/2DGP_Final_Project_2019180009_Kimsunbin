@@ -1,16 +1,45 @@
 import Character
 from Map import Maping
 import Poketmon
+import game_framework
 
 class Npc(Character.character):
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):
         Character.character.__init__(self,pngx,pngy,height,weight,mapx,mapy)
+        self.Dialog_1 = None
+        self.Dialog_2 = None
+        self.Meet = False
+        self.Dia_Count = 0
+    def return_Diag(self):
+        if(not(self.Meet)):
+            if(len(self.Dialog_1)== self.Dia_Count):
+                self.Dia_Count = 0
+                game_framework.pop_state()
+                return None
+            else:
+                self.Dia_Count += 1
+                return self.Dialog_1[self.Dia_Count - 1]
+        else:
+            if (len(self.Dialog_2) == self.Dia_Count):
+                self.Dia_Count = 0
+                game_framework.pop_state()
+                return None
+            else:
+                self.Dia_Count += 1
+                return self.Dialog_2[self.Dia_Count - 1]
+
 
 class Battle_Npc(Npc):
     def __init__(self, pngx, pngy, height, weight, mapx, mapy,Pcount):
         Npc.__init__(self,pngx,pngy,height,weight,mapx,mapy)
         self.Pcount = Pcount
         self.Poket = []
+
+class Given_Npc(Npc):
+    def __init__(self, pngx, pngy, height, weight, mapx, mapy):
+        Npc.__init__(self, pngx, pngy, height, weight, mapx, mapy)
+
+
 
 class Salesman(Npc):
     def _init__(self,pngx,pngy,height,weight,mapx,mapy):
@@ -30,8 +59,9 @@ Maping[3].Npc = [Npc(154, 2261, 32, 32, 528, 80) for i in range(0, 1)]  #트레�
 Maping[3].Npc.append(Npc(290, 3044, 32, 32, 560, 240))
 
 Maping[6].Npccount = 1
-Maping[6].Npc = [Battle_Npc(51, 3111, 32, 32, 304, 208,2) for i in range(0, 1)]  # 어무니
-Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(1,10,10)),Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(4,10,10))
+Maping[6].Npc = [Npc(51, 3111, 32, 32, 304, 208) for i in range(0, 1)]  # 어무니
+Maping[6].Npc[0].Dialog_1 = [['Jiu Go to Professor House'],['and Get your Pokemon']]
+# Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(1,10,10)),Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(4,10,10))
 
 
 Maping[7].Npccount = 3
