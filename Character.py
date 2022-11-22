@@ -93,65 +93,37 @@ class Hero(character):
         if(Map.Maping[play_state.round].Npccount>0):
             i = 0
             for Npc in Map.Maping[play_state.round].Npc:
-                if type(Npc).__name__ == 'Battle_Npc':
-                    if self.direct == 0:     # 아래버튼
-                        if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
-                            wild_Battle.Battle_type = 'Trainer'
-                            self.Meet_Npc = i
-                            game_framework.push_state(wild_Battle)
-
-                    elif self.direct == 1:   # 위버튼
-                        if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
-                            wild_Battle.Battle_type = 'Trainer'
-                            self.Meet_Npc = i
-                            game_framework.push_state(wild_Battle)
-
-                    elif self.direct == 2:   # 왼버튼
-                        if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
-                            wild_Battle.Battle_type = 'Trainer'
-                            self.Meet_Npc = i
-                            game_framework.push_state(wild_Battle)
-
-                    elif self.direct == 3:   # 오른버튼
-                        if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
-                            wild_Battle.Battle_type = 'Trainer'
-                            self.Meet_Npc = i
-                            game_framework.push_state(wild_Battle)
-
-                elif type(Npc).__name__ == 'Healer':
+                if type(Npc).__name__ == 'Healer':
                     if self.direct == 1:  # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 64):
                             game_framework.push_state(Heal_state)
-                elif type(Npc).__name__ == 'Salesman':
+                if type(Npc).__name__ == 'Salesman':
                     if self.direct == 2:
                         if (Npc.mapx == self.mapx - 64 and Npc.mapy == self.mapy):
                             game_framework.push_state(View_Shop)
 
-                elif type(Npc).__name__ == 'Npc':
+                else :
                     if self.direct == 0:     # 아래버튼
                         if ( Npc.mapx == self.mapx and Npc.mapy == self.mapy - 32):
                             self.Meet_Npc = i
-
+                            game_framework.push_state(Dialog_state)
 
                     elif self.direct == 1:   # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
                             self.Meet_Npc = i
                             game_framework.push_state(Dialog_state)
 
-
                     elif self.direct == 2:   # 왼버튼
                         if (Npc.mapx == self.mapx - 32 and Npc.mapy == self.mapy):
                             self.Meet_Npc = i
-
+                            game_framework.push_state(Dialog_state)
 
                     elif self.direct == 3:   # 오른버튼
                         if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
                             self.Meet_Npc = i
-                elif type(Npc).__name__ == 'Given_Npc':
-                    if self.direct == 1:   # 위버튼
-                        if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 32):
-                            self.Meet_Npc = i
                             game_framework.push_state(Dialog_state)
+
+
 
         if(169 <= Map.Maping[play_state.round].array[self.mapy//32 + 3][self.mapx//32 + 1] <= 170):
             game_framework.push_state(Heal_state)

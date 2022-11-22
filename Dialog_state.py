@@ -8,7 +8,7 @@ Diag_log = None
 
 def enter():
     global Diag_log
-    Diag_log = Maping[play_state.round].Npc[play_state.hero.Meet_Npc].return_Diag()
+    Maping[play_state.round].Npc[play_state.hero.Meet_Npc].return_Diag()
     pass
 
 def handle_events():
@@ -17,7 +17,7 @@ def handle_events():
     for event in events:
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_a:
-                Diag_log = Maping[play_state.round].Npc[play_state.hero.Meet_Npc].return_Diag()
+                Maping[play_state.round].Npc[play_state.hero.Meet_Npc].return_Diag()
 
 
 def update():
