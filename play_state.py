@@ -18,13 +18,13 @@ hero = None
 
 def enter():
     global round,mode,running,Map_change,hero,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color
-    round = 5  # 맵 변경에 사용하는 변수
+    round = 4  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수
     init_map()
     hero = Character.Hero(18,3350,32,32,304,304,304,304,0,0)
-    #hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
+    hero = Character.Hero(18,3350,32,32,624, 368, 1248, 352,0,0)
     hero.character_image = pico2d.load_image('./resource/image/Character.png')
     Font_image = pico2d.load_image('./resource/image/Font.png')
     Font_Color = pico2d.load_image('./resource/image/Font_Color.png')

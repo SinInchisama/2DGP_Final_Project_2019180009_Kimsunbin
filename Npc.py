@@ -25,7 +25,7 @@ class Npc(Character.character):
         else:
             if (len(self.Dialog_2) == self.Dia_Count):
                 self.Dia_Count = 0
-                self.End_Diag()
+                game_framework.pop_state()
 
             else:
                 self.Dia_Count += 1
@@ -138,11 +138,15 @@ Maping[13].Npc = [Healer(18, 2908, 32, 32, 80, 464) for i in range(0, 1)]  #간�
 Maping[14].Npccount = 1
 Maping[14].Npc = [Salesman(290, 2839, 32, 32, 144, 304) for i in range(0, 1)]  #마트 판매원
 
+
+
 Maping[20].Npccount = 1
-Maping[20].Npc = [Npc(18, 2908, 32, 32, 272, 368) for i in range(0, 1)]  #마트판매원
+Maping[20].Npc = [Healer(18, 2908, 32, 32, 80, 464) for i in range(0, 1)]  #간호순
+
 
 Maping[21].Npccount = 1
-Maping[21].Npc = [Npc(290, 2839, 32, 32, 176, 304) for i in range(0, 1)]  #간호순
+Maping[21].Npc = [Salesman(290, 2839, 32, 32, 144, 304) for i in range(0, 1)]  #마트 판매원
+
 
 Maping[22].Npccount = 1
 Maping[22].Npc = [Npc(290, 2601, 32, 32, 240, 208) for i in range(0, 1)]  #할아버지
@@ -150,11 +154,30 @@ Maping[22].Npc.append(Npc(222, 1377, 32, 32, 400, 272))
 Maping[22].Npc.append(Npc(222, 2601, 32, 32, 400, 336))
 Maping[22].Npc.append(Npc(52, 1682, 32, 32, 304, 464))
 
-Maping[23].Npccount = 1
-Maping[23].Npc = [Npc(154, 1275, 32, 32, 272, 176) for i in range(0, 1)]  #할아버지
-Maping[23].Npc.append(Npc(18, 1037, 32, 32, 304, 496))
-Maping[23].Npc.append(Npc(154, 1513, 32, 32, 368, 368))
-Maping[23].Npc.append(Npc(154, 2023, 32, 32, 368, 240))
+Maping[23].Npccount = 1                                                         # 트레이너 스쿨
+Maping[23].Npc = [Battle_Npc(154, 1275, 32, 32, 272, 144,1) for i in range(0, 1)]  #할아버지
+Maping[23].Npc[0].Poket.append(Poketmon.Wild_Poketmon(10,10,10))
+Maping[23].Npc[0].Dialog_1 = [['Lets start Battle']]
+Maping[23].Npc[0].Dialog_2 = [['I Lose']]
+
+Maping[23].Npc.append(Battle_Npc(18, 1037, 32, 32, 304, 496,2))                  # 선생님
+Maping[23].Npc[1].Poket.append(Poketmon.Wild_Poketmon(16,15,10)),Maping[23].Npc[1].Poket.append(Poketmon.Wild_Poketmon(18,15,10))
+Maping[23].Npc[1].Dialog_1 = [['I teach you the battle']]
+Maping[23].Npc[1].Dialog_2 = [['I teach you well right']]
+
+
+Maping[23].Npc.append(Battle_Npc(154, 1513, 32, 32, 464, 336,1))
+Maping[23].Npc[2].Poket.append(Poketmon.Wild_Poketmon(20,13,10))
+Maping[23].Npc[2].Dialog_1 = [['I show you My Pikachu']]
+Maping[23].Npc[2].Dialog_2 = [['Your Pokemon is cool']]
+
+
+Maping[23].Npc.append(Battle_Npc(154, 2023, 32, 32, 464, 208,1))
+Maping[23].Npc[3].Poket.append(Poketmon.Wild_Poketmon(13,13,10))
+Maping[23].Npc[3].Dialog_1 = [['Im gonna win']]
+Maping[23].Npc[3].Dialog_2 = [['Youre strong']]
+
+
 
 Maping[25].Npccount = 1
 Maping[25].Npc = [Npc(290, 2635, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지

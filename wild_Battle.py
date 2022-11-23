@@ -309,6 +309,8 @@ def resume():
             Attacker_type = ' '
             round = 0
         else:
+            if(Battle_type != 'Wild'):
+                Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Met = True
             if (Push_type == 'Exp_state' and Poketmon.Poket_Data[play_state.hero.pList[Battle.Poket_Order].Num].Evolution <=
                     play_state.hero.pList[Battle.Poket_Order].level):
                 game_framework.change_state(Evolution_state)
