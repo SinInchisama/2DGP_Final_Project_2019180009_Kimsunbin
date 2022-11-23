@@ -59,9 +59,8 @@ class Given_Npc(Npc):
 
     def End_Diag(self):
         if(self.kind  == 0):
-            pass
+            play_state.hero.inventory.Heal[self.Num][1] += self.count
         elif(self.kind == 1):
-            print(play_state.hero.inventory.Ball[self.Num][1])
             play_state.hero.inventory.Ball[self.Num][1] += self.count
         elif(self.kind == 2):
             pass
@@ -120,16 +119,18 @@ Maping[9].Npc[1].Dialog_1 = [['Im hungry Give me food']]                # 아저
 
 
 Maping[10].Npccount = 1
-Maping[10].Npc = [Npc(224, 3146, 32, 32, -50, -50) for i in range(0, 1)]  #할아버지
-Maping[10].Npc[0].Dialog_1 = [['Im hungry Give me foodddddd']]
+Maping[10].Npc = [Given_Npc(52, 3077, 32, 32, 336, 336,4,0,0) for i in range(0, 1)]  #할아버지
+Maping[10].Npc[0].Dialog_1 = [['Do you still walk'],['I give you a bike']]
+Maping[10].Npc[0].Dialog_2 = [['have a good ride']]
 
 Maping[11].Npccount = 1
-Maping[11].Npc = [Npc(154, 3077, 32, 32, 336, 336) for i in range(0, 1)]  #할아버지
-Maping[11].Npc[0].Dialog_1 = [['Im hungry Give me food']]
+Maping[11].Npc = [Given_Npc(154, 3077, 32, 32, 336, 336,1,1,3) for i in range(0, 1)]  #아저씨
+Maping[11].Npc[0].Dialog_1 = [['Do you want to take the Super Ball']]
+Maping[11].Npc[0].Dialog_2 = [['My Super Ball bb']]
 
 Maping[12].Npccount = 1
-Maping[12].Npc = [Npc(289, 3146, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지
-Maping[12].Npc[0].Dialog_1 = [['Im hungry Give me food']]
+Maping[12].Npc = [Given_Npc(289, 3146, 32, 32, 272, 304,0,1,5) for i in range(0, 1)]  #아줌마
+Maping[12].Npc[0].Dialog_1 = [['You look very sick'],['I give you potion']]
 
 Maping[13].Npccount = 1
 Maping[13].Npc = [Healer(18, 2908, 32, 32, 80, 464) for i in range(0, 1)]  #간호순
