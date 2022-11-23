@@ -122,7 +122,7 @@ class Hero(character):
                         if (Npc.mapx == self.mapx + 32 and Npc.mapy == self.mapy):
                             self.Meet_Npc = i
                             game_framework.push_state(Dialog_state)
-
+                    i += 1
 
 
         if(169 <= Map.Maping[play_state.round].array[self.mapy//32 + 3][self.mapx//32 + 1] <= 170):
