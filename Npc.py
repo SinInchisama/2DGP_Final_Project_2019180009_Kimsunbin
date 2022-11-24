@@ -149,10 +149,29 @@ Maping[21].Npc = [Salesman(290, 2839, 32, 32, 144, 304) for i in range(0, 1)]  #
 
 
 Maping[22].Npccount = 1
-Maping[22].Npc = [Npc(290, 2601, 32, 32, 240, 208) for i in range(0, 1)]  #할아버지
-Maping[22].Npc.append(Npc(222, 1377, 32, 32, 400, 272))
-Maping[22].Npc.append(Npc(222, 2601, 32, 32, 400, 336))
-Maping[22].Npc.append(Npc(52, 1682, 32, 32, 304, 464))
+Maping[22].Npc = [Battle_Npc(290, 2601, 32, 32, 240, 240,2) for i in range(0, 1)]  #
+Maping[22].Npc[0].Poket.append(Poketmon.Wild_Poketmon(18,15,10)),Maping[22].Npc[0].Poket.append(Poketmon.Wild_Poketmon(22,15,10))
+Maping[22].Npc[0].Dialog_1 = [['Lets have a battle with me first']]
+Maping[22].Npc[0].Dialog_2 = [['Lets move on']]
+
+
+Maping[22].Npc.append(Battle_Npc(222, 1377, 32, 32, 464, 304,2))
+Maping[22].Npc[1].Poket.append(Poketmon.Wild_Poketmon(16,15,10)),Maping[22].Npc[1].Poket.append(Poketmon.Wild_Poketmon(17,16,10))
+Maping[22].Npc[1].Dialog_1 = [['Lets have a battle with me Second']]
+Maping[22].Npc[1].Dialog_2 = [['Lets move on']]
+
+Maping[22].Npc.append(Battle_Npc(222, 2601, 32, 32, 400, 336,2))
+Maping[22].Npc[2].Poket.append(Poketmon.Wild_Poketmon(18,18,10)),Maping[22].Npc[2].Poket.append(Poketmon.Wild_Poketmon(23,19,10))
+Maping[22].Npc[2].Dialog_1 = [['Lets have a battle with me Third']]
+Maping[22].Npc[2].Dialog_2 = [['Lets move on']]
+
+
+Maping[22].Npc.append(Battle_Npc(52, 1682, 32, 32, 304, 464,3))                      # 체육관 관장
+Maping[22].Npc[3].Poket.append(Poketmon.Wild_Poketmon(18,20,10)),Maping[22].Npc[3].Poket.append(Poketmon.Wild_Poketmon(23,21,10)),Maping[22].Npc[3].Poket.append(Poketmon.Wild_Poketmon(19,24,10))
+Maping[22].Npc[3].Dialog_1 = [['Welcome to the gym'],['If you wint me Ill give you a badge'],['Should I try it']]
+Maping[22].Npc[3].Dialog_2 = [['Congratulations You won']]
+
+
 
 Maping[23].Npccount = 1                                                         # 트레이너 스쿨
 Maping[23].Npc = [Battle_Npc(154, 1275, 32, 32, 272, 144,1) for i in range(0, 1)]  #할아버지
@@ -181,7 +200,10 @@ Maping[23].Npc[3].Dialog_2 = [['Youre strong']]
 
 Maping[25].Npccount = 1
 Maping[25].Npc = [Npc(290, 2635, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지
+Maping[25].Npc[0].Dialog_1 = [['Im gonna win']]
+
 Maping[25].Npc.append(Npc(222, 2328, 32, 32, 368, 272))                   #할머니
+Maping[25].Npc[1].Dialog_1 = [['Im gonna win']]
 
 
 
