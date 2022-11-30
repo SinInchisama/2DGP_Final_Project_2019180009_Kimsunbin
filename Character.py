@@ -37,18 +37,6 @@ class Hero(character):
         self.Meet_Npc = None
         self.pList = []
 
-    def init_pList(self):
-        self.Pcount = 1
-        self.pList = [Poketmon.Tr_Poketmon(0,100,30,200)]
-        self.pList[0].Num = 3
-        self.pList[0].level = 100
-        self.pList[0].ailment = ''
-        self.pList[0].Hp = 28
-        self.pList[0].Set_ability()
-        self.pList[0].Exp = 440
-        self.pList[0].Skill_List = [8,1,2,3]
-        self.pList[0].PP_list = [25,35,25,25]
-
     def Can_riding(self):
         if(self.inventory.Riding):
             if(self.Speed == 0.05):
@@ -77,10 +65,16 @@ class Hero(character):
             if (self.step != 0):
                 self.step -= 1
             return 2
-        elif (check_num==149):
+        elif (check_num == 149 ):
+            print(len(self.pList))
             if (self.step != 0):
                 self.step -= 1
-            return 3
+            if(len(self.pList)<=0):
+                self.mapx -= (self.movex * 32)
+                self.mapy -= (self.movey * 32)
+                return 0
+            else:
+                return 3
         elif(check_num <=144):
             self.mapx -= (self.movex * 32)
             self.mapy -= (self.movey * 32)
@@ -141,6 +135,7 @@ class Hero(character):
                 elif self.mapy // 32 + 1 == 9:
                     self.mapx, self.mapy, self.chx, self.chy = 1904, 272, 624, 272
                 return 0,0,True,1
+
 
             elif self.mapy // 32 + 1 == 13:
                 self.mapx, self.mapy, self.chx, self.chy = 368, 16, 368, 16
