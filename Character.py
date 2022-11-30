@@ -35,6 +35,7 @@ class Hero(character):
         self.type = None
         self.step = 0               # 스프레이 사용시 포켓몬이 안나오는 걸음수
         self.Meet_Npc = None
+        self.pList = []
 
     def init_pList(self):
         self.Pcount = 1

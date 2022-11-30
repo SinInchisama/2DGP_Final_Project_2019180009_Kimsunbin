@@ -5,6 +5,7 @@ import game_framework
 import play_state
 import Font
 import wild_Battle
+import Choose_First
 
 class Npc(Character.character):
     def __init__(self,pngx,pngy,height,weight,mapx,mapy):
@@ -49,6 +50,15 @@ class Battle_Npc(Npc):
     def End_Diag(self):
         wild_Battle.Battle_type = 'Trainer'
         game_framework.change_state(wild_Battle)
+
+class Doctor(Npc):
+    def __init__(self, pngx, pngy, height, weight, mapx, mapy):
+        Npc.__init__(self,pngx,pngy,height,weight,mapx,mapy)
+
+    def End_Diag(self):
+        game_framework.change_state(Choose_First)
+
+
 
 class Given_Npc(Npc):
     def __init__(self, pngx, pngy, height, weight, mapx, mapy,kind,Num,count):
@@ -95,8 +105,9 @@ Maping[6].Npc[0].Dialog_1 = [['Jiu Go to Professor House'],['and Get your Pokemo
 
 
 Maping[7].Npccount = 3
-Maping[7].Npc = [Npc(52, 3213, 32, 32, 304, 464) for i in range(0, 1)]  #박사님
-Maping[7].Npc[0].Dialog_1 = [['Hi Jiu Today select your Pokemon'],['choose from the right']]
+Maping[7].Npc = [Doctor(52, 3213, 32, 32, 304, 464) for i in range(0, 1)]  #박사님
+Maping[7].Npc[0].Dialog_1 = [['Hi Jiu Today select your Pokemon'],['choose the pokemon']]
+Maping[7].Npc[0].Dialog_2 = [['Good Travel Jiu']]
 
 Maping[7].Npc.append(Given_Npc(290, 3044, 32, 32, 272, 16,1,0,5))                   #조교
 Maping[7].Npc[1].Dialog_1 = [['Hi Jiu'],['This MonsterBall give to you']]

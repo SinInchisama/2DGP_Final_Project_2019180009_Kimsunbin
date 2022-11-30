@@ -34,13 +34,6 @@ def handle_events():
             elif event.key == SDLK_RIGHT:
                 select = (select + 1) % 3
 
-            elif event.key == SDLK_UP:
-                play_state.hero.pList[0].Num += 1
-
-            elif event.key == SDLK_DOWN:
-                play_state.hero.pList[0].Num -= 1
-
-
             elif event.key == SDLK_a:
                 play_state.hero.pList[NowPc].level += 1
 

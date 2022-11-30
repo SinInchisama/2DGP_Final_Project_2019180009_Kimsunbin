@@ -72,9 +72,9 @@ def handle_events():
                             game_framework.pop_state()
 
                         else:
-                           Round = 1
-                           Now_Select = CusorY
-                           CusorY = 0
+                            Round = 1
+                            Now_Select = CusorY
+                            CusorY = 0
 
                     elif (CusorY == 6):
                         game_framework.pop_state()
@@ -84,8 +84,9 @@ def handle_events():
                         game_framework.push_state(Status_state)
                         CusorY = 0
                     elif(CusorY == 1):
-                        CusorY = 0
-                        Round = 2
+                        if (len(play_state.hero.pList) > 1):
+                            CusorY = 0
+                            Round = 2
                     elif(CusorY == 2):
                         CusorY = 0
                         Round = 0
