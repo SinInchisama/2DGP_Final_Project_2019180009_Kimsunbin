@@ -43,7 +43,7 @@ def draw():
 
     wild_Battle.draw_world()
 
-    delay(0.02)
+    delay(0.01)
     update_canvas()
     pass
 

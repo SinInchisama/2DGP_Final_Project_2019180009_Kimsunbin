@@ -24,7 +24,7 @@ def enter():
     Back_Music = load_music('./resource/music/Background.mp3')
     Back_Music.set_volume(10)
     Back_Music.repeat_play()
-    round = 0  # 맵 변경에 사용하는 변수
+    round = 5  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
     Map_change = False  # 맵변경시 깜빡이는 효과를 내기 위한 변수

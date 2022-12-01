@@ -87,7 +87,6 @@ class Hero(character):
         if(Map.Maping[play_state.round].Npccount>0):
             i = 0
             for Npc in Map.Maping[play_state.round].Npc:
-                print(Npc.mapx,Npc.mapy,self.mapx,self.mapy)
                 if type(Npc).__name__ == 'Healer':
                     if self.direct == 1:  # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 64):
@@ -146,11 +145,11 @@ class Hero(character):
                 return mapx, mapy, True, 7
 
             elif self.mapy // 32 + 1 == 7:
-                self.mapx, self.mapy, self.chx, self.chy = 272, 176, 272, 176
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return mapx, mapy, True, 8
 
             elif self.mapy // 32 + 1 == 5:
-                self.mapx, self.mapy, self.chx, self.chy = 272, 176, 272, 176
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return mapx, mapy, True, 9
 
         elif round == 1:                        # 29번도로
@@ -184,15 +183,15 @@ class Hero(character):
                 return mapx,mapy, True,1
 
             elif self.mapy // 32 + 1 == 9:
-                self.mapx, self.mapy, self.chx, self.chy = 272, 16, 272, 16
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 192, 0, True, 10
 
             elif self.mapy // 32 + 1 == 7:
-                self.mapx, self.mapy, self.chx, self.chy = 272, 16, 272, 16
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 192, 0, True, 11
 
             elif self.mapy // 32 + 1 == 11:
-                self.mapx, self.mapy, self.chx, self.chy = 272, 16, 272, 16
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 64, 0, True, 12
 
             elif self.mapy // 32 + 1 == 15:
@@ -232,16 +231,16 @@ class Hero(character):
                 self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 128, 160, True, 21
             elif self.mapx // 32 + 1 == 19:
-                self.mapx, self.mapy, self.chx, self.chy = 304, 48, 304, 48
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 160, 160, True, 22
             elif self.mapx // 32 + 1 == 31:
-                self.mapx, self.mapy, self.chx, self.chy = 304, 48, 304, 48
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 640, 160, True, 23
             elif self.mapy // 32 + 1 == 7:
-                self.mapx, self.mapy, self.chx, self.chy = 304, 176, 304, 176
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 640, 128, True, 24
             elif self.mapy // 32 + 1 == 21:
-                self.mapx, self.mapy, self.chx, self.chy = 304, 176, 304, 176
+                self.mapx, self.mapy, self.chx, self.chy = 304, 16, 304, 16
                 return 64, 192, True, 25
 
         elif round == 5:                    # 주인공집 2층

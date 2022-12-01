@@ -21,7 +21,7 @@ class Data:
         self.Evolution = Evolution
         self.type = type
         if Data.image == None:
-            Data.image = load_image('All_Pokemon.png')
+            Data.image = load_image('./resource/image/All_Pokemon.png')
 
 
 class Poketmon:
@@ -218,9 +218,9 @@ def init_Poketmon():
 
 
 def init_Skill():
-    Poket_Data[0].Skill = {1 : 0,2:9,8:2,13:3,20:4,28:5}
-    Poket_Data[1].Skill = {1: 0, 2: 9, 8: 2, 13: 3, 20: 4, 28: 5}
-    Poket_Data[2].Skill = {1 : 0,2:9,8:2,13:3,20:4,28:5}
+    Poket_Data[0].Skill = {1 : 0,2:9,8:2,20:4,28:5}
+    Poket_Data[1].Skill = {1: 0, 2: 9, 8: 2, 20: 4, 28: 5}
+    Poket_Data[2].Skill = {1 : 0,2:9,8:2,20:4,28:5}
 
     Poket_Data[3].Skill = {1: 0,2:9,10:6,17:7,25:8}
     Poket_Data[4].Skill = {1: 0, 2: 9, 10: 6, 17: 7, 25: 8}
@@ -235,7 +235,7 @@ def init_Skill():
 
     Poket_Data[11].Skill = {1:0,2:20}
     Poket_Data[12].Skill = {1: 0, 7: 21}
-    Poket_Data[13].Skill = {1: 0, 2: 20,10:22,13:3,14:23,15:24,28:25,34:26}
+    Poket_Data[13].Skill = {1: 0, 2: 20,10:22,14:23,28:25,34:26}
 
     Poket_Data[14].Skill = {1: 27, 2: 20}
     Poket_Data[15].Skill = {1: 0, 7: 21}
@@ -248,8 +248,8 @@ def init_Skill():
     Poket_Data[20].Skill = {1: 32,2:1,6:33,8:34,11:7,20:18,26:35,41:36}
     Poket_Data[21].Skill = {1: 32, 2: 1, 6: 33, 8: 34, 11: 7, 20: 18, 26: 35, 41: 36}
 
-    Poket_Data[22].Skill = {1: 0, 2: 1,10:37,16:38,20:39,25:34,30:25}
-    Poket_Data[23].Skill = {1: 0, 2: 1, 10: 37, 16: 38,20:39, 25: 34,30:25}
+    Poket_Data[22].Skill = {1: 0, 2: 1,10:37,20:39,25:34,30:25}
+    Poket_Data[23].Skill = {1: 0, 2: 1, 10: 37,20:39, 25: 34,30:25}
 
     Poket_Data[24].Skill = {1:40,2:9,10:41,17:42,25:14,30:43}
     Poket_Data[25].Skill = {1: 40, 2: 9, 10: 41, 17: 42, 25: 14, 30: 43}

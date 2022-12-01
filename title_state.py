@@ -14,16 +14,18 @@ class Map:
 
 Background_image = Map(320,288,16,2033,0,687,16,2033)
 image1 = None
-frame = None
+frame,Music = None,None
 
 # 16 1743 2079
 def enter():
-    global Background_image,image1,frame
+    global Background_image,image1,frame,Music
+    Music = load_music('./resource/music/title_state.mp3')
+    Music.set_volume(10)
+    Music.repeat_play()
     image1 = load_image('./resource/image/3.png')
     Background_image.image = load_image('./resource/image/title_state.png')
     image1.clip_draw(0, 0, 640, 576, 320, 288)
     frame = 0
-    print('fdf')
     Background_image.image.clip_draw(Background_image.nowx, Background_image.nowy, 320, 288, 320,288)
     pass
 

@@ -174,8 +174,7 @@ class Ember(S_Skill):                # 불꽃세례
 
     def Use(self, My, Enermy):
         My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
-        if (random.randint(0, 100) < 10 and My.ailment == None):
-            My.ailment = 'Burn'
+
 
     def Draw(self, check, My):
         for a in range(0, 200, 2):
@@ -214,8 +213,7 @@ class Flame_Wheel(P_Skill):          # 화염자동차
         self.name = 'Flame Wheel'
     def Use(self,My,Enermy):
         My.Hp = My.Hp - int((self.Damage * Enermy.Pattack * (1 + 1 / 4 * Enermy.ChangePa) * (Enermy.level * 2 / 5 + 2) / My.Pdefense * (1 + 1 / 4 * My.ChangePd) / 50 + 2) * My.Type_check(self.type))
-        if(random.randint(0,100)<10 and My.ailment == None):
-            My.ailment = 'Burn'
+
 
     def Draw(self,check,My):
         for i in range(2,0,-1):
@@ -682,8 +680,6 @@ class Poison_Sting(S_Skill):    # 독침
     def Use(self, My, Enermy):
         if (random.randint(0, 100) <= self.Daccur):
             My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
-            if (random.randint(0, 100) < 10):
-                My.ailment = 'Poison'
 
     def Draw(self, check, My):
         for a in range(0, 200, 2):
@@ -801,6 +797,18 @@ class Thundershock:    # 전기쇼크
         if (random.randint(0, 100) < 10):
             My.ailment = 'Paralysis'
 
+    def Draw(self, check, My):
+        for i in range(0, 3):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2, 1700, 17, 29, 500, 490 - (i * 20), 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(2, 1700, 17, 29, 120, 280 - (i * 20), 128, 128)
+            delay(0.05)
+            update_canvas()
+
 class Tail_Whip:      # 꼬리 흔들기
     def __init__(self):
         self.PDefensebuf = -1
@@ -846,6 +854,19 @@ class Thunder_Wave:     # 전기 충격파
         if (My.ailment == None):
             My.ailment = 'Paralysis'
 
+    def Draw(self, check, My):
+        for i in range(2, 0, -1):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(42, 1696, 16, 39, 500, 450, 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(42, 1696, 16, 39, 120, 240, 128, 128)
+            delay(0.05)
+            update_canvas()
+        pass
+
 class Thunderbolt(S_Skill):      # 10만볼트
     def __init__(self):
         S_Skill.__init__(self, 90, 100, 15, 'Electric')
@@ -857,12 +878,33 @@ class Thunderbolt(S_Skill):      # 10만볼트
             My.ailment = 'Paralysis'
 
     def Draw(self, check, My):
-        pass
+        for i in range(0, 3):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(42, 1696, 16, 39, 500, 510- (i * 20), 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(42, 1696, 16, 39, 120, 300 - (i * 20), 128, 128)
+            delay(0.05)
+            update_canvas()
 
 class Thunder(S_Skill):          # 번개
     def __init__(self):
         S_Skill.__init__(self, 110, 70, 10, 'Electric')
         self.name = 'Thunder'
+
+    def Draw(self, check, My):
+        for i in range(0, 3):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(62, 1696, 15, 40, 500, 510 - (i * 20), 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(62, 1696, 15, 40, 120, 300 - (i * 20), 128, 128)
+            delay(0.05)
+            update_canvas()
 
     def Use(self, My, Enermy):
         My.Hp = My.Hp - int((self.Damage * Enermy.Sattack * (1 + 1 / 4 * Enermy.ChangeSa) * (Enermy.level * 2 / 5 + 2) / My.Sdefense * (1 + 1 / 4 * My.ChangeSd) / 50 + 2) * My.Type_check(self.type))
@@ -922,11 +964,35 @@ class Low_Kick(P_Skill):         # 안다리걸기
         P_Skill.__init__(self, 40, 100, 30, 'Fight')
         self.name = 'Low Kick'
 
+    def Draw(self, check, My):
+        for i in range(2, 0, -1):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450, 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240, 128, 128)
+            delay(0.05)
+            update_canvas()
+
 
 class Karate_Chop(P_Skill):      # 태권당수
     def __init__(self):
         P_Skill.__init__(self, 70, 100, 25, 'Fight')
         self.name = 'Karate Chop'
+
+    def Draw(self, check, My):
+        for i in range(2, 0, -1):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450, 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240, 128, 128)
+            delay(0.05)
+            update_canvas()
 
 
 
@@ -935,11 +1001,35 @@ class Cross_Chop(P_Skill):       # 크로스춉
         P_Skill.__init__(self, 100, 80, 5, 'Fight')
         self.name = 'Cross Chop'
 
+    def Draw(self, check, My):
+        for i in range(2, 0, -1):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450, 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240, 128, 128)
+            delay(0.05)
+            update_canvas()
+
 
 class Submission(P_Skill):       # 지옥의 바퀴
     def __init__(self):
         P_Skill.__init__(self, 80, 80, 25, 'Fight')
         self.name = 'Submission'
+
+    def Draw(self, check, My):
+        for i in range(2, 0, -1):
+            clear_canvas()
+
+            draw_world()
+            if (check):  # check면 상대한테 공격들어옴
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 500, 450, 128, 128)
+            else:  # 아니면 상대
+                Skill_Data.clip_draw(2 + (36 * i), 1937, 32, 32, 120, 240, 128, 128)
+            delay(0.05)
+            update_canvas()
 
 class Flamethrower(S_Skill):
     def __init__(self):

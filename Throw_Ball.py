@@ -72,20 +72,7 @@ def draw():
         else:
             Ball.clip_composite_draw(16 * play_state.hero.inventory.Nowitem, 0, 16, 16, 3.141592 / (1.8 + 0.2 * (4-frame)), 'hv', 500, 400, 32, 32)
             delay(0.1)
-        # if(CatchCount% 2):
-        #     if(frame < 4):
-        #         Ball.clip_composite_draw(0, 0, 16, 16, 3.141592 / (1+ 0.2*frame), 'hv', 500, 400, 32, 32)
-        #     else:
-        #
-        #         Ball.clip_composite_draw(0, 0, 16, 16, 3.141592 / (1.8 + 0.2 * (4-frame)), 'hv', 500, 400, 32, 32)
-        #     delay(0.1)
-        # else:
-        #     if (frame < 4):
-        #         Ball.clip_composite_draw(32, 0, 16, 16, 3.141592 / (1 + 0.2 * frame), 'hv', 500, 400, 32, 32)
-        #     else:
-        #         print((1.8 - 0.2 * (8 - frame)))
-        #         Ball.clip_composite_draw(32, 0, 16, 16, 3.141592 / (1.8 + 0.2 * (4 - frame)), 'hv', 500, 400, 32, 32)
-        #     delay(0.1)
+
         pass
     update_canvas()
     pass
@@ -104,7 +91,6 @@ def exit():
     if(CatchCount == 4):
         play_state.hero.pList.append(Poketmon.Change_to_Wild_from_TR(wild_Battle.Enermy_Poketmon))
         play_state.hero.Pcount += 1
-        print( play_state.hero.Pcount)
         if( play_state.Pokedex.list[play_state.hero.pList[play_state.hero.Pcount - 1].Num] != 2):
             play_state.Pokedex.list[play_state.hero.pList[play_state.hero.Pcount - 1].Num] = 2
             play_state.Pokedex.Catch += 1

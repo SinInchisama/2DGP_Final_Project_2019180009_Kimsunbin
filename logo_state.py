@@ -17,10 +17,13 @@ class Map:
 
 Background_image = [Map(320,288,17,304,1360,0,17,3058) for i in range(0,2)]
 image1 = None
-order = None
+order,Music = None,None
 
 def enter():
-    global Background_image,order,image1,image3
+    global Background_image,order,image1,image3,Music
+    Music= load_music('./resource/music/logo_state.mp3')
+    Music.set_volume(10)
+    Music.repeat_play()
     image1 = load_image('./resource/image/3.png')
     Background_image[0].image = load_image('./resource/image/logo.imgae_01.png')
     Background_image[1].image = load_image('./resource/image/logo.imgae_02.png')

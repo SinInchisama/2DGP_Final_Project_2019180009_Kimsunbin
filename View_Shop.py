@@ -9,7 +9,6 @@ Sell = None
 Sell_Count,Max_count = None,None
 def enter():
     global Cursor_image, CusorY,Sell
-    print('View Shop')
     Cursor_image = load_image('./resource/image/Cursor.png')
     CusorY = 0
     Sell = False
@@ -29,7 +28,6 @@ def handle_events():
                     if(CusorY == -1):
                         CusorY = 7
                 elif event.key == SDLK_a:
-                    print(play_state.hero.Gold >= play_state.hero.inventory.Ball[CusorY][0].Sell)
                     if (CusorY < 4 and play_state.hero.Gold >= play_state.hero.inventory.Ball[CusorY][0].Sell):
                         Sell = True
                         Sell_Count = 1

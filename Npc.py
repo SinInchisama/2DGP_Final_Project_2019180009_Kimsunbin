@@ -183,7 +183,7 @@ Maping[22].Npc[1].Poket.append(Poketmon.Wild_Poketmon(16,20,10)),Maping[22].Npc[
 Maping[22].Npc[1].Dialog_1 = [['Lets have a battle with me Second']]
 Maping[22].Npc[1].Dialog_2 = [['Lets move on']]
 
-Maping[22].Npc.append(Battle_Npc(222, 2601, 32, 32, 400, 336,2))
+Maping[22].Npc.append(Battle_Npc(222, 2601, 32, 32, 400, 368,2))
 Maping[22].Npc[2].Poket.append(Poketmon.Wild_Poketmon(18,22,10)),Maping[22].Npc[2].Poket.append(Poketmon.Wild_Poketmon(23,22,10))
 Maping[22].Npc[2].Dialog_1 = [['Lets have a battle with me Third']]
 Maping[22].Npc[2].Dialog_2 = [['Lets move on']]
@@ -222,11 +222,11 @@ Maping[23].Npc[3].Dialog_2 = [['Youre strong']]
 
 
 Maping[25].Npccount = 1
-Maping[25].Npc = [Npc(290, 2635, 32, 32, 272, 304) for i in range(0, 1)]  #할아버지
-Maping[25].Npc[0].Dialog_1 = [['Im gonna win']]
+Maping[25].Npc = [Npc(290, 2635, 32, 32, 272, 400) for i in range(0, 1)]  #할아버지
+Maping[25].Npc[0].Dialog_1 = [['Hello']]
 
-Maping[25].Npc.append(Npc(222, 2328, 32, 32, 368, 272))                   #할머니
-Maping[25].Npc[1].Dialog_1 = [['Im gonna win']]
+Maping[25].Npc.append(Npc(222, 2328, 32, 32, 368, 368))                   #할머니
+Maping[25].Npc[1].Dialog_1 = [['Hello']]
 
 
 

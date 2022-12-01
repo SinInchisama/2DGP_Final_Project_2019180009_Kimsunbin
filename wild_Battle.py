@@ -145,7 +145,6 @@ def update():
         if(round == 0):
             if(Attacker_type == ' '):
                 gap = Defenser.Hp
-                print('my Hp' + str(gap))
                 if(Attacker == Enermy_Poketmon):
                     Enermy_Poketmon.What_Use_Skill()
                     Attacker_type = Attacker.Check_Use(Enermy_Poketmon.Use)
@@ -301,6 +300,8 @@ def draw_world():
     play_state.Font_image.clip_draw(275, 446, 8, 8, 170, 510, 16, 16)  # :
     play_state.Font_image.clip_draw(266, 455, 8, 8, 190, 510, 16, 16)  # L
     Font.Draw_Num(Enermy_Poketmon.level, 240, 510, 16, 16)
+    if (Enermy_Poketmon.ailment != None):
+        Font.Draw_Al(Enermy_Poketmon.ailment, 260, 510, 8, 8)
     play_state.Hp_image.clip_draw(0, 0, 68, 6, 190, 480, 272, 20)
     play_state.HPbar_image.clip_draw(0, 0, 2, 15, 118, 480, 383 * (Enermy_Poketmon.Hp / Enermy_Poketmon.MaxHp), 15)
 
