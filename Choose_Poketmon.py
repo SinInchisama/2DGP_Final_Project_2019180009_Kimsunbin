@@ -23,6 +23,7 @@ def enter():
     frame = 0
     Pframe = 0
     Round = 0
+
     pass
 
 def handle_events():
@@ -82,7 +83,6 @@ def handle_events():
                 elif (Round == 1):
                     if(CusorY == 0):
                         game_framework.push_state(Status_state)
-                        CusorY = 0
                     elif(CusorY == 1):
                         if (len(play_state.hero.pList) > 1):
                             CusorY = 0
@@ -154,6 +154,8 @@ def pause():
     pass
 
 def resume():
+    global CusorY
+    CusorY = 0
     pass
 
 

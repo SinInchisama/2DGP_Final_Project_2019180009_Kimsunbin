@@ -259,6 +259,7 @@ def Change_to_Wild_from_TR(Wild_P):
     new = Tr_Poketmon(Wild_P.Num,Wild_P.level,Wild_P.Hp,0)
     new.Skill_List = Wild_P.Skill_List
     new.Set_ability()
+    new.MinusY = 0
 
     return new
 
