@@ -74,7 +74,7 @@ class Hero(character):
                 return 0
             else:
                 return 3
-        elif(check_num <=144):
+        elif(check_num <=144 or check_num == 170 or check_num == 169):
             self.mapx -= (self.movex * 32)
             self.mapy -= (self.movey * 32)
             return 0
