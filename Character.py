@@ -50,6 +50,7 @@ class Hero(character):
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
         self.mapx += (self.movex * 32)
         self.mapy += (self.movey * 32)
+        self.pngx = 18 + (68 * self.direct) + 34
 
         if (Map.Maping[play_state.round].Npccount > 0):
             i = 0
