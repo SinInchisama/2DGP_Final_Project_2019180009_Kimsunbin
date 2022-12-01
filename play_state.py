@@ -13,11 +13,17 @@ import PokeDex
 
 
 round,mode,running,Map_change =0,0,None,None
-Font_image,Font_Color,HPbar_image,Hp_image,Board,Pokedex = None,None,None,None,None,None
+Font_image,Font_Color,HPbar_image,Hp_image,Board,Pokedex,state = None,None,None,None,None,None,None
+Back_Music,Battle_Music = None,None
 hero = None
 
 def enter():
-    global round,mode,running,Map_change,hero,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color
+    global round,mode,running,Map_change,hero,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color,Back_Music,Battle_Music
+    Battle_Music = load_music('./resource/music/Battle_Music.mp3')
+    Battle_Music.set_volume(32)
+    Back_Music = load_music('./resource/music/Background.mp3')
+    Back_Music.set_volume(32)
+    Back_Music.repeat_play()
     round = 0  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
     running = True
@@ -46,22 +52,26 @@ def handle_events():
 
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면
-                hero.direct = 2  # array가 1 또는 5면 ch값 -16)
-                hero.movex -= 1
-                hero.Movecheck = True
+                if(not(hero.Movecheck)):
+                    hero.direct = 2  # array가 1 또는 5면 ch값 -16)
+                    hero.movex -= 1
+                    hero.Movecheck = True
             elif event.key == SDLK_RIGHT:
-                hero.direct = 3  # 오른쪽 버튼 눌리면
-                hero.movex += 1
-                hero.Movecheck = True
+                if (not (hero.Movecheck)):
+                    hero.direct = 3  # 오른쪽 버튼 눌리면
+                    hero.movex += 1
+                    hero.Movecheck = True
             elif event.key == SDLK_UP:  # 윗 버튼 눌리면
-                hero.direct = 1
-                hero.movey += 1
-                hero.Movecheck = True
+                if (not (hero.Movecheck)):
+                    hero.direct = 1
+                    hero.movey += 1
+                    hero.Movecheck = True
 
             elif event.key == SDLK_DOWN:  # 아래 버튼 눌리면
-                hero.direct = 0
-                hero.movey -= 1
-                hero.Movecheck = True
+                if (not (hero.Movecheck)):
+                    hero.direct = 0
+                    hero.movey -= 1
+                    hero.Movecheck = True
 
             elif event.key == SDLK_x:  # 윗 버튼 눌리면
                 hero.Can_riding()
@@ -90,7 +100,7 @@ def handle_events():
                 hero.movey = 0
                 hero.Movecheck = False
 def Hero_working(mode):
-    global hero
+    global hero,state
 
 
     if(hero.Movecheck):
@@ -118,6 +128,8 @@ def Hero_working(mode):
             if(not(hero.step)):
                 if(random.randint(0,100)<20):
                     wild_Battle.Battle_type = 'Wild'
+                    state = 'wild'
+                    Battle_Music.repeat_play()
                     game_framework.push_state(wild_Battle)
                     hero.movey = 0
                     hero.movex = 0
@@ -170,4 +182,6 @@ def pause():
     pass
 
 def resume():
+    if(state != None):
+        Back_Music.repeat_play()
     pass
