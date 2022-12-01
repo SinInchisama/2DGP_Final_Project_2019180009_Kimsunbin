@@ -50,23 +50,21 @@ class Hero(character):
     def move_check(self,map_array):               # 후에 여기에 round 매개변수 추가해서 4에 접근할때나 포켓몬 나오는거 조정예정
         self.mapx += (self.movex * 32)
         self.mapy += (self.movey * 32)
-        # print(self.movex,self.movey,self.mapx,self.mapy,self.chx,self.chy)
-        # if (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 1 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 5):
-        #     return 1
-        # elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 15):
-        #     return 2
-        # elif (map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 0 or map_array[self.mapy // 32 + 1][ self.mapx // 32 + 1] == 2 or map_array[self.mapy // 32 + 1][self.mapx // 32 + 1] == 3):
-        #     self.mapx -= (self.movex * 32)
-        #     self.mapy -= (self.movey * 32)
-        #     return 0
-        # print(map_array[self.mapy // 32 + 1][self.mapx // 32 + 1],self.mapy // 32 + 1,self.mapx // 32 + 1)
+
+        if (Map.Maping[play_state.round].Npccount > 0):
+            i = 0
+            for Npc in Map.Maping[play_state.round].Npc:
+                if(Npc.mapx == self.mapx and Npc.mapy == self.mapy):
+                    self.mapx -= (self.movex * 32)
+                    self.mapy -= (self.movey * 32)
+                    return 0
+
         check_num = map_array[self.mapy // 32 + 1][self.mapx // 32 + 1]
         if(check_num  == 89 or check_num  == 45 or check_num  == 32):
             if (self.step != 0):
                 self.step -= 1
             return 2
-        elif (check_num == 149 ):
-            print(len(self.pList))
+        elif (check_num == 149):
             if (self.step != 0):
                 self.step -= 1
             if(len(self.pList)<=0):
