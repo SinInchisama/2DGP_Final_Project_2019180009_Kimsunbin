@@ -28,8 +28,10 @@ def handle_events():
                 Cursoyx -=1
                 if(Cursoyx == -1):
                     Cursoyx = 3
+                Cursory = 0
             elif event.key == SDLK_RIGHT:
                 Cursoyx = (Cursoyx + 1) %4
+                Cursory = 0
             elif event.key == SDLK_UP:
                 Cursory -= 1
                 if(Cursory == -1):

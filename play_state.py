@@ -34,7 +34,6 @@ def enter():
     Poketmon.init_Poketmon()
     Poketmon.init_Skill()
     Skill_Data.init_skill()
-    # hero.init_pList()
     Pokedex = PokeDex.PokeDex()
 
 

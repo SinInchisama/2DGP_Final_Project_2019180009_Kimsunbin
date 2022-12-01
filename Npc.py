@@ -91,12 +91,24 @@ class Healer(Npc):
 
 
 Maping[1].Npccount = 1
-Maping[1].Npc = [Npc(154, 2261, 32, 32, 336, 208) for i in range(0, 1)]  # 트레이너
+Maping[1].Npc = [Battle_Npc(154, 2261, 32, 32, 336, 208,2) for i in range(0, 1)]  # 트레이너
+Maping[1].Npc[0].Poket.append(Poketmon.Wild_Poketmon(9,7,10)),Maping[1].Npc[0].Poket.append(Poketmon.Wild_Poketmon(11,8,10))
+Maping[1].Npc[0].Dialog_1 = [['Lets have a battle with me']]
+Maping[1].Npc[0].Dialog_2 = [['Im Lose']]
 
 
 Maping[3].Npccount = 1
-Maping[3].Npc = [Npc(154, 2261, 32, 32, 528, 80) for i in range(0, 1)]  #트레이너
-Maping[3].Npc.append(Npc(290, 3044, 32, 32, 560, 240))
+Maping[3].Npc = [Battle_Npc(154, 2261, 32, 32, 528, 80,2) for i in range(0, 1)]  #트레이너
+Maping[3].Npc[0].Poket.append(Poketmon.Wild_Poketmon(20,12,10)),Maping[3].Npc[0].Poket.append(Poketmon.Wild_Poketmon(24,12,10))
+Maping[3].Npc[0].Dialog_1 = [['Lets have a battle with me']]
+Maping[3].Npc[0].Dialog_2 = [['Im Lose']]
+
+Maping[3].Npc.append(Battle_Npc(290, 3044, 32, 32, 560, 240,2))
+Maping[3].Npc[1].Poket.append(Poketmon.Wild_Poketmon(12,12,10)),Maping[3].Npc[1].Poket.append(Poketmon.Wild_Poketmon(15,12,10))
+Maping[3].Npc[1].Dialog_1 = [['Lets have a battle with me']]
+Maping[3].Npc[1].Dialog_2 = [['Im Lose']]
+
+
 
 Maping[6].Npccount = 1
 Maping[6].Npc = [Npc(51, 3111, 32, 32, 304, 208) for i in range(0, 1)]  # 어무니

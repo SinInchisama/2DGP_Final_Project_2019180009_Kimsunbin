@@ -10,7 +10,7 @@ Now_exp = None
 
 def enter():
     global Plus_exp,Now_exp
-    Plus_exp = wild_Battle.Enermy_Poketmon.level * 3
+    Plus_exp = wild_Battle.Enermy_Poketmon.level * 10
     Now_exp = 0
     pass
 

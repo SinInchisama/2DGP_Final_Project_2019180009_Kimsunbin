@@ -87,6 +87,7 @@ class Hero(character):
         if(Map.Maping[play_state.round].Npccount>0):
             i = 0
             for Npc in Map.Maping[play_state.round].Npc:
+                print(Npc.mapx,Npc.mapy,self.mapx,self.mapy)
                 if type(Npc).__name__ == 'Healer':
                     if self.direct == 1:  # 위버튼
                         if (Npc.mapx == self.mapx and Npc.mapy == self.mapy + 64):
@@ -170,9 +171,9 @@ class Hero(character):
         elif round == 2:                        # 두번째 마을
             if self.mapy // 32 + 1 == 19:
                 if self.mapx // 32 + 1 == 3:
-                    self.mapx, self.mapy, self.chx, self.chy = 768, 16, 336, 16
+                    self.mapx, self.mapy, self.chx, self.chy = 784, 16, 336, 16
                 elif self.mapx // 32 + 1 == 4:
-                    self.mapx, self.mapy, self.chx, self.chy = 800, 16, 368, 16
+                    self.mapx, self.mapy, self.chx, self.chy = 816, 16, 368, 16
                 return 64,0, True,3
 
             elif self.mapx // 32 + 1 == 27:
@@ -215,14 +216,14 @@ class Hero(character):
                     self.mapx, self.mapy, self.chx, self.chy = 1248, 336, 624, 336
                 elif self.mapy // 32 + 1 == 12:
                     self.mapx, self.mapy, self.chx, self.chy = 1248, 368, 624, 368
-                return 128, 0, True, 4
+                return 0, 0, True, 4
 
         elif round == 4:                    # 체육관
             if self.mapx // 32 + 1 == 41:
                 if self.mapy // 32 + 1 == 11:
-                    self.mapx, self.mapy, self.chx, self.chy = 128, 336, 16, 336
+                    self.mapx, self.mapy, self.chx, self.chy = 16, 336, 16, 336
                 elif self.mapy // 32 + 1 == 12:
-                    self.mapx, self.mapy, self.chx, self.chy = 128, 368, 16, 368
+                    self.mapx, self.mapy, self.chx, self.chy = 16, 368, 16, 368
                 return 640,0, True, 3
             elif self.mapy // 32 + 1 == 11:
                 self.mapx, self.mapy, self.chx, self.chy = 272, 16, 272, 16
