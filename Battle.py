@@ -1,8 +1,3 @@
-from pico2d import *
-import game_framework
-import Poketmon
-import Skill_Data
-from random import randint
 import play_state
 import wild_Battle
 

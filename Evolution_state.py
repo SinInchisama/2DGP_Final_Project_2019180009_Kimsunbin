@@ -2,7 +2,6 @@ from pico2d import *
 import game_framework
 import wild_Battle
 import play_state
-import Poketmon
 from Map import Maping
 
 frame = None

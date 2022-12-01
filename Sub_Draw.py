@@ -1,6 +1,5 @@
 import play_state
 from pico2d import *
-import wild_Battle
 import Battle
 
 Emergence = None

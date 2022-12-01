@@ -1,8 +1,6 @@
 import play_state
-import game_framework
 from pico2d import *
 from Map import Maping
-import Font
 
 Diag_log = None
 

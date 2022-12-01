@@ -5,7 +5,6 @@ import play_state
 import Poketmon
 import Battle
 import wild_Battle
-import random
 
 Ball,frame,CatchCount= None,None,None
 

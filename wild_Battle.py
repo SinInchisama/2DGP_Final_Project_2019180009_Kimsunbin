@@ -13,7 +13,7 @@ from Map import Maping
 import Sub_Draw
 import View_inventory
 import Heal_state
-import Throw_Ball
+
 
 Battle_type = None
 select_Poketmon,Enermy_Poketmon = None,None
