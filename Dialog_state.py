@@ -1,6 +1,7 @@
 import play_state
 from pico2d import *
 from Map import Maping
+import game_framework
 
 Diag_log = None
 
@@ -13,6 +14,8 @@ def handle_events():
     global Diag_log
     events = get_events()
     for event in events:
+        if event.type == SDL_QUIT:
+            game_framework.quit()
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_a:
                 Maping[play_state.round].Npc[play_state.hero.Meet_Npc].return_Diag()

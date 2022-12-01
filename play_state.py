@@ -49,6 +49,8 @@ def handle_events():
     global round
     events = get_events()
     for event in events:
+        if event.type == SDL_QUIT:
+            game_framework.quit()
 
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_LEFT:  # 왼쪽 버튼 눌리면

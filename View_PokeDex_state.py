@@ -52,6 +52,8 @@ def handle_events():
     global CursorY,frame,exiting,Prange
     events = get_events()
     for event in events:
+        if event.type == SDL_QUIT:
+            game_framework.quit()
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
                 frame = 0

@@ -14,6 +14,8 @@ def enter():
 def handle_events():
     events = get_events()
     for event in events:
+        if event.type == SDL_QUIT:
+            game_framework.quit()
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_a:
                 if(frame == 39):
