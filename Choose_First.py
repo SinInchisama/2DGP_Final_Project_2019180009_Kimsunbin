@@ -38,6 +38,7 @@ def handle_events():
                 play_state.hero.pList[0].PP_list = [25,35]
                 play_state.hero.pList[0].Hp = play_state.hero.pList[0].MaxHp
                 Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Met = True
+                play_state.Pokedex.PokeDex_Catch_check(Cursory * 3)
                 game_framework.pop_state()
 
 
