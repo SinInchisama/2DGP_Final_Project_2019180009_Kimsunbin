@@ -12,6 +12,7 @@ import Font
 from Map import Maping
 import Sub_Draw
 import View_inventory
+import Heal_state
 import Throw_Ball
 
 Battle_type = None
@@ -21,11 +22,13 @@ Menu_Bool,Skill_Bool = None,None            # 메뉴선택, 스킬선택
 rand = randint
 Cursor_image = None
 Order_Que1,Order_Que2,Attacker,Defenser,round,gap,Push_type,Pcount = None,None,None,None,None,None,None,None
-exp_bar,DrawFrame = None,None
+exp_bar,DrawFrame,round1 = None,None,None
 Enermy_Down,My_Down,Now_Pcount ,Attacker_type= False,False,None,None
 
 def enter():
-    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que1,Order_Que2,Attacker,Defenser,exp_bar,round,Pcount,DrawFrame,Now_Pcount,Attacker_type
+    global select_Poketmon,Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Cursor_image,Order_Que1,Order_Que2,Attacker,Defenser,exp_bar,round,Pcount,DrawFrame,Now_Pcount,Attacker_type,round1
+    round1 = play_state.round
+    play_state.Battle_Music.repeat_play()
     Cursor_image = load_image('./resource/image/Cursor.png')
     exp_bar = load_image('./resource/image/Exp_bar.png')
     Order_Que1,Order_Que2 = [],[]
@@ -67,7 +70,7 @@ def exit():
     for i in play_state.hero.pList:
         i.MinusY = 0
     if(Battle_type != 'Wild'):
-        for i in Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Poket:
+        for i in Maping[round1].Npc[play_state.hero.Meet_Npc].Poket:
             i.MinusY = 0
     global Enermy_Poketmon,select_M,Menu_Bool,Skill_Bool,Order_Que1,Order_Que2,round
     del(Enermy_Poketmon)
@@ -75,6 +78,7 @@ def exit():
     del(select_M)
     del(Menu_Bool,Skill_Bool,Order_Que1,Order_Que2,round)
     Push_type = None
+    play_state.Back_Music.repeat_play()
     pass
 
 
@@ -195,7 +199,21 @@ def update():
                 game_framework.push_state(Battle_Choose)
                 Push_type = 'Battle_Choose'
             else:
-                game_framework.pop_state()
+                if(play_state.round == 1):
+                    Maping[1].Nowx,Maping[1].Nowy = 1280,0
+                    play_state.round = 7
+                    play_state.hero.mapx,play_state.hero.mapy,play_state.hero.chx,play_state.hero.chy =48,432,48,432
+                elif(play_state.round == 3):
+                    Maping[2].Nowx,Maping[2].Nowy = 192, 0
+                    Maping[3].Nowx, Maping[3].Nowy = 448,0
+                    play_state.round = 13
+                    play_state.hero.mapx, play_state.hero.mapy, play_state.hero.chx, play_state.hero.chy = 80, 400, 80, 400
+                elif(play_state.round == 22 or play_state.round == 23):
+                    Maping[4].Nowx, Maping[4].Nowy = 640,0
+                    play_state.round = 20
+                    play_state.hero.mapx, play_state.hero.mapy, play_state.hero.chx, play_state.hero.chy = 80, 400, 80, 400
+                play_state.hero.pngx = 18 + 68 + 34
+                game_framework.change_state(Heal_state)
             My_Down = False
 
     pass

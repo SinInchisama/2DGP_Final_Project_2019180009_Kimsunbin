@@ -20,9 +20,9 @@ hero = None
 def enter():
     global round,mode,running,Map_change,hero,Font_image,HPbar_image,Hp_image,Board,Pokedex,Font_Color,Back_Music,Battle_Music
     Battle_Music = load_music('./resource/music/Battle_Music.mp3')
-    Battle_Music.set_volume(32)
+    Battle_Music.set_volume(10)
     Back_Music = load_music('./resource/music/Background.mp3')
-    Back_Music.set_volume(32)
+    Back_Music.set_volume(10)
     Back_Music.repeat_play()
     round = 0  # 맵 변경에 사용하는 변수
     mode = 0  # 각종 모드에 사용하는 변수
@@ -128,8 +128,6 @@ def Hero_working(mode):
             if(not(hero.step)):
                 if(random.randint(0,100)<20):
                     wild_Battle.Battle_type = 'Wild'
-                    state = 'wild'
-                    Battle_Music.repeat_play()
                     game_framework.push_state(wild_Battle)
                     hero.movey = 0
                     hero.movex = 0
@@ -182,6 +180,4 @@ def pause():
     pass
 
 def resume():
-    if(state != None):
-        Back_Music.repeat_play()
     pass
