@@ -14,7 +14,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         if event.type == SDL_KEYDOWN:
-            if event.key == SDLK_b:
+            if event.key == SDLK_ESCAPE:
                 game_framework.pop_state()
             elif event.key == SDLK_DOWN:
                 if Choose_Poketmon.CusorY + 1 < play_state.hero.Pcount:

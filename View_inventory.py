@@ -41,6 +41,8 @@ def handle_events():
                 pass
             elif event.key == SDLK_DOWN:
                 Cursory = (Cursory+1)%4
+                if(Cursoyx == 2):
+                    Cursory = Cursory % 2
                 pass
             elif event.key == SDLK_a:
                 if(Cursoyx == 0):

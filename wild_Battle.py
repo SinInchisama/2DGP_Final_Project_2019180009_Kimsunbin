@@ -66,7 +66,8 @@ def enter():
 
 
 def exit():
-    global Push_type
+    global Push_type,Attacker
+    Attacker = None
     for i in play_state.hero.pList:
         i.MinusY = 0
     if(Battle_type != 'Wild'):
@@ -95,9 +96,7 @@ def handle_events():
             game_framework.quit()
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
-                if(Menu_Bool == False):             # 메뉴선택
-                    game_framework.pop_state()
-                elif(Skill_Bool == False):          # 스킬선택
+                if(Skill_Bool == False):          # 스킬선택
                     select_M = 0
                     Menu_Bool = False
 
@@ -112,31 +111,32 @@ def handle_events():
                     select_M += 1
 
             elif event.key == SDLK_a:
-                if(Menu_Bool == False):
-                    if(select_M == 0):
-                        Menu_Bool = True
-                        select_M = 0
-                    elif (select_M == 1):
-                        game_framework.push_state(Battle_Choose)
-                        Push_type = 'Battle_Choose'
-                        select_M = 0
-                    elif(select_M == 2):
-                        play_state.hero.inventory.Use_type = 'Use_battle'
-                        Push_type = 'View_inventory'
-                        game_framework.push_state(View_inventory)
-                            # game_framework.push_state(Throw_Ball)
-                            # Push_type = 'Throw_Ball'
-                    elif(select_M == 3):
-                        game_framework.pop_state()
-                    pass
-                elif (Skill_Bool == False):
-                    Menu_Bool = False
-                    Order_Que1,Order_Que2 = Battle.Speed_check(play_state.hero.pList[Battle.Poket_Order],Enermy_Poketmon)
-                    Attacker,Defenser = Order_Que1.pop(0),Order_Que2.pop(0)
-                    if (Attacker.ailment_check()):
-                        gap = Defenser.Hp
-                        Attacker_type = Attacker.ailment
-                    round = 0
+                if (Attacker == None):
+                    if(Menu_Bool == False):
+                        if(select_M == 0):
+                            Menu_Bool = True
+                            select_M = 0
+                        elif (select_M == 1):
+                            game_framework.push_state(Battle_Choose)
+                            Push_type = 'Battle_Choose'
+                            select_M = 0
+                        elif(select_M == 2):
+                            play_state.hero.inventory.Use_type = 'Use_battle'
+                            Push_type = 'View_inventory'
+                            game_framework.push_state(View_inventory)
+                                # game_framework.push_state(Throw_Ball)
+                                # Push_type = 'Throw_Ball'
+                        elif(select_M == 3):
+                            game_framework.pop_state()
+                        pass
+                    elif (Skill_Bool == False):
+                        Menu_Bool = False
+                        Order_Que1,Order_Que2 = Battle.Speed_check(play_state.hero.pList[Battle.Poket_Order],Enermy_Poketmon)
+                        Attacker,Defenser = Order_Que1.pop(0),Order_Que2.pop(0)
+                        if (Attacker.ailment_check()):
+                            gap = Defenser.Hp
+                            Attacker_type = Attacker.ailment
+                        round = 0
                     pass
 
 

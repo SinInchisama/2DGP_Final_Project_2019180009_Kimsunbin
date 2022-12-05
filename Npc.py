@@ -73,7 +73,7 @@ class Given_Npc(Npc):
         elif(self.kind == 1):
             play_state.hero.inventory.Ball[self.Num][1] += self.count
         elif(self.kind == 2):
-            pass
+            play_state.hero.inventory.Spray[self.Num][1] += self.count
         else:
             play_state.hero.inventory.Riding = True
         self.Met = True
@@ -113,7 +113,6 @@ Maping[3].Npc[1].Dialog_2 = [['Im Lose']]
 Maping[6].Npccount = 1
 Maping[6].Npc = [Npc(51, 3111, 32, 32, 304, 208) for i in range(0, 1)]  # 어무니
 Maping[6].Npc[0].Dialog_1 = [['Jiu Go to Professor House'],['and Get your Pokemon']]
-# Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(1,10,10)),Maping[6].Npc[0].Poket.append(Poketmon.Wild_Poketmon(4,10,10))
 
 
 Maping[7].Npccount = 3
@@ -132,6 +131,7 @@ Maping[7].Npc[2].Dialog_1 = [['Good Travel Jiu']]
 Maping[8].Npccount = 1
 Maping[8].Npc = [Given_Npc(154, 2635, 32, 32, 304, 464,2,0,1) for i in range(0, 1)]  #할아버지
 Maping[8].Npc[0].Dialog_1 = [['Do you want to take the spray']]
+Maping[8].Npc[0].Dialog_2 = [['Good Travel Jiu']]
 
 Maping[9].Npccount = 1
 Maping[9].Npc = [Npc(289, 3146, 32, 32, 272, 304) for i in range(0, 1)]  #아줌마
@@ -153,7 +153,9 @@ Maping[11].Npc[0].Dialog_2 = [['My Super Ball bb']]
 
 Maping[12].Npccount = 1
 Maping[12].Npc = [Given_Npc(289, 3146, 32, 32, 272, 304,0,1,5) for i in range(0, 1)]  #아줌마
+Maping[12].Npc[0].Dialog_2 = [['Good Bye']]
 Maping[12].Npc[0].Dialog_1 = [['You look very sick'],['I give you potion']]
+
 
 Maping[13].Npccount = 1
 Maping[13].Npc = [Healer(18, 2908, 32, 32, 80, 464) for i in range(0, 1)]  #간호순

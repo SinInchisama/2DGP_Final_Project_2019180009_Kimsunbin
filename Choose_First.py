@@ -36,7 +36,7 @@ def handle_events():
                 play_state.hero.pList = [Poketmon.Tr_Poketmon(Cursory * 3,5,30,0)]
                 play_state.hero.pList[0].ailment = ''
                 play_state.hero.pList[0].Set_ability()
-                play_state.hero.pList[0].Skill_List = [32,34,36]
+                play_state.hero.pList[0].Skill_List = [0,9]
                 play_state.hero.pList[0].PP_list = [25,35]
                 play_state.hero.pList[0].Hp = play_state.hero.pList[0].MaxHp
                 Maping[play_state.round].Npc[play_state.hero.Meet_Npc].Met = True

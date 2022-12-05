@@ -183,3 +183,6 @@ def pause():
 
 def resume():
     pass
+
+def exit():
+    pass

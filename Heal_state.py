@@ -33,11 +33,11 @@ def resume():
 def pause():
     pass
 def handle_events():
-    event = get_events()
+    events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-    pass
+
 def update():
     global Ball_count,Frame,set_Ball
     if(not(set_Ball)):

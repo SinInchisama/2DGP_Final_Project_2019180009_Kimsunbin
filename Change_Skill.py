@@ -31,6 +31,8 @@ def handle_events():
             elif event.key == SDLK_a:
                 play_state.hero.pList[Battle.Poket_Order].Change_Skill(Cursory)
                 game_framework.pop_state()
+            elif event.key == SDLK_ESCAPE:
+                game_framework.pop_state()
 
                 pass
     pass

@@ -42,7 +42,7 @@ def handle_events():
             elif event.key == SDLK_s:
                 play_state.hero.pList[NowPc].level -= 1
 
-            elif event.key == SDLK_b:
+            elif event.key == SDLK_ESCAPE:
                 game_framework.pop_state()
                 break
 

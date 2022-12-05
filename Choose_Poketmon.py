@@ -97,9 +97,12 @@ def handle_events():
                     if(CusorY != 6 and CusorY != Now_Select):
                         Change_Poke(CusorY,Now_Select)
                         Round = 0
-            elif event.key == SDLK_b:
-                if(Round == 1):
+            elif event.key == SDLK_ESCAPE:
+                if(Round==0):
+                    game_framework.pop_state()
+                elif(Round == 1):
                     Round = 0
+                    CusorY = 0
 
 
 
